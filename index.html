@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women and water</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script defer src='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js'></script>
+    <script defer src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+    <script defer src="./js/config.js"></script>
+    <script defer src="./js/app.js"></script>
+</head>
+<body>
+
+    <section class="introduction__container">
+        <article class="introduction__article">
+            <h1 class="introduction__main-title">Your live without water at home    </h1>
+            <section class="introduction__text">
+                <p>
+                In 2017 only 71% of the global population (5.3 billion people) had access to a safely managed drinkingwater service. 
+                </p>
+                
+                <p>
+                785 million people lack even a basic drinking-water service, including 144 million people who are dependent on surface water.
+                </p>
+
+                <p>
+                This is what you'd have to do if you were in this position.
+                </p>
+            </section>
+        </article>
+    
+
+        <div class="search__container">
+            <!-- <label for="search">Search for an address:</label> -->
+            <input type="search" class="search__input" id="search" name="q"
+                aria-label="Search for address" placeholder="Enter your address">
+            <button class="search__location-button">use my location</button>
+        </div>
+    </section>
+
+    <div id="map"></div>
+    
+</body>
+</html>
