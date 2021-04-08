@@ -69,3 +69,36 @@ body {
     border-radius: 50%;
     border: 2px solid #FFA600;
 }
+
+.story__container {
+    position: fixed;
+    bottom: 8em;
+    background: white;
+    width: 100%;
+    bottom: 0;
+}
+
+#features {
+    font-family: 'Roboto', sans-serif;
+    padding: 1em;
+}
+
+#features .step {
+    display: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+.active {
+    display: visible !important;
+    opacity: 1 !important;
+    /* transition: visibility 0s, opacity 0.5s linear; */
+}
+
+.eraseFromDom {
+    display: none !important;
+}
+
+.addToDom {
+    display: block !important;
+}

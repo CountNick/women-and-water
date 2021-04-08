@@ -1,6 +1,6 @@
 const config = {    
     accessToken: 'pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/dark-v10',
     theme: 'dark',
     alignment: 'left',
     toptitle: 'Points Unknown | Tutorial 10 | Mapbox Storytelling',
@@ -11,41 +11,42 @@ const config = {
     footerAttribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a> | <a href="http://www.openstreetmap.org/about/" target="_blank">© OpenStreetMap</a> | <a href="https://brown.columbia.edu">The Brown Institute for Media Innovation</a>',
     chapters: [
         {
-            id: 'overallMap',
-            title: 'Subway Ridership Plummets',
+            id: 'your-home',
+            title: 'No water at home',
             image: 'images/Chapter_1_Image.jpg',
             imageCredit: '<a href="http://www.metouhey.com/">Max Touhey</a>',
-            description: 'All around the city subway ridership plummeted during the first two weeks of the Covid-19 outbreak. On average, stations saw a decrease of more than 50% in entries and exits between March 6th and March 20th, 2020. But as this map shows, the drop in ridership did not happen uniformly throughout the city.',
+            description: `This is where you live, as you don't have any water at home you have to go and fetch this`,
             location: {
-                center: [-74, 40.725],
+                center: [],
                 zoom: 10,
                 pitch: 0,
                 bearing: 0
             },
+            mapAnimation: 'flyTo',
             onChapterEnter: [],
             onChapterExit: []
         },
         {
             id: 'incomeUnderlay',
-            title: 'Forced to work and take the subway',
+            title: `The radius you'd have to find water in`,
             image: 'images/Chapter_2_Image.jpg',
             imageCredit: '<a href="https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html">The New York Times</a>',
-            description: 'Income inequality certainly played a role in the uneven distribution of subway usage. By overlaying median household income and change in subway entries it becomes clear that those stations with less change are located in low-income areas, specially in the Bronx and outer Queens and Brooklyn.',
+            description: 'Girls in Niger have to walk an average of 6km(3.8 miles) a day to get water. This is the radius from your house.',
             location: {
-                center: [-74, 40.725],
+                center: [],
                 zoom: 10,
                 pitch: 0,
                 bearing: 0
             },
             onChapterEnter: [
                 {
-                    layer: 'medianIncome',
-                    opacity: 1
+                    layer: 'circle-fill',
+                    opacity: 0.5
                 }
             ],
             onChapterExit: [
                 {
-                    layer: 'medianIncome',
+                    layer: 'circle-fill',
                     opacity: 0
                 }
             ]
@@ -57,7 +58,7 @@ const config = {
             imageCredit: '<a href="https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html">The New York Times</a>',
             description: 'Elmhurst Hospital Center has been identified as one of the hospitals most overwhelmed by the number of patients with COVID-19 it has received. Located in a low-middle-income area of the city, with a median household income of around $50,000, the hospital serves one of the most diverse and immigrant dense areas of the city. The three subway stations around the hospital have all seen relatively small change in their usage compare to the rest of the city.',
             location: {
-                center: [-73.886201, 40.744566],
+                center: [],
                 zoom: 16,
                 pitch: 40,
                 bearing: -7
