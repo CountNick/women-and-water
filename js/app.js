@@ -18,6 +18,12 @@ const layerTypes = {
     'fill-extrusion': ['fill-extrusion-opacity']
 }
 
+map.on('load', () => {
+    // map.setPaintProperty('water', 'fill-color', '#41b6c4');
+    // map.setPaintProperty('building', 'fill-color', '#f03b20');
+    
+})
+
 const searchInput = document.querySelector('#search');
 const searchContainer = searchInput.parentElement
 const locationButton = document.querySelector('.search__location-button');
