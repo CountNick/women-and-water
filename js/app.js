@@ -1,7 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw';
 const map = new mapboxgl.Map({
 container: 'map', // container ID
-style: 'mapbox://styles/mapbox/dark-v10', // style URL
+style: 'mapbox://styles/countnick/ckn8xl8wv1w4117qx5v0xm3oq', // style URL
 center: [-74.5, 40], // starting position [lng, lat]
 zoom: 1 // starting zoom
 });
@@ -54,10 +54,10 @@ async function chooseAddress (data){
 }
 
 function plotHomeLocation(coordinates) {
+    // console.log(coordinates)
+    // let features = map.queryRenderedFeatures(coordinates);
 
-    let features = map.queryRenderedFeatures(coordinates);
-
-    console.log(features)
+    // console.log(features)
 
     const homeMarker = document.createElement('div');
     homeMarker.className = 'home-marker';
@@ -69,7 +69,7 @@ function plotHomeLocation(coordinates) {
         .setLngLat(coordinates)
         .addTo(map);
 
-    console.log(map.queryRenderedFeatures(coordinates));
+    console.log(map.queryRenderedFeatures(marker._lngLat));
 
     map.flyTo({
         center: marker._lngLat,
@@ -99,6 +99,7 @@ function showPosition(position) {
 }
 
 function showRadius(coordinates) {
+    console.log(coordinates)
     const center = turf.point(coordinates);
     const radius = 6;
     const options = {
@@ -107,7 +108,7 @@ function showRadius(coordinates) {
     };
 
     const circle = turf.circle(center, radius, options);
-
+    console.log('circle: ', circle)
     map.addLayer({
         "id": "circle-fill",
         "type": "fill",
@@ -138,7 +139,7 @@ function showRadius(coordinates) {
         }
     });
 
-    // console.log('circle: ', circle.geometry.coordinates[0])
+    // console.log('circle: ', circle)
 
     // const featureList = circle.geometry.coordinates[0].map(point => {
     //     // console.log(point)
@@ -151,3 +152,11 @@ function showRadius(coordinates) {
     // console.log(featureList, featureList.length)
     
 }
+
+map.on('load', (e) => {
+    map.on('click', function(e) {
+        console.log(e.point)
+        let features = map.queryRenderedFeatures(e.point);
+        console.log(features)
+    })
+})
