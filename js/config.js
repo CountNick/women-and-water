@@ -53,10 +53,10 @@ const config = {
         },
         {
             id: 'elmhurstHospital',
-            title: 'The epicenter of the outbreak',
+            title: 'The watersource',
             image: 'images/Chapter_3_Image.jpg',
             imageCredit: '<a href="https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html">The New York Times</a>',
-            description: 'Elmhurst Hospital Center has been identified as one of the hospitals most overwhelmed by the number of patients with COVID-19 it has received. Located in a low-middle-income area of the city, with a median household income of around $50,000, the hospital serves one of the most diverse and immigrant dense areas of the city. The three subway stations around the hospital have all seen relatively small change in their usage compare to the rest of the city.',
+            description: `This is the point you'll have to get water from`,
             location: {
                 center: [],
                 zoom: 16,
@@ -78,10 +78,10 @@ const config = {
         },
         {
             id: 'southBronx',
-            title: 'The South Bronx, as Always',
+            title: `The route you'd have to walk`,
             image: 'images/Chapter_4_Image.jpg',
             imageCredit: '<a href="https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html">The New York Times</a>',
-            description: "The South Bronx, perennially marred in social injustice, has also been hard hit during the current COVID-19 outbreak. The area's three main neighborhoods, Mott Haven, Melrose and Port Morris are mostly home to low-income families that have been forced to continue going to work, risking their health and that of their loved ones. Similarly to Jackson Heights in Queens, the areas subway stations have seen a smaller decrease in use than the rest of the city. Median household income in this area oscillates between $15,000 and $30,000.",
+            description: "This is where the route would be plotted",
             location: {
                 center: [-73.918037, 40.816093],
                 zoom: 15,
