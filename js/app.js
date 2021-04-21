@@ -16,8 +16,8 @@ locationButton.addEventListener('click', getGeoLocation)
 searchInput.addEventListener('input', (e) => {
     // if querystring contains spaces replace this with %20
     let queryString = e.target.value.replace(/\s/g, '%20')
-
-    const fetchedOptions = fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${queryString}.json?access_token=${mapboxgl.accessToken}`)
+    // geocoding api source: https://docs.mapbox.com/api/search/geocoding/#mapboxplaces
+    const fetchedOptions = fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${queryString}.json?country=nl&access_token=${mapboxgl.accessToken}`)
         .then(res => res.json())
         .then(data => data);
 
@@ -82,11 +82,11 @@ function plotHomeLocation(coordinates) {
 
     showRadius(coordinates)
 
-    var tileset = 'countnick.0j3fne09'; // replace this with the ID of the tileset you created
-    var radius = 8000; // 1609 meters is roughly equal to one mile
-    var limit = 50; // The maximum amount of results to return
-
-    var query = 'https://api.mapbox.com/v4/' + tileset + '/tilequery/' + coordinates[0] + ',' + coordinates[1] + '.json?radius=' + radius + '&limit= ' + limit + ' &access_token=' + mapboxgl.accessToken;
+    const tileset = 'countnick.0j3fne09'; // replace this with the ID of the tileset you created
+    const radius = 8000; // 1609 meters is roughly equal to one mile
+    const limit = 50; // The maximum amount of results to return
+    // Tileset api source: https://docs.mapbox.com/help/tutorials/tilequery-healthy-food-finder/
+    const query = 'https://api.mapbox.com/v4/' + tileset + '/tilequery/' + coordinates[0] + ',' + coordinates[1] + '.json?radius=' + radius + '&limit= ' + limit + ' &access_token=' + mapboxgl.accessToken;
 
     fetch(query)
         .then(res => res.json())
@@ -95,8 +95,6 @@ function plotHomeLocation(coordinates) {
 
             const longer = data.features.filter(item => item.properties.tilequery.distance > 1500)
 
-            console.log(longer)
-
             const random = Math.floor(Math.random() * longer.length);
 
             console.log(longer[random])
@@ -104,9 +102,7 @@ function plotHomeLocation(coordinates) {
             map.getSource('tilequery').setData(longer[random]);
             
             const waterSource = map.getSource('tilequery')
-            console.log('watersource: ', waterSource._data.geometry.coordinates)
-            console.log('marker: ', marker._lngLat.lng, marker._lngLat.lat)
-
+            // route: geoconverter.hsr.ch
             fetch(`https://api.mapbox.com/directions/v5/mapbox/walking/${waterSource._data.geometry.coordinates[0]},${waterSource._data.geometry.coordinates[1]};${marker._lngLat.lng},${marker._lngLat.lat}?geometries=geojson&access_token=${mapboxgl.accessToken}`)
               .then(res => res.json())
               .then(data => {
@@ -115,8 +111,6 @@ function plotHomeLocation(coordinates) {
               })
 
         });
-
-
 }
 
 function getGeoLocation() {
