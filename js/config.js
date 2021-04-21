@@ -1,6 +1,6 @@
 const config = {    
     accessToken: 'pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/countnick/ckm36h38ybupk17p6lcl9pie9',
     theme: 'dark',
     alignment: 'left',
     toptitle: 'Points Unknown | Tutorial 10 | Mapbox Storytelling',
