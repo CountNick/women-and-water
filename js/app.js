@@ -148,33 +148,10 @@ function showRadius(coordinates) {
             "fill-opacity": 0.5
         }
     });
-    // map.addLayer({
-    //     "id": "circle-outline",
-    //     "type": "line",
-    //     "source": {
-    //         "type": "geojson",
-    //         "data": circle
-    //     },
-    //     "paint": {
-    //         "line-color": "blue",
-    //         "line-opacity": 0.5,
-    //         "line-width": 10,
-    //         "line-offset": 5
-    //     },
-    //     "layout": {
-
-    //     }
-    // });
-
-
 }
 
 map.on('load', (e) => {
-    map.on('click', function(e) {
-        console.log(e.point)
-        let features = map.queryRenderedFeatures(e.point);
-        console.log(features)
-    });
+
 
     map.addSource('tilequery', { // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
         type: "geojson",
