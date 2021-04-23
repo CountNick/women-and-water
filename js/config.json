@@ -20,7 +20,7 @@
             "title": "No water at home",
             "image": "images/Chapter_1_Image.jpg",
             "imageCredit": "<a href=\"http://www.metouhey.com/\">Max Touhey</a>",
-            "description": "This is where you live, as you dont have any water at home you have to go and fetch this",
+            "description": "This is where you live, imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home. Which means you would have to walk somewhere to get water",
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -46,7 +46,7 @@
             "title": "The radius youd have to find water in",
             "image": "images/Chapter_2_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Girls in Niger have to walk an average of 6km(3.8 miles) a day to get water. This is the radius from your house.",
+            "description": "The average women and girls walk for water here is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -71,7 +71,7 @@
             "title": "The watersource",
             "image": "images/Chapter_3_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "This is the point youll have to get water from",
+            "description": "Today you'll have to fetch water from this source: show source name here.",
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -100,7 +100,7 @@
             "title": "The route you'd have to walk",
             "image": "images/Chapter_4_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "This is where the route would be plotted",
+            "description": "The distance you'l be walking to this source is show distance here back and forth it will take you approximately show estimated time here",
             "location": {
                 "center": [],
                 "zoom": 11,
@@ -125,7 +125,7 @@
             "title": "You start walking at 9",
             "image": "images/Chapter_4_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "This is where the route would be plotted",
+            "description": "You'll be needeing something to bring the water back home in. In niger they mainly use jerrycan's for this. Your jerrycan is displayed in the upper left corner of your screen",
             "location": {
                 "center": [],
                 "zoom": 20,
