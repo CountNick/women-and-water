@@ -122,7 +122,7 @@
         },
         {
             "id": "startPoint",
-            "title": "The route you'd have to walk",
+            "title": "You start walking at 9",
             "image": "images/Chapter_4_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
             "description": "This is where the route would be plotted",
