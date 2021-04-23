@@ -152,17 +152,7 @@ const init = async (config) => {
 
     document.querySelector("body").appendChild(storyElement);
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
-    // config.chapters[0](setLayerOpacity)
-    //create the marker DOM element
-    // const homeMarker = document.createElement('div');
-    // homeMarker.className = 'home-marker';
-    // homeMarker.style.backgroundColor = 'black';
-    // homeMarker.style.width = "20px"
-    // homeMarker.style.height = "20px"
-    // // plot marker on user's home address
-    // const marker = new mapboxgl.Marker(homeMarker)
-    //     .setLngLat(coordinates)
-    //     .addTo(map);
+
     // make query to get Dutch water data from tileset
     const query = `https://api.mapbox.com/v4/${config.tilesetConfig.tileset}/tilequery/${coordinates[0]},${coordinates[1]}.json?radius=${config.tilesetConfig.radius}&limit=${config.tilesetConfig.limit}&access_token=${mapboxgl.accessToken}`;
 
@@ -200,16 +190,16 @@ const init = async (config) => {
           });
       });
 
+    // set center option for all chapters, as it will be the same for each
     config.chapters[0].location.center = coordinates;
     config.chapters[1].location.center = coordinates;
     config.chapters[2].location.center = coordinates;
     config.chapters[3].location.center = coordinates;
     config.chapters[4].location.center = coordinates;
 
-    console.log(config.chapters[0]);
-
+    // set opacity for the first data layer
     config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
-
+    // fly to location of first data layer
     map.flyTo({
       center: config.chapters[0].location.center,
       zoom: 17,
@@ -222,106 +212,14 @@ const init = async (config) => {
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
-      const children = [
-        ...e.target.nextElementSibling.nextElementSibling.children,
-      ];
-      // updateStory(children, e, config, map, setLayerOpacity)
-
-      const currentChapterElement = children.find((child) =>
-        child.classList.contains("active")
-      );
-      const currentChapterObject = config.chapters.find(
-        (chap) => chap.id === currentChapterElement.id
-      );
-
-      const findCurrentObject = (obj) => obj.id === currentChapterElement.id;
-
-      let currInd = config.chapters.findIndex(findCurrentObject);
-
-      const nextChapter = config.chapters[--currInd];
-      console.log(nextChapter);
-      const nextChapterElement = children.find(
-        (child) => child.id === nextChapter.id
-      );
-
-      currentChapterElement.classList.remove("active");
-
-      currentChapterElement.classList.add("eraseFromDom");
-      nextChapterElement.classList.remove("eraseFromDom");
-      const setActive = setTimeout(() => {
-        nextChapterElement.classList.add("active");
-      }, 1);
-      if (currentChapterObject.onChapterExit.length > 0) {
-        let turnOfLayerList = [];
-
-        currentChapterObject.onChapterExit.forEach((chap) => {
-          if (chap.opacity > 0) {
-            const turnOfLayer = {
-              layer: chap.layer,
-              opacity: 0,
-            };
-
-            setLayerOpacity(turnOfLayer);
-            turnOfLayerList.push(turnOfLayer);
-          }
-        });
-
-        turnOfLayerList.forEach(setLayerOpacity);
-      }
-
-      map.flyTo(nextChapter.location);
-
-      if (nextChapter.onChapterEnter.length > 0) {
-        nextChapter.onChapterEnter.forEach(setLayerOpacity);
-      } else {
-        console.log(e);
-      }
+      const children = [...e.target.nextElementSibling.nextElementSibling.children];
+      updateStory(children, e, config, map, setLayerOpacity)
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
       const children = [...e.target.nextElementSibling.children];
-      // updateStory(children, e)
-      const currentChapterElement = children.find((child) =>
-        child.classList.contains("active")
-      );
-      const currentChapterObject = config.chapters.find(
-        (chap) => chap.id === currentChapterElement.id
-      );
-
-      const findCurrentObject = (obj) => obj.id === currentChapterElement.id;
-
-      let currInd = config.chapters.findIndex(findCurrentObject);
-
-      const nextChapter = config.chapters[++currInd];
-
-      console.log(nextChapter);
-
-      const nextChapterElement = children.find(
-        (child) => child.id === nextChapter.id
-      );
-
-      // nextChapterElement.classList.remove('eraseFromDom')
-
-      currentChapterElement.classList.remove("active");
-      // currentChapterElement.classList.add('eraseFromDom')
-
-      currentChapterElement.classList.add("eraseFromDom");
-      nextChapterElement.classList.remove("eraseFromDom");
-      const setActive = setTimeout(() => {
-        nextChapterElement.classList.add("active");
-      }, 1);
-      if (nextChapter.onChapterEnter.length > 0) {
-        currentChapterObject.onChapterEnter.forEach(setLayerOpacity);
-      }
-
-      map.flyTo(nextChapter.location);
-
-      if (nextChapter.onChapterExit.length > 0) {
-        nextChapter.onChapterExit.forEach(setLayerOpacity);
-      } else {
-        console.log(e);
-      }
+      updateStory(children, e, config, map, setLayerOpacity)
     });
     calculateRadius(coordinates, map);
   };
@@ -525,21 +423,16 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 
   let nextChapter;
 
-  if (event.target.className === "story__prev-btn") {
-    nextChapter = config.chapters[--currInd];
-  } else {
+  if (event.target.className === "story__next-btn") {
     nextChapter = config.chapters[++currInd];
-  }
+    
+    const nextChapterElement = elements.find(
+      (child) => child.id === nextChapter.id
+    );
 
-  console.log(nextChapter);
-  const nextChapterElement = elements.find(
-    (child) => child.id === nextChapter.id
-  );
+    currentChapterElement.classList.remove("active");
+    // currentChapterElement.classList.add('eraseFromDom')
 
-  currentChapterElement.classList.remove("active");
-  // currentChapterElement.classList.add('eraseFromDom')
-
-  currentChapterElement.addEventListener("transitionend", (e) => {
     currentChapterElement.classList.add("eraseFromDom");
     nextChapterElement.classList.remove("eraseFromDom");
     const setActive = setTimeout(() => {
@@ -548,13 +441,53 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     if (currentChapterObject.onChapterExit.length > 0) {
       currentChapterObject.onChapterExit.forEach(setLayerOpacity);
     }
-  });
 
-  map.flyTo(nextChapter.location);
+    map.flyTo(nextChapter.location);
 
-  if (nextChapter.onChapterEnter.length > 0) {
-    nextChapter.onChapterEnter.forEach(setLayerOpacity);
-  } else {
-    // console.log(e)
+    if (nextChapter.onChapterEnter.length > 0) {
+      nextChapter.onChapterEnter.forEach(setLayerOpacity);
+    } else {
+      // console.log(e)
+    }
+  } else if (event.target.className === "story__prev-btn") {
+    nextChapter = config.chapters[--currInd];
+
+    const nextChapterElement = elements.find(
+      (child) => child.id === nextChapter.id
+    );
+
+    currentChapterElement.classList.remove("active");
+
+    currentChapterElement.classList.add("eraseFromDom");
+    nextChapterElement.classList.remove("eraseFromDom");
+    const setActive = setTimeout(() => {
+      nextChapterElement.classList.add("active");
+    }, 1);
+    if (currentChapterObject.onChapterExit.length > 0) {
+      let turnOfLayerList = [];
+
+      currentChapterObject.onChapterExit.forEach((chap) => {
+        if (chap.opacity > 0) {
+          const turnOfLayer = {
+            layer: chap.layer,
+            opacity: 0,
+          };
+
+          setLayerOpacity(turnOfLayer);
+          turnOfLayerList.push(turnOfLayer);
+        }
+      });
+
+      turnOfLayerList.forEach(setLayerOpacity);
+    }
+
+    map.flyTo(nextChapter.location);
+
+    if (nextChapter.onChapterEnter.length > 0) {
+      nextChapter.onChapterEnter.forEach(setLayerOpacity);
+    } else {
+      console.log(e);
+    }
+
   }
 }
