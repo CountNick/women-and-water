@@ -32,10 +32,15 @@ body {
     flex-direction: column;
 }
 
+.introduction__text-article {
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+}
+
 .search__container {
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: sticky;
     left: 0;
     bottom: 5%;
     max-width: inherit;
@@ -57,10 +62,17 @@ body {
 .options__container {
     background: white;
     color: black;
+    list-style-type: none;
+}
+
+.options__container li {
+    cursor: pointer;
+    padding-top: .5em;
+    padding-bottom: .5em;
 }
 
 #map {
-    position: relative;
+    position: fixed;
     width: 100vw; 
     height: 100vh;
 }
@@ -76,6 +88,10 @@ body {
     background: white;
     width: 100%;
     bottom: 0;
+}
+
+.story__next-btn, .story__prev-btn {
+    padding: 1em;
 }
 
 #features {
