@@ -28,8 +28,18 @@
                 "bearing": 0
             },
             "mapAnimation": "flyTo",
-            "onChapterEnter": [],
-            "onChapterExit": []
+            "onChapterEnter": [
+                {
+                    "layer": "home-marker",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "home-marker",
+                    "opacity": 1
+                }
+            ]
         },
         {
             "id": "theRadius",
@@ -119,8 +129,8 @@
             "location": {
                 "center": [],
                 "zoom": 20,
-                "pitch": 30,
-                "bearing": 10
+                "pitch": 60,
+                "bearing": 50
             },
             "onChapterEnter": [
                 {
