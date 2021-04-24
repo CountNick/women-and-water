@@ -23,9 +23,11 @@
             "description": "This is where you live, imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home. Which means you would have to walk somewhere to get water",
             "location": {
                 "center": [],
-                "zoom": 10,
+                "zoom": 17,
                 "pitch": 0,
-                "bearing": 0
+                "bearing": 0,
+                "speed" : 1,
+                "curve": 1
             },
             "mapAnimation": "flyTo",
             "onChapterEnter": [
@@ -125,7 +127,7 @@
             "title": "You start walking at 9",
             "image": "images/Chapter_4_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "You'll be needeing something to bring the water back home in. In niger they mainly use jerrycan's for this. Your jerrycan is displayed in the upper left corner of your screen",
+            "description": "You'll be needing something to bring the water back home in. As they mainly use jerrycan's for this in Niger this is what you will be using today.",
             "location": {
                 "center": [],
                 "zoom": 20,

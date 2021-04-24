@@ -200,15 +200,7 @@ const init = async (config) => {
     // set opacity for the first data layer
     config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
     // fly to location of first data layer
-    map.flyTo({
-      center: config.chapters[0].location.center,
-      zoom: 17,
-      bearing: 0,
-      speed: 1,
-      curve: 1,
-      easing: (t) => t,
-      essential: true,
-    });
+    map.flyTo(config.chapters[0].location);
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
