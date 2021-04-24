@@ -47,6 +47,26 @@ body {
     width: 100%;
 }
 
+.hud__container {
+    z-index: 99;
+    opacity: 0;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.hud__container .hud__clock {
+    padding: 1em 2em;
+    margin-left: auto;
+    color: white;
+    font-family: 'Roboto';
+}
+
+.hud__container .hud__img-jerrycan {
+    padding: 1em 2em;
+}
+
 .search__input {
     font-size: 1.5em;
     padding: .5em;

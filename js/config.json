@@ -134,6 +134,7 @@
                 "pitch": 60,
                 "bearing": 50
             },
+            "hudVisibility": 1,
             "onChapterEnter": [
                 {
                     "layer": "route",

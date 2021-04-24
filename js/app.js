@@ -201,19 +201,22 @@ const init = async (config) => {
     config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
     // fly to location of first data layer
     map.flyTo(config.chapters[0].location);
+    // prepare radius data layer
+    calculateRadius(coordinates, map);
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
-      const children = [...e.target.nextElementSibling.nextElementSibling.children];
-      updateStory(children, e, config, map, setLayerOpacity)
+      const children = [
+        ...e.target.nextElementSibling.nextElementSibling.children,
+      ];
+      updateStory(children, e, config, map, setLayerOpacity);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
       const children = [...e.target.nextElementSibling.children];
-      updateStory(children, e, config, map, setLayerOpacity)
+      updateStory(children, e, config, map, setLayerOpacity);
     });
-    calculateRadius(coordinates, map);
   };
 
   const getLayerPaintType = (layer) => {
@@ -417,7 +420,7 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 
   if (event.target.className === "story__next-btn") {
     nextChapter = config.chapters[++currInd];
-    
+
     const nextChapterElement = elements.find(
       (child) => child.id === nextChapter.id
     );
@@ -441,6 +444,14 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     } else {
       // console.log(e)
     }
+
+    if(nextChapter.hudVisibility){
+      console.log('make hud vsible')
+      document.querySelector('.hud__container').classList.add('active')
+    } else if(!nextChapter.hudVisibility && document.querySelector('.hud__container').classList.contains('active')) {
+      document.querySelector('.hud__container').classList.remove('active')
+    }
+
   } else if (event.target.className === "story__prev-btn") {
     nextChapter = config.chapters[--currInd];
 
@@ -479,6 +490,13 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
       nextChapter.onChapterEnter.forEach(setLayerOpacity);
     } else {
       console.log(e);
+    }
+
+    if(nextChapter.hudVisibility){
+      console.log('make hud vsible')
+      document.querySelector('.hud__container').classList.add('active')
+    } else if(!nextChapter.hudVisibility && document.querySelector('.hud__container').classList.contains('active')) {
+      document.querySelector('.hud__container').classList.remove('active')
     }
 
   }
