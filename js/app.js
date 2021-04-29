@@ -145,7 +145,12 @@ const init = async (config) => {
 
     storyElement.insertAdjacentHTML(
       "afterbegin",
-      `<button data-attribute="story__prev-btn" class="story__prev-btn">Previous</button> <button class="story__next-btn">Next</button> `
+      `
+      <div class="story__button-container">
+      <button data-attribute="story__prev-btn" class="story__prev-btn">Previous</button>
+      <button class="story__next-btn">Next</button> 
+      </div>
+      `
     );
 
     storyElement.appendChild(features);
@@ -187,6 +192,7 @@ const init = async (config) => {
             console.log(data.routes[0]);
             // fil the line data layer with the route to the waterspot
             map.getSource("line").setData(data.routes[0].geometry);
+
           });
       });
 
@@ -207,14 +213,14 @@ const init = async (config) => {
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
       const children = [
-        ...e.target.nextElementSibling.nextElementSibling.children,
+        ...e.target.parentElement.nextElementSibling.children,
       ];
       updateStory(children, e, config, map, setLayerOpacity);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
-      const children = [...e.target.nextElementSibling.children];
+      const children = [...e.target.parentElement.nextElementSibling.children];
       updateStory(children, e, config, map, setLayerOpacity);
     });
   };
@@ -445,13 +451,15 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
       // console.log(e)
     }
 
-    if(nextChapter.hudVisibility){
-      console.log('make hud vsible')
-      document.querySelector('.hud__container').classList.add('active')
-    } else if(!nextChapter.hudVisibility && document.querySelector('.hud__container').classList.contains('active')) {
-      document.querySelector('.hud__container').classList.remove('active')
+    if (nextChapter.hudVisibility) {
+      console.log("make hud vsible");
+      document.querySelector(".hud__container").classList.add("active");
+    } else if (
+      !nextChapter.hudVisibility &&
+      document.querySelector(".hud__container").classList.contains("active")
+    ) {
+      document.querySelector(".hud__container").classList.remove("active");
     }
-
   } else if (event.target.className === "story__prev-btn") {
     nextChapter = config.chapters[--currInd];
 
@@ -492,12 +500,14 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
       console.log(e);
     }
 
-    if(nextChapter.hudVisibility){
-      console.log('make hud vsible')
-      document.querySelector('.hud__container').classList.add('active')
-    } else if(!nextChapter.hudVisibility && document.querySelector('.hud__container').classList.contains('active')) {
-      document.querySelector('.hud__container').classList.remove('active')
+    if (nextChapter.hudVisibility) {
+      console.log("make hud vsible");
+      document.querySelector(".hud__container").classList.add("active");
+    } else if (
+      !nextChapter.hudVisibility &&
+      document.querySelector(".hud__container").classList.contains("active")
+    ) {
+      document.querySelector(".hud__container").classList.remove("active");
     }
-
   }
 }
