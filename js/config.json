@@ -18,9 +18,7 @@
         {
             "id": "your-home",
             "title": "No water at home",
-            "image": "images/Chapter_1_Image.jpg",
-            "imageCredit": "<a href=\"http://www.metouhey.com/\">Max Touhey</a>",
-            "description": "This is where you live, imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home. Which means you would have to walk somewhere to get water",
+            "description": "In 2015 only 56% of the population in Niger had acces to drinking water.Imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home, which means you would have to walk for water for you and your family",
             "location": {
                 "center": [],
                 "zoom": 17,
@@ -46,9 +44,7 @@
         {
             "id": "theRadius",
             "title": "The radius youd have to find water in",
-            "image": "images/Chapter_2_Image.jpg",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "The average women and girls walk for water here is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
+            "description": "The average women and girls walk for water in Niger is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -71,9 +67,7 @@
         {
             "id": "theWaterSource",
             "title": "The watersource",
-            "image": "images/Chapter_3_Image.jpg",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Today you'll have to fetch water from this source: show source name here.",
+            "description": "Today you'll have to fetch water from this source: show source name here. This water source is __show distance you have to walk here__",
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -100,9 +94,7 @@
         {
             "id": "theRoute",
             "title": "The route you'd have to walk",
-            "image": "images/Chapter_4_Image.jpg",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "The distance you'l be walking to this source is show distance here back and forth it will take you approximately show estimated time here",
+            "description": "The route you will be walking takes approximately __time it takes to wak here__ back and forth",
             "location": {
                 "center": [],
                 "zoom": 11,
@@ -125,9 +117,8 @@
         {
             "id": "startPoint",
             "title": "You start walking at 9",
-            "image": "images/Chapter_4_Image.jpg",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "You'll be needing something to bring the water back home in. As they mainly use jerrycan's for this in Niger this is what you will be using today.",
+            "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
             "location": {
                 "center": [],
                 "zoom": 20,
