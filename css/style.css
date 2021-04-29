@@ -108,10 +108,23 @@ body {
     background: white;
     width: 100%;
     bottom: 0;
+    height: 23%;
+}
+
+.story__button-container {
+    position: absolute;
+    right: 1em;
+    bottom: 9em;
 }
 
 .story__next-btn, .story__prev-btn {
     padding: 1em;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    background: orange;
+    cursor: pointer;
 }
 
 #features {
