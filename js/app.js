@@ -147,8 +147,12 @@ const init = async (config) => {
       "afterbegin",
       `
       <div class="story__button-container">
-      <button data-attribute="story__prev-btn" class="story__prev-btn">Previous</button>
-      <button class="story__next-btn">Next</button> 
+      <button data-attribute="story__prev-btn" class="story__prev-btn">
+          <
+      </button>
+      <button class="story__next-btn">
+          >
+      </button> 
       </div>
       `
     );
