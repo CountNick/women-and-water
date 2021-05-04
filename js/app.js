@@ -42,7 +42,7 @@ const init = async (config) => {
     const chapter = document.createElement("div");
     // Creates the title for the vignettes
     if (record.title) {
-      const title = document.createElement("h3");
+      const title = document.createElement("h2");
       title.innerText = record.title;
       chapter.appendChild(title);
     }
@@ -469,7 +469,7 @@ function addLayers(map) {
         "line-cap": "round",
       },
       paint: {
-        "line-color": "#3887be",
+        "line-color": "#ff1e00",
         "line-width": 5,
         "line-opacity": 0,
       },
