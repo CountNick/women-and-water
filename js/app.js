@@ -172,13 +172,13 @@ const init = async (config) => {
         console.log("data: ", data);
         // select water spots that are further away than 1500 meters
         const longer = data.features.filter(
-          (item) => item.properties.tilequery.distance > 1500
+          (item) => item.properties.tilequery.distance > 4500
         );
         // select a random number from the array with longer distanced water spots
         const random = Math.floor(Math.random() * longer.length);
 
         const randomWaterSource = longer[random];
-        console.log(randomWaterSource);
+        // console.log(randomWaterSource);
         // fill the tilequery data layer with a random object from the array
         const waterSource = map.getSource("tilequery");
         waterSource.setData(randomWaterSource);
@@ -188,14 +188,78 @@ const init = async (config) => {
         );
         // route source used: geoconverter.hsr.ch
         // fetch a route for the water spot
+
+
+
         fetch(
-          `https://api.mapbox.com/directions/v5/mapbox/walking/${waterSource._data.geometry.coordinates[0]},${waterSource._data.geometry.coordinates[1]};${coordinates[0]},${coordinates[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`
+          `https://api.mapbox.com/directions/v5/mapbox/walking/${coordinates[0]},${coordinates[1]};${waterSource._data.geometry.coordinates[0]},${waterSource._data.geometry.coordinates[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.routes[0]);
+            console.log('route data: ', data.routes[0]);
             // fil the line data layer with the route to the waterspot
-            map.getSource("line").setData(data.routes[0].geometry);
+            const smoothenAnimation = turf.bezierSpline(data.routes[0].geometry)
+            map.getSource("line").setData(smoothenAnimation);
+            // init animate function
+            let counter = 0 
+            
+
+            let route = map.getSource('line')
+            console.log('lalala ', route)
+            let steps = route._data.geometry.coordinates.length
+            console.log(route)
+            
+            timerid = setTimeout(() => {
+              animate()
+            }, 10000);
+
+            
+
+            function animate() {
+              console.log(counter)
+              // console.log(steps)
+            
+              // let point = map.getSource('mark')
+              // const steps = route._data.coordinates.length
+            
+            
+              let start = route._data.geometry.coordinates[
+                counter >= steps ? counter - 1 : counter
+              ]
+            
+              let end = route._data.geometry.coordinates[
+                counter >= steps ? counter : counter + 1
+              ]
+            
+              if (!start || !end) return;
+            
+              console.log(route._data.geometry.coordinates[counter])
+
+              // point._data.coordinates = route._data.coordinates[counter]
+
+              let point = {type: "Point", coordinates: route._data.geometry.coordinates[counter]}
+              
+              map.getSource("mark").setData(point);
+              // point.setData({ type: "Point", coordinates: route._data.coordinates[counter] })
+              console.log(point)
+              // console.log('start: ', start)
+              // console.log('ende: ', end)
+            
+              if(counter < steps) {
+                setTimeout(() => {
+                  requestAnimationFrame(animate)
+                }, 10)
+                
+              }
+              
+              if(counter === 250) {
+                alert('on half of route')
+              }
+            
+            counter = counter + 1
+            
+            
+            }
 
           });
       });
@@ -515,3 +579,40 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     }
   }
 }
+
+// function animate(map, counter, steps) {
+//   console.log(counter)
+//   console.log(steps)
+
+//   let point = map.getSource('mark')
+//   let route = map.getSource('line')
+//   // const steps = route._data.coordinates.length
+
+
+//   let start = route._data.coordinates[
+//     counter >= steps ? counter - 1 : counter
+//   ]
+
+//   let end = route._data.coordinates[
+//     counter >= steps ? counter : counter + 1
+//   ]
+
+//   if (!start || !end) return;
+
+//   console.log(point)
+//   point._data.coordinates = route._data.coordinates[counter]
+  
+
+//   // point.setData(point._data)
+
+//   // console.log('start: ', start)
+//   // console.log('ende: ', end)
+
+//   if(counter < steps) {
+//     requestAnimationFrame(animate)
+//   }
+
+// counter = counter + 1
+
+
+// }
