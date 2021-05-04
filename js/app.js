@@ -119,7 +119,8 @@ const init = async (config) => {
       // add a click event to each
       listItem.addEventListener("click", (e) => {
         // remove the whole search element from DOM
-        searchInput.parentElement.parentElement.remove();
+        searchInput.parentElement.previousElementSibling.remove();
+        searchInput.parentElement.remove();
         // set the input value to the selected address
         searchInput.value = e.target.innerHTML;
         // plot the home location on the map

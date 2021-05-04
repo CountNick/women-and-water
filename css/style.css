@@ -10,7 +10,6 @@ body {
 }
 
 .introduction__container {
-    position: absolute;
     z-index: 99;
     color: #ffffff;
     padding: 1em 2em;
@@ -41,8 +40,7 @@ body {
     display: flex;
     flex-direction: column;
     position: sticky;
-    left: 0;
-    bottom: 5%;
+    bottom: 0;
     max-width: inherit;
     width: 100%;
 }
