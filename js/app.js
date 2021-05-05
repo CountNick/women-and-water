@@ -1,3 +1,4 @@
+
 const config = fetch("./js/config.json")
   .then((res) => res.json())
   .then((configObject) => init(configObject));
@@ -190,78 +191,17 @@ const init = async (config) => {
         // route source used: geoconverter.hsr.ch
         // fetch a route for the water spot
 
-
-
         fetch(
           `https://api.mapbox.com/directions/v5/mapbox/walking/${coordinates[0]},${coordinates[1]};${waterSource._data.geometry.coordinates[0]},${waterSource._data.geometry.coordinates[1]}?geometries=geojson&access_token=${mapboxgl.accessToken}`
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log('route data: ', data.routes[0]);
+            console.log("route data: ", data.routes[0]);
             // fil the line data layer with the route to the waterspot
-            const smoothenAnimation = turf.bezierSpline(data.routes[0].geometry)
+            const smoothenAnimation = turf.bezierSpline(
+              data.routes[0].geometry
+            );
             map.getSource("line").setData(smoothenAnimation);
-            // init animate function
-            let counter = 0 
-            
-
-            let route = map.getSource('line')
-            console.log('lalala ', route)
-            let steps = route._data.geometry.coordinates.length
-            console.log(route)
-            
-            timerid = setTimeout(() => {
-              animate()
-            }, 10000);
-
-            
-
-            function animate() {
-              console.log(counter)
-              // console.log(steps)
-            
-              // let point = map.getSource('mark')
-              // const steps = route._data.coordinates.length
-            
-            
-              let start = route._data.geometry.coordinates[
-                counter >= steps ? counter - 1 : counter
-              ]
-            
-              let end = route._data.geometry.coordinates[
-                counter >= steps ? counter : counter + 1
-              ]
-            
-              if (!start || !end) return;
-            
-              console.log(route._data.geometry.coordinates[counter])
-
-              // point._data.coordinates = route._data.coordinates[counter]
-
-              let point = {type: "Point", coordinates: route._data.geometry.coordinates[counter]}
-              
-              map.getSource("mark").setData(point);
-              // point.setData({ type: "Point", coordinates: route._data.coordinates[counter] })
-              console.log(point)
-              // console.log('start: ', start)
-              // console.log('ende: ', end)
-            
-              if(counter < steps) {
-                setTimeout(() => {
-                  requestAnimationFrame(animate)
-                }, 10)
-                
-              }
-              
-              if(counter === 250) {
-                alert('on half of route')
-              }
-            
-            counter = counter + 1
-            
-            
-            }
-
           });
       });
 
@@ -279,23 +219,131 @@ const init = async (config) => {
     // prepare radius data layer
     calculateRadius(coordinates, map);
 
+    // init animate function
+    let counter = 0;
+    let route = map.getSource("line");
+    let animationRunning = true
+    console.log("lalala ", route);
+    console.log(route);
+
+    function togglePause() {
+      // toggle the value of isRunning
+      animationRunning = !animationRunning;
+    
+      // call animate() if working
+      if (animationRunning) {
+        animate();
+      }
+    }
+
+    function animate() {
+      let steps = route._data.geometry.coordinates.length;
+      console.log(counter);
+
+      let start =
+        route._data.geometry.coordinates[
+          counter >= steps ? counter - 1 : counter
+        ];
+
+      let end =
+        route._data.geometry.coordinates[
+          counter >= steps ? counter : counter + 1
+        ];
+
+      if (!start || !end) return;
+
+      console.log(route._data.geometry.coordinates[counter]);
+
+      // point._data.coordinates = route._data.coordinates[counter]
+
+      let point = {
+        type: "Point",
+        coordinates: route._data.geometry.coordinates[counter],
+      };
+
+      map.getSource("mark").setData(point);
+      // point.setData({ type: "Point", coordinates: route._data.coordinates[counter] })
+      console.log(point);
+      // console.log('start: ', start)
+      // console.log('ende: ', end)
+
+      if (animationRunning) {
+        setTimeout(() => {
+          requestAnimationFrame(animate);
+        }, 10);
+
+      }
+
+      if (counter === 250) {
+        togglePause()
+        let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
+        console.log('random event: ', randomEvent)
+        const randomEventElement = document.createElement('div')
+        randomEventElement.className = "randomEvent__container"
+        console.log(randomEventElement)
+
+        randomEventElement.insertAdjacentHTML('beforeend', 
+        `
+        <h2 class="randomEvent__title">${randomEvent.title}</h2>
+        <p class="randomEvent__text">${randomEvent.description}</p>
+        <button class="randomEvent__button">Continue</button>
+        `
+        )
+
+        document.querySelector("body").appendChild(randomEventElement)
+        document.querySelector(".randomEvent__button").addEventListener('click', (e) => {
+          togglePause()
+          randomEventElement.remove()
+          // storyElement.children[0].click()
+        })
+
+
+      }
+
+      counter = counter + 1;
+    }
+
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
-      const children = [
-        ...e.target.parentElement.nextElementSibling.children,
-      ];
-      updateStory(children, e, config, map, setLayerOpacity);
+      const children = [...e.target.parentElement.nextElementSibling.children];
+      const currentChapter = updateStory(
+        children,
+        e,
+        config,
+        map,
+        setLayerOpacity
+      );
+      console.log("crrent chapter in event: ", currentChapter);
+
+      if (currentChapter.id === config.chapters[3].id) {
+        console.log("animation should start now");
+        animate();
+      }
+
+      // console.log('index:', config.chapters[4])
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
       const children = [...e.target.parentElement.nextElementSibling.children];
-      updateStory(children, e, config, map, setLayerOpacity);
+      const currentChapter = updateStory(
+        children,
+        e,
+        config,
+        map,
+        setLayerOpacity
+      );
+      console.log("crrent chapter in event: ", currentChapter);
+
+      // if(currentChapter.id === config.chapters[4].id) {
+      //   console.log('animation should start now')
+      //   // animate()
+      // }
     });
   };
 
   const getLayerPaintType = (layer) => {
-    console.log("layer: ", layer);
+    // console.log("layer: ", layer);
     const layerType = map.getLayer(layer).type;
     return layerTypes[layerType];
   };
@@ -478,7 +526,7 @@ function addLayers(map) {
 }
 
 function updateStory(elements, event, config, map, setLayerOpacity) {
-  console.log("update story event: ", event.target.className);
+  // console.log("update story event: ", event.target.className);
 
   const currentChapterElement = elements.find((child) =>
     child.classList.contains("active")
@@ -521,7 +569,7 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     }
 
     if (nextChapter.hudVisibility) {
-      console.log("make hud vsible");
+      // console.log("make hud vsible");
       document.querySelector(".hud__container").classList.add("active");
     } else if (
       !nextChapter.hudVisibility &&
@@ -570,7 +618,7 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     }
 
     if (nextChapter.hudVisibility) {
-      console.log("make hud vsible");
+      // console.log("make hud vsible");
       document.querySelector(".hud__container").classList.add("active");
     } else if (
       !nextChapter.hudVisibility &&
@@ -579,6 +627,7 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
       document.querySelector(".hud__container").classList.remove("active");
     }
   }
+  return currentChapterObject;
 }
 
 // function animate(map, counter, steps) {
@@ -588,7 +637,6 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 //   let point = map.getSource('mark')
 //   let route = map.getSource('line')
 //   // const steps = route._data.coordinates.length
-
 
 //   let start = route._data.coordinates[
 //     counter >= steps ? counter - 1 : counter
@@ -602,7 +650,6 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 
 //   console.log(point)
 //   point._data.coordinates = route._data.coordinates[counter]
-  
 
 //   // point.setData(point._data)
 
@@ -614,6 +661,5 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 //   }
 
 // counter = counter + 1
-
 
 // }

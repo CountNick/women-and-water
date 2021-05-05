@@ -12,12 +12,13 @@ body {
 
 .introduction__container {
     z-index: 99;
-    color: #ffffff;
+    background: #f7f7f7;
     padding: 1em 2em;
     font-family: 'Roboto', sans-serif;
 }
 
 .introduction__main-title {
+    color: #333333;
     margin-bottom: 1.5em;
     font-weight: 900;
     font-size: 3em;
@@ -37,6 +38,10 @@ body {
 
 .article__title {
     font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: solid;
+    border-color: #009edb;
+    margin-bottom: 1em;
+    width: fit-content;
 }
 
 .search__container {
@@ -81,6 +86,7 @@ body {
 }
 
 .options__container {
+    font-family: 'Roboto';
     background: white;
     color: black;
     list-style-type: none;
@@ -141,6 +147,8 @@ body {
 
 .dark h2{
     font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: solid;
+    border-color: #009edb;
 }
 
 .active {
@@ -155,4 +163,18 @@ body {
 
 .addToDom {
     display: block !important;
+}
+
+.randomEvent__container {
+    position: fixed;
+    z-index: 99;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 40%;
+    background: #f7f7f7;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
 }

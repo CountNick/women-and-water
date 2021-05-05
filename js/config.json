@@ -121,9 +121,9 @@
             "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
             "location": {
                 "center": [],
-                "zoom": 20,
-                "pitch": 60,
-                "bearing": 50
+                "zoom": 11,
+                "pitch": 0,
+                "bearing": 0
             },
             "hudVisibility": 1,
             "onChapterEnter": [
@@ -138,6 +138,18 @@
                     "opacity": 0
                 }
             ]
+        }
+    ],
+    "randomEvents": [
+        {
+            "id": "randomEvent1",
+            "title": "Attacked",
+            "description": "You just got attacked and your jerrycan got stolen, this means you have to walk back to get a new one"
+        },
+        {
+            "id": "randomEvent2",
+            "title": "Empty source",
+            "description": "The watersource is completely empty which means you have to walk to another one"
         }
     ]
 }
