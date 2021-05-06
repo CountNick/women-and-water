@@ -82,6 +82,48 @@ const init = async (config) => {
     features.appendChild(container);
   });
 
+  config.randomEvents.forEach((record, idx) => {
+        /* These first two variables will hold each vignette, the chapter
+      element will go in the container element */
+      const container = document.createElement("div");
+      const chapter = document.createElement("div");
+      // Creates the title for the vignettes
+      if (record.title) {
+        const title = document.createElement("h2");
+        title.innerText = record.title;
+        chapter.appendChild(title);
+      }
+      // Creates the image for the vignette
+      if (record.image) {
+        const image = new Image();
+        image.src = record.image;
+        chapter.appendChild(image);
+      }
+      // Creates the image credit for the vignette
+      if (record.imageCredit) {
+        const imageCredit = document.createElement("p");
+        imageCredit.classList.add("imageCredit");
+        imageCredit.innerHTML = `Image credit: ${record.imageCredit}`;
+        chapter.appendChild(imageCredit);
+      }
+      // Creates the description for the vignette
+      if (record.description) {
+        const story = document.createElement("p");
+        story.innerHTML = record.description;
+        chapter.appendChild(story);
+      }
+      // Sets the id for the vignette and adds the step css attribute
+      container.setAttribute("id", record.id);
+      container.classList.add("step");
+      container.classList.add('eraseFromDom')
+      // Sets the overall theme to the chapter element
+      chapter.classList.add(config.theme);
+      /* Appends the chapter to the container element and the container
+        element to the features element */
+      container.appendChild(chapter);
+      features.appendChild(container);
+  })
+
   locationButton.addEventListener("click", getGeoLocation);
 
   searchInput.addEventListener("input", (e) => {
@@ -318,7 +360,9 @@ const init = async (config) => {
 
       if (currentChapter.id === config.chapters[4].id) {
         console.log("animation should start now");
-        animate();
+        // animate();
+        let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
+        console.log('random event: ', randomEvent)
       }
 
       // console.log('index:', config.chapters[4])
