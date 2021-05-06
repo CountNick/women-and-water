@@ -41,6 +41,15 @@ const init = async (config) => {
       element will go in the container element */
     const container = document.createElement("div");
     const chapter = document.createElement("div");
+
+    const randomEventOne = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
+    if(idx === 4) {
+      
+      record.id = randomEventOne.id
+      record.title = randomEventOne.title
+      record.description = randomEventOne.description
+    }
+
     // Creates the title for the vignettes
     if (record.title) {
       const title = document.createElement("h2");
@@ -81,48 +90,6 @@ const init = async (config) => {
     container.appendChild(chapter);
     features.appendChild(container);
   });
-
-  config.randomEvents.forEach((record, idx) => {
-        /* These first two variables will hold each vignette, the chapter
-      element will go in the container element */
-      const container = document.createElement("div");
-      const chapter = document.createElement("div");
-      // Creates the title for the vignettes
-      if (record.title) {
-        const title = document.createElement("h2");
-        title.innerText = record.title;
-        chapter.appendChild(title);
-      }
-      // Creates the image for the vignette
-      if (record.image) {
-        const image = new Image();
-        image.src = record.image;
-        chapter.appendChild(image);
-      }
-      // Creates the image credit for the vignette
-      if (record.imageCredit) {
-        const imageCredit = document.createElement("p");
-        imageCredit.classList.add("imageCredit");
-        imageCredit.innerHTML = `Image credit: ${record.imageCredit}`;
-        chapter.appendChild(imageCredit);
-      }
-      // Creates the description for the vignette
-      if (record.description) {
-        const story = document.createElement("p");
-        story.innerHTML = record.description;
-        chapter.appendChild(story);
-      }
-      // Sets the id for the vignette and adds the step css attribute
-      container.setAttribute("id", record.id);
-      container.classList.add("step");
-      container.classList.add('eraseFromDom')
-      // Sets the overall theme to the chapter element
-      chapter.classList.add(config.theme);
-      /* Appends the chapter to the container element and the container
-        element to the features element */
-      container.appendChild(chapter);
-      features.appendChild(container);
-  })
 
   locationButton.addEventListener("click", getGeoLocation);
 
@@ -244,6 +211,7 @@ const init = async (config) => {
               data.routes[0].geometry
             );
             map.getSource("line").setData(smoothenAnimation);
+            // config.chapters[5].location.center = coordinates;
           });
       });
 
@@ -356,14 +324,14 @@ const init = async (config) => {
         map,
         setLayerOpacity
       );
-      console.log("crrent chapter in event: ", currentChapter);
+      // console.log("crrent chapter in event: ", currentChapter);
 
-      if (currentChapter.id === config.chapters[4].id) {
-        console.log("animation should start now");
-        // animate();
-        let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
-        console.log('random event: ', randomEvent)
-      }
+      // if (currentChapter.id === config.chapters[4].id) {
+      //   console.log("animation should start now");
+      //   // animate();
+      //   let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
+      //   console.log('random event: ', randomEvent)
+      // }
 
       // console.log('index:', config.chapters[4])
     });
@@ -583,7 +551,7 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
   const findCurrentObject = (obj) => obj.id === currentChapterElement.id;
 
   let currInd = config.chapters.findIndex(findCurrentObject);
-
+  
   let nextChapter;
 
   if (event.target.className === "story__next-btn") {
@@ -671,7 +639,12 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     ) {
       document.querySelector(".hud__container").classList.remove("active");
     }
-  }
+  } 
+  
+  // if(currInd === 4) {
+  //   console.log(document.querySelectorAll('.randomProblem'))
+  // }
+
   return currentChapterObject;
 }
 
