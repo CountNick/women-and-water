@@ -12,6 +12,12 @@ const layerTypes = {
   "fill-extrusion": ["fill-extrusion-opacity"],
 };
 
+const date = new Date()
+            
+date.setHours(9, 0, 0, 0)
+
+
+
 const init = async (config) => {
   // initialize the map
   mapboxgl.accessToken = config.accessToken;
@@ -43,7 +49,7 @@ const init = async (config) => {
     const chapter = document.createElement("div");
 
     const randomEventOne = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
-    if(idx === 4) {
+    if(idx === 5) {
       
       record.id = randomEventOne.id
       record.title = randomEventOne.title
@@ -206,12 +212,27 @@ const init = async (config) => {
           .then((res) => res.json())
           .then((data) => {
             console.log("route data: ", data.routes[0]);
+
+            const completeDuration = Math.floor(data.routes[0].duration / 60)
+
+            console.log('complete duration: ', completeDuration )
+            console.log('half duration: ', completeDuration / 2)
+
+            // console.log('timeee: ', Math.floor(data.routes[0].duration / 60), ' min')
+
             // fil the line data layer with the route to the waterspot
             const smoothenAnimation = turf.bezierSpline(
               data.routes[0].geometry
             );
-            map.getSource("line").setData(smoothenAnimation);
-            // config.chapters[5].location.center = coordinates;
+            map.getSource("line").setData(data.routes[0].geometry);
+            
+            const middleOfRoute = data.routes[0].geometry.coordinates[Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)];
+            
+
+            config.chapters[5].location.center = middleOfRoute;
+            config.chapters[5].time = completeDuration / 2;
+            console.log('middle of route: ', config.chapters[5])
+            map.getSource("half-way").setData({ type: "Point", coordinates: middleOfRoute });
           });
       });
 
@@ -221,7 +242,7 @@ const init = async (config) => {
     config.chapters[2].location.center = coordinates;
     config.chapters[3].location.center = coordinates;
     config.chapters[4].location.center = coordinates;
-    config.chapters[5].location.center = coordinates;
+    // config.chapters[5].location.center = coordinates;
 
     // set opacity for the first data layer
     config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
@@ -431,6 +452,43 @@ function addLayers(map) {
       },
     });
 
+    map.addSource("half-way", {
+      // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    map.addLayer({
+      id: "half-way",
+      type: "circle",
+      source: "half-way",
+      paint: {
+        "circle-opacity": 0,
+        "circle-stroke-opacity": 0,
+        "circle-stroke-color": "yellow",
+        "circle-color": "black",
+        "circle-stroke-width": {
+          // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
+          stops: [
+            [0, 1],
+            [18, 3],
+          ],
+          base: 5,
+        },
+        "circle-radius": {
+          // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
+          stops: [
+            [12, 5],
+            [22, 180],
+          ],
+          base: 5,
+        },
+      },
+    });
+
     map.addSource("radius", {
       // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
       type: "geojson",
@@ -541,6 +599,10 @@ function addLayers(map) {
 function updateStory(elements, event, config, map, setLayerOpacity) {
   // console.log("update story event: ", event.target.className);
 
+  const clockElement = document.querySelector(".hud__clock")
+
+  // console.log(clockElement)
+
   const currentChapterElement = elements.find((child) =>
     child.classList.contains("active")
   );
@@ -556,6 +618,15 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
 
   if (event.target.className === "story__next-btn") {
     nextChapter = config.chapters[++currInd];
+
+    console.log(nextChapter)
+
+    if(nextChapter.time) {
+      console.log('add time: ', nextChapter.time)
+      date.setMinutes(date.getMinutes() + nextChapter.time)
+
+      clockElement.textContent = date.toLocaleTimeString()
+    }
 
     const nextChapterElement = elements.find(
       (child) => child.id === nextChapter.id
@@ -592,6 +663,13 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
     }
   } else if (event.target.className === "story__prev-btn") {
     nextChapter = config.chapters[--currInd];
+
+    if(currentChapterObject.time) {
+      console.log('minus time: ', currentChapterObject.time)
+      date.setMinutes(date.getMinutes() - currentChapterObject.time)
+
+      clockElement.textContent = date.toLocaleTimeString()
+    }
 
     const nextChapterElement = elements.find(
       (child) => child.id === nextChapter.id

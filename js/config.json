@@ -19,6 +19,7 @@
             "id": "your-home",
             "title": "No water at home",
             "description": "In 2015 only 56% of the population in Niger had acces to drinking water.Imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home, which means you would have to walk for water for you and your family",
+            "time": 0,
             "location": {
                 "center": [],
                 "zoom": 17,
@@ -45,6 +46,7 @@
             "id": "theRadius",
             "title": "The radius youd have to find water in",
             "description": "The average women and girls walk for water in Niger is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
+            "time": 0,
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -68,6 +70,7 @@
             "id": "theWaterSource",
             "title": "The watersource",
             "description": "Today you'll have to fetch water from this source: show source name here. This water source is __show distance you have to walk here__",
+            "time": 0,
             "location": {
                 "center": [],
                 "zoom": 10,
@@ -95,6 +98,7 @@
             "id": "theRoute",
             "title": "The route you'd have to walk",
             "description": "The route you will be walking takes approximately __time it takes to wak here__ back and forth",
+            "time": 0,
             "location": {
                 "center": [],
                 "zoom": 11,
@@ -130,11 +134,23 @@
                 {
                     "layer": "route",
                     "opacity": 1
+                },
+                {
+                    "layer": "home-marker",
+                    "opacity": 1
+                },
+                {
+                    "layer": "half-way",
+                    "opacity": 0
                 }
             ],
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "home-marker",
                     "opacity": 0
                 }
             ]
@@ -146,14 +162,18 @@
             "description": "yeye",
             "location": {
                 "center": [],
-                "zoom": 11,
-                "pitch": 0,
+                "zoom": 15,
+                "pitch": 60,
                 "bearing": 0
             },
             "hudVisibility": 1,
             "onChapterEnter": [
                 {
                     "layer": "route",
+                    "opacity": 1
+                },
+                {
+                    "layer": "half-way",
                     "opacity": 1
                 }
             ],
@@ -169,7 +189,7 @@
         {
             "id": "randomEvent1",
             "title": "Attacked",
-            "description": "You just got attacked and your jerrycan got stolen, this means you have to walk back to get a new one"
+            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one"
         },
         {
             "id": "randomEvent2",
