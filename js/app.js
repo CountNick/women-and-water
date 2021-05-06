@@ -211,6 +211,7 @@ const init = async (config) => {
     config.chapters[2].location.center = coordinates;
     config.chapters[3].location.center = coordinates;
     config.chapters[4].location.center = coordinates;
+    config.chapters[5].location.center = coordinates;
 
     // set opacity for the first data layer
     config.chapters[0].onChapterEnter.forEach(setLayerOpacity);
@@ -315,7 +316,7 @@ const init = async (config) => {
       );
       console.log("crrent chapter in event: ", currentChapter);
 
-      if (currentChapter.id === config.chapters[3].id) {
+      if (currentChapter.id === config.chapters[4].id) {
         console.log("animation should start now");
         animate();
       }

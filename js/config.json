@@ -48,7 +48,7 @@
             "location": {
                 "center": [],
                 "zoom": 10,
-                "pitch": 0,
+                "pitch": 60,
                 "bearing": 0
             },
             "onChapterEnter": [
@@ -119,6 +119,31 @@
             "title": "You start walking at 9",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
             "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
+            "location": {
+                "center": [],
+                "zoom": 11,
+                "pitch": 0,
+                "bearing": 0
+            },
+            "hudVisibility": 1,
+            "onChapterEnter": [
+                {
+                    "layer": "route",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "route",
+                    "opacity": 0
+                }
+            ]
+        },
+        {
+            "id": "half",
+            "title": "half of route",
+            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "description": "yeye",
             "location": {
                 "center": [],
                 "zoom": 11,
