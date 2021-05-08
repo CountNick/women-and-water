@@ -209,11 +209,9 @@ const init = async (config) => {
     // init animate function
     let counter = 0;
     let route = map.getSource("line");
-    let animationRunning = true
     console.log("lalala ", route);
     console.log(route);
 
-  
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
