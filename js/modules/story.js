@@ -1,5 +1,5 @@
 export const Story = {
-  update: (elements, event, config, map, setLayerOpacity) => {
+  update: (elements, event, config, map, setLayerOpacity, date) => {
     // console.log("update story event: ", event.target.className);
 
     const clockElement = document.querySelector(".hud__clock");
@@ -121,5 +121,72 @@ export const Story = {
         document.querySelector(".hud__container").classList.remove("active");
       }
     }
+  },
+  createDomElements: (config, features) => {
+    config.chapters.forEach((record, idx) => {
+      /* These first two variables will hold each vignette, the chapter
+          element will go in the container element */
+      const container = document.createElement("div");
+      const chapter = document.createElement("div");
+
+      const randomEventOne =
+        config.randomEvents[
+          Math.floor(Math.random() * config.randomEvents.length)
+        ];
+      const randomSourceEvent =
+        config.randomSourceEvents[
+          Math.floor(Math.random() * config.randomSourceEvents.length)
+        ];
+
+      if (idx === 5) {
+        record.id = randomEventOne.id;
+        record.title = randomEventOne.title;
+        record.description = randomEventOne.description;
+      } else if (idx === config.chapters.length - 2) {
+        record.id = randomSourceEvent.id;
+        record.title = randomSourceEvent.title;
+        record.description = randomSourceEvent.description;
+      }
+
+      // Creates the title for the vignettes
+      if (record.title) {
+        const title = document.createElement("h2");
+        title.innerText = record.title;
+        chapter.appendChild(title);
+      }
+      // Creates the image for the vignette
+      if (record.image) {
+        const image = new Image();
+        image.src = record.image;
+        chapter.appendChild(image);
+      }
+      // Creates the image credit for the vignette
+      if (record.imageCredit) {
+        const imageCredit = document.createElement("p");
+        imageCredit.classList.add("imageCredit");
+        imageCredit.innerHTML = `Image credit: ${record.imageCredit}`;
+        chapter.appendChild(imageCredit);
+      }
+      // Creates the description for the vignette
+      if (record.description) {
+        const story = document.createElement("p");
+        story.innerHTML = record.description;
+        chapter.appendChild(story);
+      }
+      // Sets the id for the vignette and adds the step css attribute
+      container.setAttribute("id", record.id);
+      container.classList.add("step");
+      if (idx === 0) {
+        container.classList.add("active");
+      } else {
+        container.classList.add("eraseFromDom");
+      }
+      // Sets the overall theme to the chapter element
+      chapter.classList.add(config.theme);
+      /* Appends the chapter to the container element and the container
+          element to the features element */
+      container.appendChild(chapter);
+      features.appendChild(container);
+    });
   },
 };

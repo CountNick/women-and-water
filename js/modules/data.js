@@ -217,4 +217,11 @@ export const Data = {
       });
     });
   },
+  getGeoLocation: () => {
+    if (navigator.geolocation) {
+      console.log(navigator.geolocation.getCurrentPosition(showPosition));
+    } else {
+      console.log("not working pall");
+    }
+  },
 };

@@ -42,68 +42,9 @@ const init = async (config) => {
   const features = document.createElement("div");
   features.setAttribute("id", "features");
 
-  config.chapters.forEach((record, idx) => {
-    /* These first two variables will hold each vignette, the chapter
-      element will go in the container element */
-    const container = document.createElement("div");
-    const chapter = document.createElement("div");
+  Story.createDomElements(config, features)
 
-    const randomEventOne = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
-    const randomSourceEvent = config.randomSourceEvents[Math.floor(Math.random() * config.randomSourceEvents.length)];
-    
-    if(idx === 5) {
-      
-      record.id = randomEventOne.id
-      record.title = randomEventOne.title
-      record.description = randomEventOne.description
-    } else if(idx === config.chapters.length - 2) {
-      record.id = randomSourceEvent.id
-      record.title = randomSourceEvent.title
-      record.description = randomSourceEvent.description
-    }
-
-    // Creates the title for the vignettes
-    if (record.title) {
-      const title = document.createElement("h2");
-      title.innerText = record.title;
-      chapter.appendChild(title);
-    }
-    // Creates the image for the vignette
-    if (record.image) {
-      const image = new Image();
-      image.src = record.image;
-      chapter.appendChild(image);
-    }
-    // Creates the image credit for the vignette
-    if (record.imageCredit) {
-      const imageCredit = document.createElement("p");
-      imageCredit.classList.add("imageCredit");
-      imageCredit.innerHTML = `Image credit: ${record.imageCredit}`;
-      chapter.appendChild(imageCredit);
-    }
-    // Creates the description for the vignette
-    if (record.description) {
-      const story = document.createElement("p");
-      story.innerHTML = record.description;
-      chapter.appendChild(story);
-    }
-    // Sets the id for the vignette and adds the step css attribute
-    container.setAttribute("id", record.id);
-    container.classList.add("step");
-    if (idx === 0) {
-      container.classList.add("active");
-    } else {
-      container.classList.add("eraseFromDom");
-    }
-    // Sets the overall theme to the chapter element
-    chapter.classList.add(config.theme);
-    /* Appends the chapter to the container element and the container
-      element to the features element */
-    container.appendChild(chapter);
-    features.appendChild(container);
-  });
-
-  locationButton.addEventListener("click", getGeoLocation);
+  locationButton.addEventListener("click", Data.getGeoLocation);
 
   searchInput.addEventListener("input", (e) => {
     // if querystring contains spaces replace this with %20
@@ -277,13 +218,13 @@ const init = async (config) => {
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
       const children = [...e.target.parentElement.nextElementSibling.children];
-      Story.update(children, e, config, map, setLayerOpacity);
+      Story.update(children, e, config, map, setLayerOpacity, date);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
       const children = [...e.target.parentElement.nextElementSibling.children];
-      Story.update(children, e, config, map, setLayerOpacity);
+      Story.update(children, e, config, map, setLayerOpacity, date);
     });
   };
 
@@ -301,14 +242,6 @@ const init = async (config) => {
   };
 };
 
-function getGeoLocation() {
-  if (navigator.geolocation) {
-    console.log(navigator.geolocation.getCurrentPosition(showPosition));
-  } else {
-    console.log("not working pall");
-  }
-}
-
 function showPosition(position) {
   plotHomeLocation([position.coords.longitude, position.coords.latitude]);
 }
@@ -324,4 +257,3 @@ function calculateRadius(coordinates, map) {
   const circle = turf.buffer(center, radius, options);
   map.getSource("radius").setData(circle);
 }
-
