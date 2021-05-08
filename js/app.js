@@ -16,8 +16,6 @@ const date = new Date()
             
 date.setHours(9, 0, 0, 0)
 
-
-
 const init = async (config) => {
   // initialize the map
   mapboxgl.accessToken = config.accessToken;
@@ -49,11 +47,17 @@ const init = async (config) => {
     const chapter = document.createElement("div");
 
     const randomEventOne = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
+    const randomSourceEvent = config.randomSourceEvents[Math.floor(Math.random() * config.randomSourceEvents.length)];
+    
     if(idx === 5) {
       
       record.id = randomEventOne.id
       record.title = randomEventOne.title
       record.description = randomEventOne.description
+    } else if(idx === config.chapters.length - 2) {
+      record.id = randomSourceEvent.id
+      record.title = randomSourceEvent.title
+      record.description = randomSourceEvent.description
     }
 
     // Creates the title for the vignettes
@@ -227,12 +231,17 @@ const init = async (config) => {
             map.getSource("line").setData(data.routes[0].geometry);
             
             const middleOfRoute = data.routes[0].geometry.coordinates[Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)];
+            const destination = data.routes[0].geometry.coordinates[data.routes[0].geometry.coordinates.length -1];
+            // console.log('destination: ', destination)
             
 
             config.chapters[5].location.center = middleOfRoute;
-            config.chapters[5].time = completeDuration / 2;
+            config.chapters[5].time = completeDuration / 2 * 3;
             console.log('middle of route: ', config.chapters[5])
             map.getSource("half-way").setData({ type: "Point", coordinates: middleOfRoute });
+            map.getSource("arrived").setData({ type: "Point", coordinates: destination });
+            config.chapters[6].location.center = map.getSource("arrived")._data.coordinates;
+            
           });
       });
 
@@ -242,6 +251,9 @@ const init = async (config) => {
     config.chapters[2].location.center = coordinates;
     config.chapters[3].location.center = coordinates;
     config.chapters[4].location.center = coordinates;
+    
+
+    // console.log(map.getSource("arrived")._data.coordinates)
     // config.chapters[5].location.center = coordinates;
 
     // set opacity for the first data layer
@@ -258,82 +270,7 @@ const init = async (config) => {
     console.log("lalala ", route);
     console.log(route);
 
-    function togglePause() {
-      // toggle the value of isRunning
-      animationRunning = !animationRunning;
-    
-      // call animate() if working
-      if (animationRunning) {
-        animate();
-      }
-    }
-
-    function animate() {
-      let steps = route._data.geometry.coordinates.length;
-      console.log(counter);
-
-      let start =
-        route._data.geometry.coordinates[
-          counter >= steps ? counter - 1 : counter
-        ];
-
-      let end =
-        route._data.geometry.coordinates[
-          counter >= steps ? counter : counter + 1
-        ];
-
-      if (!start || !end) return;
-
-      console.log(route._data.geometry.coordinates[counter]);
-
-      // point._data.coordinates = route._data.coordinates[counter]
-
-      let point = {
-        type: "Point",
-        coordinates: route._data.geometry.coordinates[counter],
-      };
-
-      map.getSource("mark").setData(point);
-      // point.setData({ type: "Point", coordinates: route._data.coordinates[counter] })
-      console.log(point);
-      // console.log('start: ', start)
-      // console.log('ende: ', end)
-
-      if (animationRunning) {
-        setTimeout(() => {
-          requestAnimationFrame(animate);
-        }, 10);
-
-      }
-
-      if (counter === 250) {
-        togglePause()
-        let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
-        console.log('random event: ', randomEvent)
-        const randomEventElement = document.createElement('div')
-        randomEventElement.className = "randomEvent__container"
-        console.log(randomEventElement)
-
-        randomEventElement.insertAdjacentHTML('beforeend', 
-        `
-        <h2 class="randomEvent__title">${randomEvent.title}</h2>
-        <p class="randomEvent__text">${randomEvent.description}</p>
-        <button class="randomEvent__button">Continue</button>
-        `
-        )
-
-        document.querySelector("body").appendChild(randomEventElement)
-        document.querySelector(".randomEvent__button").addEventListener('click', (e) => {
-          togglePause()
-          randomEventElement.remove()
-          // storyElement.children[0].click()
-        })
-
-
-      }
-
-      counter = counter + 1;
-    }
+  
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
@@ -463,6 +400,43 @@ function addLayers(map) {
 
     map.addLayer({
       id: "half-way",
+      type: "circle",
+      source: "half-way",
+      paint: {
+        "circle-opacity": 0,
+        "circle-stroke-opacity": 0,
+        "circle-stroke-color": "yellow",
+        "circle-color": "black",
+        "circle-stroke-width": {
+          // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
+          stops: [
+            [0, 1],
+            [18, 3],
+          ],
+          base: 5,
+        },
+        "circle-radius": {
+          // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
+          stops: [
+            [12, 5],
+            [22, 180],
+          ],
+          base: 5,
+        },
+      },
+    });
+
+    map.addSource("arrived", {
+      // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: [],
+      },
+    });
+
+    map.addLayer({
+      id: "arrived",
       type: "circle",
       source: "half-way",
       paint: {
@@ -726,36 +700,3 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
   return currentChapterObject;
 }
 
-// function animate(map, counter, steps) {
-//   console.log(counter)
-//   console.log(steps)
-
-//   let point = map.getSource('mark')
-//   let route = map.getSource('line')
-//   // const steps = route._data.coordinates.length
-
-//   let start = route._data.coordinates[
-//     counter >= steps ? counter - 1 : counter
-//   ]
-
-//   let end = route._data.coordinates[
-//     counter >= steps ? counter : counter + 1
-//   ]
-
-//   if (!start || !end) return;
-
-//   console.log(point)
-//   point._data.coordinates = route._data.coordinates[counter]
-
-//   // point.setData(point._data)
-
-//   // console.log('start: ', start)
-//   // console.log('ende: ', end)
-
-//   if(counter < steps) {
-//     requestAnimationFrame(animate)
-//   }
-
-// counter = counter + 1
-
-// }
