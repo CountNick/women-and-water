@@ -29,7 +29,7 @@ const init = async (config) => {
   });
 
   // add the data layers to the map
-  addLayers(map);
+  addDataLayers(map);
   // select search input
   const searchInput = document.querySelector("#search");
   // select search container
@@ -275,41 +275,13 @@ const init = async (config) => {
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
       const children = [...e.target.parentElement.nextElementSibling.children];
-      const currentChapter = updateStory(
-        children,
-        e,
-        config,
-        map,
-        setLayerOpacity
-      );
-      // console.log("crrent chapter in event: ", currentChapter);
-
-      // if (currentChapter.id === config.chapters[4].id) {
-      //   console.log("animation should start now");
-      //   // animate();
-      //   let randomEvent = config.randomEvents[Math.floor(Math.random() * config.randomEvents.length)];
-      //   console.log('random event: ', randomEvent)
-      // }
-
-      // console.log('index:', config.chapters[4])
+      updateStory(children, e, config, map, setLayerOpacity);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
       // function could look like this: updateStory(event, operator, method)
       const children = [...e.target.parentElement.nextElementSibling.children];
-      const currentChapter = updateStory(
-        children,
-        e,
-        config,
-        map,
-        setLayerOpacity
-      );
-      console.log("crrent chapter in event: ", currentChapter);
-
-      // if(currentChapter.id === config.chapters[4].id) {
-      //   console.log('animation should start now')
-      //   // animate()
-      // }
+      updateStory(children, e, config, map, setLayerOpacity);
     });
   };
 
@@ -351,7 +323,7 @@ function calculateRadius(coordinates, map) {
   map.getSource("radius").setData(circle);
 }
 
-function addLayers(map) {
+function addDataLayers(map) {
   map.on("load", (e) => {
     map.addSource("mark", {
       // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
@@ -692,11 +664,6 @@ function updateStory(elements, event, config, map, setLayerOpacity) {
       document.querySelector(".hud__container").classList.remove("active");
     }
   } 
-  
-  // if(currInd === 4) {
-  //   console.log(document.querySelectorAll('.randomProblem'))
-  // }
 
-  return currentChapterObject;
 }
 
