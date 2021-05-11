@@ -158,6 +158,7 @@ export const Story = {
       if (record.image) {
         const image = new Image();
         image.src = record.image;
+        image.classList.add('destination__img')
         chapter.appendChild(image);
       }
       // Creates the image credit for the vignette

@@ -1,5 +1,5 @@
-import { Data } from './modules/data.js'
-import { Story } from './modules/story.js';
+import { Data } from "./modules/data.js";
+import { Story } from "./modules/story.js";
 
 const config = fetch("./js/config.json")
   .then((res) => res.json())
@@ -14,9 +14,9 @@ const layerTypes = {
   "fill-extrusion": ["fill-extrusion-opacity"],
 };
 
-const date = new Date()
-            
-date.setHours(9, 0, 0, 0)
+const date = new Date();
+
+date.setHours(9, 0, 0, 0);
 
 const init = async (config) => {
   // initialize the map
@@ -42,7 +42,7 @@ const init = async (config) => {
   const features = document.createElement("div");
   features.setAttribute("id", "features");
 
-  Story.createDomElements(config, features)
+  Story.createDomElements(config, features);
 
   locationButton.addEventListener("click", Data.getGeoLocation);
 
@@ -160,10 +160,10 @@ const init = async (config) => {
           .then((data) => {
             console.log("route data: ", data.routes[0]);
 
-            const completeDuration = Math.floor(data.routes[0].duration / 60)
+            const completeDuration = Math.floor(data.routes[0].duration / 60);
 
-            console.log('complete duration: ', completeDuration )
-            console.log('half duration: ', completeDuration / 2)
+            console.log("complete duration: ", completeDuration);
+            console.log("half duration: ", completeDuration / 2);
 
             // console.log('timeee: ', Math.floor(data.routes[0].duration / 60), ' min')
 
@@ -172,19 +172,71 @@ const init = async (config) => {
               data.routes[0].geometry
             );
             map.getSource("line").setData(data.routes[0].geometry);
+
+            const middleOfRoute =
+              data.routes[0].geometry.coordinates[
+                Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)
+              ];
+            const destination =
+              data.routes[0].geometry.coordinates[
+                data.routes[0].geometry.coordinates.length - 1
+              ];
+            console.log("destination: ", destination);
+
+            map.getSource('image').setData({type: "Point", coordinates: destination})
             
-            const middleOfRoute = data.routes[0].geometry.coordinates[Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)];
-            const destination = data.routes[0].geometry.coordinates[data.routes[0].geometry.coordinates.length -1];
-            // console.log('destination: ', destination)
             
 
-            config.chapters[5].location.center = middleOfRoute;
-            config.chapters[5].time = completeDuration / 2 * 3;
-            console.log('middle of route: ', config.chapters[5])
-            map.getSource("half-way").setData({ type: "Point", coordinates: middleOfRoute });
-            map.getSource("arrived").setData({ type: "Point", coordinates: destination });
-            config.chapters[6].location.center = map.getSource("arrived")._data.coordinates;
+            function initialize() {
+              // Search for Google's office in Australia.
+              const request = {
+                location: { lat: destination[1], lng: destination[0] },
+                radius: "1"
+              };
+              // source: https://stackoverflow.com/questions/14343965/google-places-library-without-map
+              const service = new google.maps.places.PlacesService(document.createElement('div'));
+              service.nearbySearch(request, callback);
+            }
+
+            // Checks that the PlacesServiceStatus is OK, and adds a marker
+            // using the place ID and location from the PlacesService.
+            // source: https://developers.google.com/maps/documentation/javascript/places#find_place_requests
+            function callback(results, status) {
+              console.log(results)
+              results.map(place => {
+                if(place.photos) {
+                  place.photos[0] = place.photos[0].getUrl()
+                }
+              })
+              document.querySelector(".destination__img").src = results[0].photos[0] || results[1].photos[0]
+              
+              // const waterSourceImg = new Image(200, 200)
+              // waterSourceImg.src = results[1].photos[0]
+
+              // console.log('img: ', waterSourceImg)
+
+
+              // map.addImage('image', waterSourceImg)
+              // console.log('hha', map.getSource('image'))
+
+            }
             
+            // initialize()
+
+
+            config.chapters[5].location.center = middleOfRoute;
+            config.chapters[5].time = (completeDuration / 2) * 3;
+            config.chapters[3].location.center = middleOfRoute;
+            console.log("middle of route: ", config.chapters[5]);
+            map
+              .getSource("half-way")
+              .setData({ type: "Point", coordinates: middleOfRoute });
+            map
+              .getSource("arrived")
+              .setData({ type: "Point", coordinates: destination });
+            config.chapters[6].location.center = map.getSource(
+              "arrived"
+            )._data.coordinates;
           });
       });
 
@@ -192,9 +244,8 @@ const init = async (config) => {
     config.chapters[0].location.center = coordinates;
     config.chapters[1].location.center = coordinates;
     config.chapters[2].location.center = coordinates;
-    config.chapters[3].location.center = coordinates;
+    // config.chapters[3].location.center = coordinates;
     config.chapters[4].location.center = coordinates;
-    
 
     // console.log(map.getSource("arrived")._data.coordinates)
     // config.chapters[5].location.center = coordinates;
@@ -211,7 +262,6 @@ const init = async (config) => {
     let route = map.getSource("line");
     console.log("lalala ", route);
     console.log(route);
-
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {

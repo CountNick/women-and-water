@@ -116,6 +116,8 @@ body {
     width: 100%;
     bottom: 0;
     height: 23%;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
 }
 
 .story__button-container {
@@ -149,6 +151,10 @@ body {
     font-family: 'Roboto Condensed', sans-serif;
     border-bottom: solid;
     border-color: #009edb;
+}
+
+.destination__img {
+    width: 100%;
 }
 
 .active {
