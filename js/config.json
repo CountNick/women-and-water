@@ -214,7 +214,7 @@
             ]
         },
         {
-            "id": "arrived-water-source",
+            "id": "arrival",
             "title": "Arrival",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
             "description": "After walking for __amount of hourse displayed here__ you finally arrive at the water source. ",

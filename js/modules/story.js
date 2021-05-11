@@ -13,6 +13,8 @@ export const Story = {
       (chap) => chap.id === currentChapterElement.id
     );
 
+
+
     const findCurrentObject = (obj) => obj.id === currentChapterElement.id;
 
     let currInd = config.chapters.findIndex(findCurrentObject);
@@ -23,6 +25,12 @@ export const Story = {
       nextChapter = config.chapters[++currInd];
 
       console.log(nextChapter);
+
+      if(nextChapter.id === 'arrival') {
+        document.querySelector('.marker').style.display = "block"
+        } else {
+            document.querySelector('.marker').style.display = "none"
+        }
 
       if (nextChapter.time) {
         console.log("add time: ", nextChapter.time);
@@ -66,6 +74,12 @@ export const Story = {
       }
     } else if (event.target.className === "story__prev-btn") {
       nextChapter = config.chapters[--currInd];
+
+      if(nextChapter.id === 'arrival') {
+        document.querySelector('.marker').style.display = "block"
+        } else {
+            document.querySelector('.marker').style.display = "none"
+        }
 
       if (currentChapterObject.time) {
         console.log("minus time: ", currentChapterObject.time);

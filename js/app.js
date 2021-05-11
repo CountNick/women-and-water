@@ -147,6 +147,10 @@ const init = async (config) => {
         const waterSource = map.getSource("tilequery");
         waterSource.setData(randomWaterSource);
 
+        console.log('waterSource: ', waterSource)
+
+        
+
         map.on("click", "tilequery-points", (e) =>
           console.log(randomWaterSource)
         );
@@ -219,8 +223,10 @@ const init = async (config) => {
               // map.addImage('image', waterSourceImg)
               // console.log('hha', map.getSource('image'))
 
+              generateCustomMarker(map, waterSource._data.geometry.coordinates, results[0].photos[0] || results[1].photos[0])
+
             }
-            
+            generateCustomMarker(map, waterSource._data.geometry.coordinates, 'https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg')
             // initialize()
 
 
@@ -304,4 +310,25 @@ function calculateRadius(coordinates, map) {
 
   const circle = turf.buffer(center, radius, options);
   map.getSource("radius").setData(circle);
+}
+
+function generateCustomMarker(map, coordinates, imageSource) {
+    // create a HTML element for each feature
+    const el = document.createElement('div');
+    const arrowDown = document.createElement('div');
+    const waterSourceImg = new Image()
+
+    waterSourceImg.src = imageSource
+    waterSourceImg.classList.add('water-source__img')
+    arrowDown.classList.add('arrow-down')
+    el.classList.add('water-source__container')
+
+    el.appendChild(waterSourceImg)
+
+    el.className = 'marker';
+
+    // make a marker for each feature and add to the map
+    new mapboxgl.Marker(el)
+      .setLngLat(coordinates)
+      .addTo(map);
 }
