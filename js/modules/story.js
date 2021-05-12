@@ -151,12 +151,13 @@ export const Story = {
         config.randomSourceEvents[
           Math.floor(Math.random() * config.randomSourceEvents.length)
         ];
-
+        // console.log('random source event: ', config.chapters[config.chapters.length - 4])
       if (idx === 5) {
         record.id = randomEventOne.id;
         record.title = randomEventOne.title;
         record.description = randomEventOne.description;
-      } else if (idx === config.chapters.length - 2) {
+      } else if (idx === config.chapters.length - 4) {
+        
         record.id = randomSourceEvent.id;
         record.title = randomSourceEvent.title;
         record.description = randomSourceEvent.description;

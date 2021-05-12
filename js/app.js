@@ -225,10 +225,17 @@ const init = async (config) => {
 
 
             config.chapters[5].location.center = middleOfRoute;
+            config.chapters[9].location.center = middleOfRoute;
+            config.chapters[10].location.center = middleOfRoute;
+            console.log('index 10: ', config.chapters[10])
             config.chapters[5].time = (completeDuration / 2) * 3;
             config.chapters[6].time = (completeDuration / 2) * 4;
+            config.chapters[6].location.center = destination;
+            config.chapters[7].location.center = destination;
+            config.chapters[8].location.center = destination;
             config.chapters[3].location.center = middleOfRoute;
             console.log("middle of route: ", config.chapters[5]);
+            
             map
               .getSource("half-way")
               .setData({ type: "Point", coordinates: middleOfRoute });

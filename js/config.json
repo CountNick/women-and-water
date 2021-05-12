@@ -185,35 +185,6 @@
             ]
         },
         {
-            "id": "random",
-            "title": "randomevent",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "to be filled with random item",
-            "location": {
-                "center": [],
-                "zoom": 15,
-                "pitch": 60,
-                "bearing": 0
-            },
-            "hudVisibility": 1,
-            "onChapterEnter": [
-                {
-                    "layer": "route",
-                    "opacity": 1
-                },
-                {
-                    "layer": "half-way",
-                    "opacity": 1
-                }
-            ],
-            "onChapterExit": [
-                {
-                    "layer": "route",
-                    "opacity": 0
-                }
-            ]
-        },
-        {
             "id": "arrival",
             "title": "Arrival",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
@@ -244,10 +215,40 @@
             ]
         },
         {
+            "id": "random",
+            "title": "randomevent",
+            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "description": "to be filled with random item",
+            "location": {
+                "center": [],
+                "zoom": 15,
+                "pitch": 60,
+                "bearing": 0
+            },
+            "hudVisibility": 1,
+            "onChapterEnter": [
+                {
+                    "layer": "route",
+                    "opacity": 1
+                },
+                {
+                    "layer": "half-way",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "route",
+                    "opacity": 0
+                }
+            ]
+        },
+        {
             "id": "filling_time",
             "title": "Filling up",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
             "description": "Now that you funally filled up your jerrycan with water it's time to return home. The jerrycan is filled with 20 liters of water which roughly equals 20 bottles of milk weighing 20 kilometers.",
+            "time": 30,
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -276,36 +277,8 @@
             "id": "physical_stress",
             "title": "physical stress",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress on these women",
-            "location": {
-                "center": [],
-                "zoom": 15,
-                "pitch": 60,
-                "bearing": 0
-            },
-            "hudVisibility": 1,
-            "onChapterEnter": [
-                {
-                    "layer": "route",
-                    "opacity": 1
-                },
-                {
-                    "layer": "half-way",
-                    "opacity": 1
-                }
-            ],
-            "onChapterExit": [
-                {
-                    "layer": "route",
-                    "opacity": 0
-                }
-            ]
-        },
-        {
-            "id": "physical_stress",
-            "title": "physical stress",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress on these women",
+            "description": "Halfway back your body starts aching ecause you're carrying the jerrycan on your back. Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
+            "time": 0,
             "location": {
                 "center": [],
                 "zoom": 15,
