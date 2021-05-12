@@ -215,32 +215,6 @@ export const Data = {
           "line-opacity": 0,
         },
       });
-
-      map.addSource("image", {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              geometry: {
-                type: "Point",
-                coordinates: [],
-              },
-            },
-          ],
-        },
-      });
-
-      map.addLayer({
-        id: "points",
-        type: "symbol",
-        source: "image", // reference the data source
-        layout: {
-          "icon-image": "image", // reference the image
-          "icon-size": 0.25,
-        },
-      });
     });
   },
   getGeoLocation: () => {

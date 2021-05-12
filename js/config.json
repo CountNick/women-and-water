@@ -217,7 +217,7 @@
             "id": "arrival",
             "title": "Arrival",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "After walking for __amount of hourse displayed here__ you finally arrive at the water source. ",
+            "description": "After walking for __amount of hourse displayed here__ you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.",
             "image": "kk",
             "location": {
                 "center": [],
@@ -300,6 +300,64 @@
                     "opacity": 0
                 }
             ]
+        },
+        {
+            "id": "physical_stress",
+            "title": "physical stress",
+            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "description": "Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress on these women",
+            "location": {
+                "center": [],
+                "zoom": 15,
+                "pitch": 60,
+                "bearing": 0
+            },
+            "hudVisibility": 1,
+            "onChapterEnter": [
+                {
+                    "layer": "route",
+                    "opacity": 1
+                },
+                {
+                    "layer": "half-way",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "route",
+                    "opacity": 0
+                }
+            ]
+        },
+        {
+            "id": "back_home",
+            "title": "The return",
+            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "description": "After coming home you look at the clock and realize you've just spend __amount of time spend total__. It's now __current time__ this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
+            "location": {
+                "center": [],
+                "zoom": 15,
+                "pitch": 60,
+                "bearing": 0
+            },
+            "hudVisibility": 1,
+            "onChapterEnter": [
+                {
+                    "layer": "route",
+                    "opacity": 1
+                },
+                {
+                    "layer": "half-way",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "route",
+                    "opacity": 0
+                }
+            ]
         }
     ],
     "randomEvents": [
@@ -310,8 +368,8 @@
         },
         {
             "id": "randomEvent2",
-            "title": "Empty source",
-            "description": "The watersource is completely empty which means you have to walk to another one"
+            "title": "Wild animal attack",
+            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about ___time here___"
         }
     ],
     "randomSourceEvents": [
@@ -323,7 +381,12 @@
         {
             "id": "randomSourceEvent2",
             "title": "Line for the source",
-            "description": "The watersource is completely empty which means you have to walk to another one"
+            "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about __amount of waiting time__"
+        },
+        {
+            "id": "conflict",
+            "title": "Conflict",
+            "description": "In countries like Niger, water is unevenly distributed in both time and space, which often leads to water shortages and can evolve into heated disputes, or even violence."
         }
     ]
 }

@@ -185,12 +185,8 @@ const init = async (config) => {
               data.routes[0].geometry.coordinates[
                 data.routes[0].geometry.coordinates.length - 1
               ];
-            console.log("destination: ", destination);
-
-            map.getSource('image').setData({type: "Point", coordinates: destination})
             
-            
-
+            // turned of for now as don't want to pass api limts
             function initialize() {
               // Search for Google's office in Australia.
               const request = {
@@ -213,25 +209,24 @@ const init = async (config) => {
                 }
               })
               document.querySelector(".destination__img").src = results[0].photos[0] || results[1].photos[0]
+            
+              if(results[0].photos[0]) {
+                generateCustomMarker(map, waterSource._data.geometry.coordinates, results[0].photos[0])
+              } else {
+                generateCustomMarker(map, waterSource._data.geometry.coordinates, results[1].photos[0])
+              }
+
               
-              // const waterSourceImg = new Image(200, 200)
-              // waterSourceImg.src = results[1].photos[0]
-
-              // console.log('img: ', waterSourceImg)
-
-
-              // map.addImage('image', waterSourceImg)
-              // console.log('hha', map.getSource('image'))
-
-              generateCustomMarker(map, waterSource._data.geometry.coordinates, results[0].photos[0] || results[1].photos[0])
 
             }
             generateCustomMarker(map, waterSource._data.geometry.coordinates, 'https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg')
+            
             // initialize()
 
 
             config.chapters[5].location.center = middleOfRoute;
             config.chapters[5].time = (completeDuration / 2) * 3;
+            config.chapters[6].time = (completeDuration / 2) * 4;
             config.chapters[3].location.center = middleOfRoute;
             console.log("middle of route: ", config.chapters[5]);
             map
