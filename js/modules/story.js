@@ -1,5 +1,12 @@
 export const Story = {
-  update: (elements, event, config, map, setLayerOpacity, date) => {
+  update: (
+    elements,
+    event,
+    config,
+    map,
+    setLayerOpacity,
+    date
+  ) => {
     // console.log("update story event: ", event.target.className);
 
     const clockElement = document.querySelector(".hud__clock");
@@ -13,8 +20,6 @@ export const Story = {
       (chap) => chap.id === currentChapterElement.id
     );
 
-
-
     const findCurrentObject = (obj) => obj.id === currentChapterElement.id;
 
     let currInd = config.chapters.findIndex(findCurrentObject);
@@ -22,15 +27,22 @@ export const Story = {
     let nextChapter;
 
     if (event.target.className === "story__next-btn") {
+
+
       nextChapter = config.chapters[++currInd];
+
+      Story.updateProgression(
+        config.chapters,
+        nextChapter
+      );
 
       console.log(nextChapter);
 
-      if(nextChapter.id === 'arrival') {
-        document.querySelector('.marker').style.display = "block"
-        } else {
-            document.querySelector('.marker').style.display = "none"
-        }
+      if (nextChapter.id === "arrival") {
+        document.querySelector(".marker").style.display = "block";
+      } else {
+        document.querySelector(".marker").style.display = "none";
+      }
 
       if (nextChapter.time) {
         console.log("add time: ", nextChapter.time);
@@ -73,13 +85,20 @@ export const Story = {
         document.querySelector(".hud__container").classList.remove("active");
       }
     } else if (event.target.className === "story__prev-btn") {
+
+
       nextChapter = config.chapters[--currInd];
 
-      if(nextChapter.id === 'arrival') {
-        document.querySelector('.marker').style.display = "block"
-        } else {
-            document.querySelector('.marker').style.display = "none"
-        }
+      Story.updateProgression(
+        config.chapters,
+        nextChapter
+      );
+
+      if (nextChapter.id === "arrival") {
+        document.querySelector(".marker").style.display = "block";
+      } else {
+        document.querySelector(".marker").style.display = "none";
+      }
 
       if (currentChapterObject.time) {
         console.log("minus time: ", currentChapterObject.time);
@@ -151,13 +170,12 @@ export const Story = {
         config.randomSourceEvents[
           Math.floor(Math.random() * config.randomSourceEvents.length)
         ];
-        // console.log('random source event: ', config.chapters[config.chapters.length - 4])
+      // console.log('random source event: ', config.chapters[config.chapters.length - 4])
       if (idx === 5) {
         record.id = randomEventOne.id;
         record.title = randomEventOne.title;
         record.description = randomEventOne.description;
       } else if (idx === config.chapters.length - 4) {
-        
         record.id = randomSourceEvent.id;
         record.title = randomSourceEvent.title;
         record.description = randomSourceEvent.description;
@@ -173,7 +191,7 @@ export const Story = {
       if (record.image) {
         const image = new Image();
         image.src = record.image;
-        image.classList.add('destination__img')
+        image.classList.add("destination__img");
         chapter.appendChild(image);
       }
       // Creates the image credit for the vignette
@@ -204,5 +222,19 @@ export const Story = {
       container.appendChild(chapter);
       features.appendChild(container);
     });
+  },
+  updateProgression: (chapters, currentChapter) => {
+    const progressElement = document.querySelector(".story__progression");
+    console.log("chapters: ", chapters.length);
+    console.log("current chapter: ", currentChapter);
+
+    chapters.find((chapter, ind) => {
+      if (chapter.id === currentChapter.id) {
+        const addedByOne = ind + 1;
+        progressElement.value = (100 / chapters.length) * addedByOne;
+      }
+    });
+
+    console.log("percentage: ", 100 / chapters.length);
   },
 };
