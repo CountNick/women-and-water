@@ -394,4 +394,19 @@ function scrollHandler() {
   fadeOutOnScroll(backgroundImage);
 }
 
-window.addEventListener("scroll", scrollHandler);
+const mediaQuery = '(min-width: 750px)';
+const mediaQueryList = window.matchMedia(mediaQuery);
+
+if(window.innerWidth < 750) {
+  window.addEventListener('scroll', scrollHandler);
+}
+
+mediaQueryList.addEventListener('change', event => {
+    console.log(window.innerWidth);
+  if (event.matches) {
+    window.removeEventListener('scroll', scrollHandler);
+  } else {
+    window.addEventListener('scroll', scrollHandler);
+    backgroundImage.style.opacity = 1
+  }
+})
