@@ -99,6 +99,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
+  background: #333333;
 }
 
 .hud__container .hud__clock {
@@ -129,6 +130,7 @@ body {
   background: white;
   color: black;
   list-style-type: none;
+  padding: 1.2em;
 }
 
 .options__container li {
@@ -389,5 +391,9 @@ progress {
     .search__location-button {
         border-bottom-left-radius: 1em;
         border-bottom-right-radius: 1em;
+    }
+
+    .marker {
+        width: 50%;
     }
 }
