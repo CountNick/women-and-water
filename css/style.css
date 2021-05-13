@@ -118,18 +118,21 @@ body {
   height: 23%;
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .story__progression {
   width: 100%;
   width: 100%;
-  border-top-right-radius: 1em;
-  border-top-left-radius: 1em;
+  /* border-top-right-radius: 1em;
+  border-top-left-radius: 1em; */
   border: 0;
   height: 16px;
   height: 1rem;
   background-color: white;
-  border: 1px solid #0079b4;
+  /* border: 1px solid #0079b4; */
   overflow: hidden;
 }
 

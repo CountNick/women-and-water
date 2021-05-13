@@ -110,7 +110,6 @@ const init = async (config) => {
     storyElement.insertAdjacentHTML(
       "afterbegin",
       `
-      <progress class="story__progression animated" value="0" max="100"></progress>
       <div class="story__button-container">
       <button data-attribute="story__prev-btn" class="story__prev-btn">
           <
@@ -123,6 +122,8 @@ const init = async (config) => {
     );
 
     storyElement.appendChild(features);
+
+    storyElement.insertAdjacentHTML('beforeend', '<progress class="story__progression animated" value="0" max="100"></progress>')
 
     document.querySelector("body").appendChild(storyElement);
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
