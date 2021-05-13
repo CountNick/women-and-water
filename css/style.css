@@ -335,6 +335,11 @@ progress {
 
 
 @media only screen and (min-width: 750px) {
+
+    .introduction__container {
+        padding: unset;
+    }
+    
     .story__container {
         width: 50%;
         right: 1%;
@@ -355,10 +360,8 @@ progress {
     
     .introduction__article {
         width: 50%;
-    }
-
-    .introduction__article {
-        width: 50%;
+        padding: 1em 2em;
+        box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%), 0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%), 0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
     }
 
     .introduction__mobile-background {
@@ -386,6 +389,10 @@ progress {
         0 100px 80px rgba(0, 0, 0, 0.12);
         position: fixed;
         right: 4%;
+        border-top-left-radius: 1em;
+        border-bottom-left-radius: 1em;
+        border-bottom-right-radius: 1em;
+        border-top-right-radius: 1em;
     }
 
     .search__location-button {
