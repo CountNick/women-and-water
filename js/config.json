@@ -97,7 +97,7 @@
         {
             "id": "theRoute",
             "title": "The route you'd have to walk",
-            "description": "The route you will be walking takes approximately __time it takes to wak here__ back and forth",
+            "description": "The route you will be walking takes approximately __time it takes to walk here__ back and forth",
             "time": 0,
             "location": {
                 "center": [],

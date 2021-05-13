@@ -76,6 +76,7 @@ const init = async (config) => {
       // make a list item for each option
       const listItem = document.createElement("li");
       // set the innerHTML of listItem to the placename of the object
+      console.log(option);
       listItem.innerHTML = option.place_name;
       // append the listitem to the options container
       optionsContainer.appendChild(listItem);
@@ -123,7 +124,10 @@ const init = async (config) => {
 
     storyElement.appendChild(features);
 
-    storyElement.insertAdjacentHTML('beforeend', '<progress class="story__progression animated" value="0" max="100"></progress>')
+    storyElement.insertAdjacentHTML(
+      "beforeend",
+      '<progress class="story__progression animated" value="0" max="100"></progress>'
+    );
 
     document.querySelector("body").appendChild(storyElement);
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
@@ -149,9 +153,7 @@ const init = async (config) => {
         const waterSource = map.getSource("tilequery");
         waterSource.setData(randomWaterSource);
 
-        console.log('waterSource: ', waterSource)
-
-        
+        console.log("waterSource: ", waterSource);
 
         map.on("click", "tilequery-points", (e) =>
           console.log(randomWaterSource)
@@ -171,6 +173,24 @@ const init = async (config) => {
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
 
+            document.querySelector(
+              "#theWaterSource"
+            ).firstElementChild.lastElementChild.textContent = `Today you'll have to fetch water from this source: show source name here. This water source is ${(
+              data.routes[0].distance / 1000
+            ).toFixed(1)} kilometers away`;
+
+            document.querySelector(
+              "#theRoute"
+            ).firstElementChild.lastElementChild.textContent = `The route you will be walking takes approximately ${
+              completeDuration * 2
+            } minutes back and forth`;
+
+            document.querySelector(
+              "#arrival"
+            ).firstElementChild.lastElementChild.textContent = `After walking for ${
+              (completeDuration / 2) * 5
+            } minutes you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.`;
+
             // console.log('timeee: ', Math.floor(data.routes[0].duration / 60), ' min')
 
             // fil the line data layer with the route to the waterspot
@@ -187,16 +207,18 @@ const init = async (config) => {
               data.routes[0].geometry.coordinates[
                 data.routes[0].geometry.coordinates.length - 1
               ];
-            
+
             // turned of for now as don't want to pass api limts
             function initialize() {
               // Search for Google's office in Australia.
               const request = {
                 location: { lat: destination[1], lng: destination[0] },
-                radius: "1"
+                radius: "1",
               };
               // source: https://stackoverflow.com/questions/14343965/google-places-library-without-map
-              const service = new google.maps.places.PlacesService(document.createElement('div'));
+              const service = new google.maps.places.PlacesService(
+                document.createElement("div")
+              );
               service.nearbySearch(request, callback);
             }
 
@@ -204,32 +226,41 @@ const init = async (config) => {
             // using the place ID and location from the PlacesService.
             // source: https://developers.google.com/maps/documentation/javascript/places#find_place_requests
             function callback(results, status) {
-              console.log(results)
-              results.map(place => {
-                if(place.photos) {
-                  place.photos[0] = place.photos[0].getUrl()
+              console.log(results);
+              results.map((place) => {
+                if (place.photos) {
+                  place.photos[0] = place.photos[0].getUrl();
                 }
-              })
-              document.querySelector(".destination__img").src = results[0].photos[0] || results[1].photos[0]
-            
-              if(results[0].photos[0]) {
-                generateCustomMarker(map, waterSource._data.geometry.coordinates, results[0].photos[0])
+              });
+              document.querySelector(".destination__img").src =
+                results[0].photos[0] || results[1].photos[0];
+
+              if (results[0].photos[0]) {
+                generateCustomMarker(
+                  map,
+                  waterSource._data.geometry.coordinates,
+                  results[0].photos[0]
+                );
               } else {
-                generateCustomMarker(map, waterSource._data.geometry.coordinates, results[1].photos[0])
+                generateCustomMarker(
+                  map,
+                  waterSource._data.geometry.coordinates,
+                  results[1].photos[0]
+                );
               }
-
-              
-
             }
-            generateCustomMarker(map, waterSource._data.geometry.coordinates, 'https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg')
-            
-            // initialize()
+            generateCustomMarker(
+              map,
+              waterSource._data.geometry.coordinates,
+              "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
+            );
 
+            // initialize()
 
             config.chapters[5].location.center = middleOfRoute;
             config.chapters[9].location.center = middleOfRoute;
             config.chapters[10].location.center = middleOfRoute;
-            console.log('index 10: ', config.chapters[10])
+            console.log("index 10: ", config.chapters[10]);
             config.chapters[5].time = (completeDuration / 2) * 3;
             config.chapters[6].time = (completeDuration / 2) * 4;
             config.chapters[6].location.center = destination;
@@ -237,7 +268,7 @@ const init = async (config) => {
             config.chapters[8].location.center = destination;
             config.chapters[3].location.center = middleOfRoute;
             console.log("middle of route: ", config.chapters[5]);
-            
+
             map
               .getSource("half-way")
               .setData({ type: "Point", coordinates: middleOfRoute });
@@ -317,22 +348,50 @@ function calculateRadius(coordinates, map) {
 }
 
 function generateCustomMarker(map, coordinates, imageSource) {
-    // create a HTML element for each feature
-    const el = document.createElement('div');
-    const arrowDown = document.createElement('div');
-    const waterSourceImg = new Image()
+  // create a HTML element for each feature
+  const el = document.createElement("div");
+  const arrowDown = document.createElement("div");
+  const waterSourceImg = new Image();
 
-    waterSourceImg.src = imageSource
-    waterSourceImg.classList.add('water-source__img')
-    arrowDown.classList.add('arrow-down')
-    el.classList.add('water-source__container')
+  waterSourceImg.src = imageSource;
+  waterSourceImg.classList.add("water-source__img");
+  arrowDown.classList.add("arrow-down");
+  el.classList.add("water-source__container");
 
-    el.appendChild(waterSourceImg)
+  el.appendChild(waterSourceImg);
 
-    el.className = 'marker';
+  el.className = "marker";
 
-    // make a marker for each feature and add to the map
-    new mapboxgl.Marker(el)
-      .setLngLat(coordinates)
-      .addTo(map);
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el).setLngLat(coordinates).addTo(map);
 }
+
+var backgroundImage = document.querySelector(
+  ".introduction__mobile-background"
+);
+
+function fadeOutOnScroll(element) {
+  if (!element) {
+    return;
+  }
+
+  var distanceToTop = window.pageYOffset + element.getBoundingClientRect().top;
+  var elementHeight = element.offsetHeight;
+  var scrollTop = document.documentElement.scrollTop;
+
+  var opacity = 1;
+
+  if (scrollTop > distanceToTop) {
+    opacity = 1 - (scrollTop - distanceToTop) / elementHeight;
+  }
+
+  if (opacity >= 0) {
+    element.style.opacity = opacity;
+  }
+}
+
+function scrollHandler() {
+  fadeOutOnScroll(backgroundImage);
+}
+
+window.addEventListener("scroll", scrollHandler);
