@@ -1,6 +1,9 @@
 export const Data = {
   addLayers: (map) => {
     map.on("load", (e) => {
+
+      document.querySelector('body').classList.remove('loading__map')
+      
       map.addSource("mark", {
         // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
         type: "geojson",
