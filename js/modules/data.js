@@ -2,7 +2,8 @@ export const Data = {
   addLayers: (map) => {
     map.on("load", (e) => {
 
-      document.querySelector('body').classList.remove('loading__map')
+      document.querySelector('body').classList.remove('prevent__click')
+      document.querySelector('.loader__container').remove()
       
       map.addSource("mark", {
         // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
