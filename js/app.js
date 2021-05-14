@@ -95,7 +95,11 @@ const init = async (config) => {
 
         searchInput.parentElement.previousElementSibling.addEventListener('transitionend', (event) => {
           map._container.classList.remove('eraseFromDom')
-          map._container.classList.add('active')
+          
+          setTimeout(() => {
+            map._container.classList.add('active')
+          }, 10)
+          
           searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
           searchInput.parentElement.classList.add('eraseFromDom');
  
