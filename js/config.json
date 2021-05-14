@@ -125,8 +125,8 @@
             "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
             "location": {
                 "center": [],
-                "zoom": 11,
-                "pitch": 0,
+                "zoom": 15,
+                "pitch": 40,
                 "bearing": 0
             },
             "hudVisibility": 1,
@@ -335,29 +335,29 @@
     ],
     "randomEvents": [
         {
-            "id": "randomEvent1",
+            "id": "randomEvent",
             "title": "Attacked",
             "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about ___time here___"
         },
         {
-            "id": "randomEvent2",
+            "id": "randomEvent",
             "title": "Wild animal attack",
             "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about ___time here___"
         }
     ],
     "randomSourceEvents": [
         {
-            "id": "randomSourceEvent1",
+            "id": "randomSourceEvent",
             "title": "Empty source",
             "description": "The watersource is completely empty which means you have to walk to another one"
         },
         {
-            "id": "randomSourceEvent2",
+            "id": "randomSourceEvent",
             "title": "Line for the source",
             "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about __amount of waiting time__"
         },
         {
-            "id": "conflict",
+            "id": "randomSourceEvent",
             "title": "Conflict",
             "description": "In countries like Niger, water is unevenly distributed in both time and space, which often leads to water shortages and can evolve into heated disputes, or even violence."
         }

@@ -281,50 +281,51 @@ const init = async (config) => {
             // config.chapters[5].location.center = middleOfRoute;
             // config.chapters[9].location.center = middleOfRoute;
             // config.chapters[10].location.center = middleOfRoute;
-            // console.log("index 10: ", config.chapters[10]);
-            // config.chapters[5].time = (completeDuration / 2) * 3;
-            // config.chapters[6].time = (completeDuration / 2) * 4;
+            console.log("index 10: ", config.chapters[10]);
+            config.chapters[5].time = (completeDuration / 2) * 3;
+            config.chapters[6].time = (completeDuration / 2) * 4;
             // config.chapters[6].location.center = destination;
             // config.chapters[7].location.center = destination;
             // config.chapters[8].location.center = destination;
             // config.chapters[3].location.center = middleOfRoute;
             // console.log("middle of route: ", config.chapters[5]);
-            
+
             config.chapters.forEach(chapter => {
-              console.log('chapter mapping: ', chapter.id, ': ', chapter.location.center)
+              console.log('chapter id: ', chapter.id, 'location: ', chapter.location.center)
 
               if(chapter.id === 'theRoute') {
                 chapter.location.center = middleOfRoute
               }
-
-              if(chapter.id === 'randomEvent1' || 'randomEvent1') {
+ 
+              if(chapter.id === 'randomEvent') {
                 chapter.location.center = middleOfRoute
               }
 
               if(chapter.id === 'arrival') {
                 chapter.location.center = destination
               }
-
-              if(chapter.id === 'randomSourceEvent1') {
+              
+              if(chapter.id === 'randomSourceEvent') {
                 chapter.location.center = destination
               }
-
+              
               if(chapter.id === 'filling_time') {
                 chapter.location.center = destination
               }
-  
+
               if(chapter.id === 'physical_stress') {
                 chapter.location.center = middleOfRoute
               }
 
-
               if(chapter.id === 'back_home') {
-                chapter.location.center = data.routes[0].geometry.coordinates[0]
+                chapter.location.center = coordinates
               }
+
+
 
             })
 
-            console.log(config.chapters)
+
 
             map
               .getSource("half-way")
@@ -339,11 +340,28 @@ const init = async (config) => {
       });
 
     // set center option for all chapters, as it will be the same for each
-    config.chapters[0].location.center = coordinates;
-    config.chapters[1].location.center = coordinates;
-    config.chapters[2].location.center = coordinates;
-    // config.chapters[3].location.center = coordinates;
-    config.chapters[4].location.center = coordinates;
+    
+    config.chapters.forEach(chapter => {
+      
+      if(chapter.id === 'your-home') {
+        chapter.location.center = coordinates
+      }
+
+      if(chapter.id === 'theRadius') {
+        chapter.location.center = coordinates
+      }
+
+      if(chapter.id === 'theWaterSource') {
+        chapter.location.center = coordinates
+      }
+
+      if(chapter.id === 'startPoint') {
+        chapter.location.center = coordinates
+      }
+
+    })
+
+
 
     // console.log(map.getSource("arrived")._data.coordinates)
     // config.chapters[5].location.center = coordinates;
