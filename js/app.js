@@ -30,8 +30,8 @@ const init = async (config) => {
     interactive: false,
   });
 
-  map._container.classList.add('introduction__step')
-  map._container.classList.add('eraseFromDom')
+  // map._container.classList.add('introduction__step')
+  // map._container.classList.add('eraseFromDom')
 
   // add the data layers to the map
   Data.addLayers(map);
@@ -98,7 +98,7 @@ const init = async (config) => {
           
           setTimeout(() => {
             map._container.classList.add('active')
-          }, 10)
+          }, 1000)
           
           searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
           searchInput.parentElement.classList.add('eraseFromDom');
