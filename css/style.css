@@ -19,34 +19,34 @@ body {
 }
 
 .introduction__article {
-    position: relative;
-    z-index: 100;
+  position: relative;
+  z-index: 100;
 }
 
 .introduction__mobile-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 
 .introduction__mobile-background::after {
-    content: ""; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(247, 247, 247, 1);
-    opacity: .7;
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(247, 247, 247, 1);
+  opacity: 0.7;
 }
 
-.introduction__mobile-background .introduction__image{
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    position: fixed;
+.introduction__mobile-background .introduction__image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }
 
 .introduction__main-title {
@@ -86,10 +86,9 @@ body {
   z-index: 101;
 }
 
-.search__container .search__input{
-
-    border-top-right-radius: 1em;
-    border-top-left-radius: 1em;
+.search__container .search__input {
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
 }
 
 .hud__container {
@@ -230,13 +229,13 @@ progress {
 }
 
 .story__next-btn {
-    border-top-right-radius: 1em;
-    border-bottom-right-radius: 1em;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
 }
 
 .story__prev-btn {
-    border-top-left-radius: 1em;
-    border-bottom-left-radius: 1em;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
 }
 
 #features {
@@ -244,7 +243,8 @@ progress {
   padding: 1em;
 }
 
-#features .step, .introduction__step {
+#features .step,
+.introduction__step {
   /* display: hidden; */
   opacity: 0;
   transition: visibility 0.5s linear, opacity 0.5s linear;
@@ -333,79 +333,111 @@ progress {
   padding: 1em;
 }
 
-.loading__map {
-    opacity: 0.5;
-    pointer-events: none;
+.prevent__click {
+  pointer-events: none;
 }
 
+.loader__container {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background: black;
+  z-index: 102;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  z-index: 101;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @media only screen and (min-width: 750px) {
+  .introduction__container {
+    padding: unset;
+  }
 
-    .introduction__container {
-        padding: unset;
-    }
-    
-    .story__container {
-        width: 50%;
-        right: 1%;
-        bottom: 4%;
-        border-bottom-right-radius: 1em;
-        border-bottom-left-radius: 1em;
-    }
+  .story__container {
+    width: 50%;
+    right: 1%;
+    bottom: 4%;
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
 
-    .story__container .story__progression {
-        border-bottom-right-radius: 1em;
-        border-bottom-left-radius: 1em;
-    }
+  .story__container .story__progression {
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+  }
 
-    .introduction__container {
-        display: flex;
-        flex-direction: row;
-    }
-    
-    .introduction__article {
-        width: 50%;
-        padding: 1em 2em;
-        box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%), 0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%), 0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
-    }
+  .introduction__container {
+    display: flex;
+    flex-direction: row;
+  }
 
-    .introduction__mobile-background {
-        width: 50%;
-    }
+  .introduction__article {
+    width: 50%;
+    padding: 1em 2em;
+    box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%),
+      0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%),
+      0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
+  }
 
-    .introduction__mobile-background {
-        position: unset;
-    }
+  .introduction__mobile-background {
+    width: 50%;
+  }
 
-    .introduction__mobile-background .introduction__image{
-        top: 0;
-    }
+  .introduction__mobile-background {
+    position: unset;
+  }
 
-    .introduction__mobile-background::after {
-        display: none;
-    }
+  .introduction__mobile-background .introduction__image {
+    top: 0;
+  }
 
-    .search__container {
-        width: 40%;
-        bottom: 10%;
-        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-        0 100px 80px rgba(0, 0, 0, 0.12);
-        position: fixed;
-        right: 4%;
-        border-top-left-radius: 1em;
-        border-bottom-left-radius: 1em;
-        border-bottom-right-radius: 1em;
-        border-top-right-radius: 1em;
-    }
+  .introduction__mobile-background::after {
+    display: none;
+  }
 
-    .search__location-button {
-        border-bottom-left-radius: 1em;
-        border-bottom-right-radius: 1em;
-    }
+  .search__container {
+    width: 40%;
+    bottom: 10%;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+    position: fixed;
+    right: 4%;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+  }
 
-    .marker {
-        width: 50%;
-    }
+  .search__location-button {
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+  }
+
+  .marker {
+    width: 50%;
+  }
 }
