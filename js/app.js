@@ -278,17 +278,53 @@ const init = async (config) => {
 
             // initialize()
 
-            config.chapters[5].location.center = middleOfRoute;
-            config.chapters[9].location.center = middleOfRoute;
-            config.chapters[10].location.center = middleOfRoute;
-            console.log("index 10: ", config.chapters[10]);
-            config.chapters[5].time = (completeDuration / 2) * 3;
-            config.chapters[6].time = (completeDuration / 2) * 4;
-            config.chapters[6].location.center = destination;
-            config.chapters[7].location.center = destination;
-            config.chapters[8].location.center = destination;
-            config.chapters[3].location.center = middleOfRoute;
-            console.log("middle of route: ", config.chapters[5]);
+            // config.chapters[5].location.center = middleOfRoute;
+            // config.chapters[9].location.center = middleOfRoute;
+            // config.chapters[10].location.center = middleOfRoute;
+            // console.log("index 10: ", config.chapters[10]);
+            // config.chapters[5].time = (completeDuration / 2) * 3;
+            // config.chapters[6].time = (completeDuration / 2) * 4;
+            // config.chapters[6].location.center = destination;
+            // config.chapters[7].location.center = destination;
+            // config.chapters[8].location.center = destination;
+            // config.chapters[3].location.center = middleOfRoute;
+            // console.log("middle of route: ", config.chapters[5]);
+            
+            config.chapters.forEach(chapter => {
+              console.log('chapter mapping: ', chapter.id, ': ', chapter.location.center)
+
+              if(chapter.id === 'theRoute') {
+                chapter.location.center = middleOfRoute
+              }
+
+              if(chapter.id === 'randomEvent1' || 'randomEvent1') {
+                chapter.location.center = middleOfRoute
+              }
+
+              if(chapter.id === 'arrival') {
+                chapter.location.center = destination
+              }
+
+              if(chapter.id === 'randomSourceEvent1') {
+                chapter.location.center = destination
+              }
+
+              if(chapter.id === 'filling_time') {
+                chapter.location.center = destination
+              }
+  
+              if(chapter.id === 'physical_stress') {
+                chapter.location.center = middleOfRoute
+              }
+
+
+              if(chapter.id === 'back_home') {
+                chapter.location.center = data.routes[0].geometry.coordinates[0]
+              }
+
+            })
+
+            console.log(config.chapters)
 
             map
               .getSource("half-way")
