@@ -30,6 +30,9 @@ const init = async (config) => {
     interactive: false,
   });
 
+  map._container.classList.add('introduction__step')
+  map._container.classList.add('eraseFromDom')
+
   // add the data layers to the map
   Data.addLayers(map);
   // select search input
@@ -83,8 +86,22 @@ const init = async (config) => {
       // add a click event to each
       listItem.addEventListener("click", (e) => {
         // remove the whole search element from DOM
-        searchInput.parentElement.previousElementSibling.remove();
-        searchInput.parentElement.remove();
+        // searchInput.parentElement.previousElementSibling.remove();
+        // searchInput.parentElement.remove();
+        searchInput.parentElement.previousElementSibling.classList.remove('active');
+        searchInput.parentElement.classList.remove('active');
+        // searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
+        // searchInput.parentElement.classList.add('eraseFromDom');
+
+        searchInput.parentElement.previousElementSibling.addEventListener('transitionend', (event) => {
+          map._container.classList.remove('eraseFromDom')
+          map._container.classList.add('active')
+          searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
+          searchInput.parentElement.classList.add('eraseFromDom');
+ 
+        })
+        // searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
+        // searchInput.parentElement.classList.add('eraseFromDom');
         // set the input value to the selected address
         searchInput.value = e.target.innerHTML;
         // plot the home location on the map
