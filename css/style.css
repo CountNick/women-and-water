@@ -155,7 +155,7 @@ body {
   background: #f7f7f7;
   width: 100%;
   bottom: 0;
-  height: 23%;
+  height: fit-content;
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
   display: flex;
@@ -211,9 +211,9 @@ progress {
 .story__button-container {
   position: absolute;
   right: 1em;
-  bottom: 9em;
   display: flex;
   flex-direction: row;
+  height: auto;
 }
 
 .story__next-btn,
