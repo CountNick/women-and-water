@@ -68,6 +68,38 @@ body {
   margin-bottom: 1em;
 }
 
+.sharePage__open-btn {
+    position: sticky;
+    padding: 1em 2em;
+    border-radius: 5em;
+    border-style: none;
+    top: 4em;
+    transform: translateX(-50%);
+    left: 50%;
+}
+
+.sharePage__container {
+    background: #f7f7f7;
+    font-family: 'Roboto';
+    padding: 1em 2em;
+    height: 100vh;
+}
+
+.sharePage__container .sharePage__title {
+    font-family: 'Roboto Condensed';
+}
+
+.sharePage-header__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.sharePage__image {
+    border-radius: 50%;
+    width: 100%;
+}
+
 .article__title {
   font-family: "Roboto Condensed", sans-serif;
   border-bottom: solid;
@@ -98,7 +130,7 @@ body {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background: #333333;
+  background: rgba(51, 51, 51, 0.5);
 }
 
 .hud__container .hud__clock {
@@ -290,6 +322,10 @@ progress {
   display: visible !important;
   opacity: 1 !important;
   /* transition: visibility 0s, opacity 0.5s linear; */
+}
+
+.hide {
+    z-index: -1;
 }
 
 .eraseFromDom {
