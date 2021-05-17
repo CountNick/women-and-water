@@ -151,12 +151,28 @@ const init = async (config) => {
 
     storyElement.appendChild(features);
 
+    
+
     storyElement.insertAdjacentHTML(
       "beforeend",
       '<progress class="story__progression animated" value="0" max="100"></progress>'
     );
 
     document.querySelector("body").appendChild(storyElement);
+    storyElement.insertAdjacentHTML('afterend', '<button class="sharePage__open-btn">Share</button>')
+
+    const shareButton = document.querySelector('.sharePage__open-btn')
+    
+
+    shareButton.addEventListener('click', (e) => {
+      document.querySelector('#map').classList.add('hide')
+      document.querySelector('.story__container').classList.add('hide')
+      document.querySelector('.hud__container').classList.add('hide')
+      shareButton.classList.add('eraseFromDom')
+    })
+
+
+
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
 
     // make query to get Dutch water data from tileset
@@ -262,8 +278,10 @@ const init = async (config) => {
                 shareRoutePage.insertAdjacentHTML(
                   "beforeend",
                   `
-                  <div class="sharePage__container">
-                    <h1 class="sharePage__title">My journey for water</h1>
+                    <div class="sharePage-header__container">
+                      <h1 class="sharePage__title">My journey for water</h1>
+                      <button class="sharePage__close-btn">close</button>
+                    </div>
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
                     <ul class="sharePage__list">
@@ -272,11 +290,27 @@ const init = async (config) => {
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
                     <h2>Because of this I couldn't go to school</h2>
-                  </div>
                   `
                 );
 
                 document.querySelector("body").appendChild(shareRoutePage);
+
+                const closeButton = document.querySelector('.sharePage__close-btn')
+
+                closeButton.addEventListener('click', (e) => {
+                  document.querySelector('#map').classList.remove('hide')
+                  document.querySelector('.story__container').classList.remove('hide')
+                  document.querySelector('.hud__container').classList.remove('hide')
+                  shareButton.classList.remove('eraseFromDom')
+                })
+                console.log('lslslsls', html2canvas)
+                html2canvas(document.querySelector(".sharePage__container")).then(canvas => {
+                  const exportImg = canvas.toDataURL("image/png")
+                  // document.write('<img src="'+exportImg+'"/>')
+                  // document.body.appendChild(canvas)
+                });
+                
+
               });
 
             const destination =
