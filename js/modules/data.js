@@ -230,4 +230,13 @@ export const Data = {
       console.log("not working pall");
     }
   },
+  minutesToHours: (number) => {
+    const hours = (number / 60)
+    const rhours = Math.floor(hours)
+    const minutes = (hours - rhours) * 60
+    var rminutes = Math.round(minutes)
+    // console.log(num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).")
+    // console.log(`${number} minutes = ${rhours} hour(s) and ${rminutes} minute(s)`)
+    return `${rhours} hour(s) and ${rminutes} minute(s)`
+  }
 };
