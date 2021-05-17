@@ -255,6 +255,7 @@ progress {
   border-bottom: solid;
   border-color: #009edb;
   width: fit-content;
+  margin-bottom: .5em;
 }
 
 .marker {
