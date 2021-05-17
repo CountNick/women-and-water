@@ -281,9 +281,12 @@ const init = async (config) => {
             // config.chapters[5].location.center = middleOfRoute;
             // config.chapters[9].location.center = middleOfRoute;
             // config.chapters[10].location.center = middleOfRoute;
-            console.log("index 10: ", config.chapters[10]);
-            config.chapters[5].time = (completeDuration / 2) * 3;
-            config.chapters[6].time = (completeDuration / 2) * 4;
+            console.log("index 5: ", config.chapters[5]);
+            console.log("index 6: ", config.chapters[6]);
+            // config.chapters[5].time = (completeDuration / 2) * 3;
+
+
+            // config.chapters[6].time = (completeDuration / 2) * 4;
             // config.chapters[6].location.center = destination;
             // config.chapters[7].location.center = destination;
             // config.chapters[8].location.center = destination;
@@ -299,26 +302,32 @@ const init = async (config) => {
  
               if(chapter.id === 'randomEvent') {
                 chapter.location.center = middleOfRoute
+                chapter.time = (completeDuration / 2) * 3
               }
 
               if(chapter.id === 'arrival') {
                 chapter.location.center = destination
+                chapter.time = (completeDuration / 2) * 4
               }
               
               if(chapter.id === 'randomSourceEvent') {
                 chapter.location.center = destination
+                chapter.time = 30
               }
               
               if(chapter.id === 'filling_time') {
                 chapter.location.center = destination
+                chapter.time = 30
               }
 
               if(chapter.id === 'physical_stress') {
                 chapter.location.center = middleOfRoute
+                chapter.time = (completeDuration / 2)
               }
 
               if(chapter.id === 'back_home') {
                 chapter.location.center = coordinates
+                chapter.time = (completeDuration / 2)
               }
 
 

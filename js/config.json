@@ -96,7 +96,7 @@
         },
         {
             "id": "theRoute",
-            "title": "The route you'd have to walk",
+            "title": "Your route",
             "description": "The route you will be walking takes approximately __time it takes to walk here__ back and forth",
             "time": 0,
             "location": {
@@ -310,8 +310,8 @@
             "description": "After coming home you look at the clock and realize you've just spend __amount of time spend total__. It's now __current time__ this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
             "location": {
                 "center": [],
-                "zoom": 15,
-                "pitch": 60,
+                "zoom": 12,
+                "pitch": 0,
                 "bearing": 0
             },
             "hudVisibility": 1,
@@ -322,6 +322,10 @@
                 },
                 {
                     "layer": "half-way",
+                    "opacity": 1
+                },
+                {
+                    "layer": "home-marker",
                     "opacity": 1
                 }
             ],
