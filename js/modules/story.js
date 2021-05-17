@@ -45,30 +45,6 @@ export const Story = {
 
         console.log(middle)
         
-        fetch(`https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/${middle.location.center[0]},${middle.location.center[1]},10,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`)
-            .then(res => res.blob())
-            .then(blob => {
-                const img = URL.createObjectURL(blob)
-                console.log(img)
-
-                const shareRoutePage = document.createElement('div')
-
-                shareRoutePage.classList.add('sharePage__container')
-
-                shareRoutePage.insertAdjacentHTML('beforeend', `
-                <h1>My journey for water</h1>
-                <img src=${img} alt="myroute">
-                
-                <ul>
-                    <li>Today I walked _____ kilometers to get water.</li>
-                    <li>On the road I got attacked by__.</li>
-                    <li>The route cost me ___ hours to get back home.</li>
-                </ul>
-                <h2>Because of this I couldn't go to school</h2>
-                `)
-                
-                document.querySelector('body').appendChild(shareRoutePage)
-            })
       }
 
       if (nextChapter.id === "arrival") {
@@ -80,6 +56,8 @@ export const Story = {
       if (nextChapter.time) {
         console.log("add time: ", nextChapter.time);
         date.setMinutes(date.getMinutes() + nextChapter.time);
+
+        document.querySelector('.ending__time').textContent = date.toLocaleTimeString()
 
         clockElement.textContent = date.toLocaleTimeString();
       }
