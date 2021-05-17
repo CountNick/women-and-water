@@ -18,7 +18,7 @@
         {
             "id": "your-home",
             "title": "No water at home",
-            "description": "In 2015 only 56% of the population in Niger had acces to drinking water.Imagine you would live in the same surcumstances as in Niger and wouldn't have access to a save water source at or near your home, which means you would have to walk for water for you and your family",
+            "description": "Imagine you would live in the same conditions as some people in rural Niger. In 2015 only 56% of the population had acces to clean drinking water in or around home. This means you would have to walk somewhere to get water for you and your family.",
             "time": 0,
             "location": {
                 "center": [],
@@ -44,8 +44,8 @@
         },
         {
             "id": "theRadius",
-            "title": "The radius youd have to find water in",
-            "description": "The average women and girls walk for water in Niger is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
+            "title": "6 kilometers",
+            "description": "Getting water is usually a women's job. The average distance they walk for water on a daily basis is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
             "time": 0,
             "location": {
                 "center": [],
@@ -97,7 +97,7 @@
         {
             "id": "theRoute",
             "title": "Your route",
-            "description": "The route you will be walking takes approximately __time it takes to walk here__ back and forth",
+            "description": "The route you will be walking takes approximately <span class=\"route__time\">__time it takes to walk here__</span> back and forth",
             "time": 0,
             "location": {
                 "center": [],
@@ -120,7 +120,7 @@
         },
         {
             "id": "startPoint",
-            "title": "You start walking at 9",
+            "title": "Journey starts",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
             "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
             "location": {
@@ -188,7 +188,7 @@
             "id": "arrival",
             "title": "Arrival",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "After walking for __amount of hourse displayed here__ you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.",
+            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.",
             "image": "kk",
             "location": {
                 "center": [],
@@ -277,7 +277,7 @@
             "id": "physical_stress",
             "title": "physical stress",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Halfway back your body starts aching ecause you're carrying the jerrycan on your back. Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
+            "description": "Halfway back your body starts aching because you're carrying the jerrycan on your back. Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
             "time": 0,
             "location": {
                 "center": [],
@@ -307,7 +307,7 @@
             "id": "back_home",
             "title": "The return",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "After coming home you look at the clock and realize you've just spend __amount of time spend total__. It's now __current time__ this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
+            "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
             "location": {
                 "center": [],
                 "zoom": 12,
@@ -341,12 +341,12 @@
         {
             "id": "randomEvent",
             "title": "Attacked",
-            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about ___time here___"
+            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
         },
         {
             "id": "randomEvent",
             "title": "Wild animal attack",
-            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about ___time here___"
+            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
         }
     ],
     "randomSourceEvents": [
@@ -358,7 +358,7 @@
         {
             "id": "randomSourceEvent",
             "title": "Line for the source",
-            "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about __amount of waiting time__"
+            "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about <span class=\"randomSourceEvent__time\">__amount of waiting time__</span>"
         },
         {
             "id": "randomSourceEvent",
