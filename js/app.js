@@ -88,22 +88,28 @@ const init = async (config) => {
         // remove the whole search element from DOM
         // searchInput.parentElement.previousElementSibling.remove();
         // searchInput.parentElement.remove();
-        searchInput.parentElement.previousElementSibling.classList.remove('active');
-        searchInput.parentElement.classList.remove('active');
+        searchInput.parentElement.previousElementSibling.classList.remove(
+          "active"
+        );
+        searchInput.parentElement.classList.remove("active");
         // searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
         // searchInput.parentElement.classList.add('eraseFromDom');
 
-        searchInput.parentElement.previousElementSibling.addEventListener('transitionend', (event) => {
-          map._container.classList.remove('eraseFromDom')
-          
-          setTimeout(() => {
-            map._container.classList.add('active')
-          }, 1000)
-          
-          searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
-          searchInput.parentElement.classList.add('eraseFromDom');
- 
-        })
+        searchInput.parentElement.previousElementSibling.addEventListener(
+          "transitionend",
+          (event) => {
+            map._container.classList.remove("eraseFromDom");
+
+            setTimeout(() => {
+              map._container.classList.add("active");
+            }, 1000);
+
+            searchInput.parentElement.previousElementSibling.classList.add(
+              "eraseFromDom"
+            );
+            searchInput.parentElement.classList.add("eraseFromDom");
+          }
+        );
         // searchInput.parentElement.previousElementSibling.classList.add('eraseFromDom');
         // searchInput.parentElement.classList.add('eraseFromDom');
         // set the input value to the selected address
@@ -201,16 +207,27 @@ const init = async (config) => {
             ).toFixed(1)} kilometers away`;
 
             document.querySelector(
-              "#theRoute"
-            ).firstElementChild.lastElementChild.textContent = `The route you will be walking takes approximately ${
-              completeDuration * 2
-            } minutes back and forth`;
+              ".route__time"
+            ).textContent = Data.minutesToHours(completeDuration * 2);
 
             document.querySelector(
-              "#arrival"
-            ).firstElementChild.lastElementChild.textContent = `After walking for ${
-              (completeDuration / 2) * 5
-            } minutes you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.`;
+              ".arrival__hours"
+            ).textContent = Data.minutesToHours((completeDuration / 2) * 5);
+
+            document.querySelector(
+              ".total__hours"
+            ).textContent = Data.minutesToHours(
+              (completeDuration / 2) * 5 + completeDuration
+            );
+
+            document.querySelector(
+              ".randomEvent__time"
+            ).textContent = Data.minutesToHours(completeDuration);
+
+            // document.querySelector(
+            //   "#back_home"
+            // ).firstElementChild.lastElementChild.innerHTML = `After coming home you look at the clock and realize you've just spend ${
+            //   (completeDuration / 2) * 5 + completeDuration}. It's now <span class="ending__time">__current time__</p> this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.`;
 
             // console.log('timeee: ', Math.floor(data.routes[0].duration / 60), ' min')
 
@@ -224,6 +241,44 @@ const init = async (config) => {
               data.routes[0].geometry.coordinates[
                 Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)
               ];
+
+            console.log('fetch string: ', map.getSource("line"))
+            const encodedLine = polyline.fromGeoJSON(map.getSource("line")._data)
+            console.log('polyline: ', encodeURIComponent(encodedLine))
+            console.log('encodedroute: ', polyline)
+
+            fetch(
+              `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${map.getSource("mark")._data.coordinates[0]},${map.getSource("mark")._data.coordinates[1]}),pin-s-b+000(${map.getSource("tilequery")._data.geometry.coordinates[0]},${map.getSource("tilequery")._data.geometry.coordinates[1]}),path-5+f44-1(${encodeURIComponent(encodedLine)})/${middleOfRoute[0]},${middleOfRoute[1]},11,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
+            )
+              .then((res) => res.blob())
+              .then((blob) => {
+                const img = URL.createObjectURL(blob);
+                console.log(img);
+
+                const shareRoutePage = document.createElement("div");
+
+                shareRoutePage.classList.add("sharePage__container");
+
+                shareRoutePage.insertAdjacentHTML(
+                  "beforeend",
+                  `
+                  <div class="sharePage__container">
+                    <h1 class="sharePage__title">My journey for water</h1>
+                    <img class="sharePage__image" src=${img} alt="myroute">
+                  
+                    <ul class="sharePage__list">
+                        <li class="sharePage__list-item">Today I walked _____ kilometers to get water.</li>
+                        <li class="sharePage__list-item">On the road I got attacked by__.</li>
+                        <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
+                    </ul>
+                    <h2>Because of this I couldn't go to school</h2>
+                  </div>
+                  `
+                );
+
+                document.querySelector("body").appendChild(shareRoutePage);
+              });
+
             const destination =
               data.routes[0].geometry.coordinates[
                 data.routes[0].geometry.coordinates.length - 1
@@ -285,7 +340,6 @@ const init = async (config) => {
             console.log("index 6: ", config.chapters[6]);
             // config.chapters[5].time = (completeDuration / 2) * 3;
 
-
             // config.chapters[6].time = (completeDuration / 2) * 4;
             // config.chapters[6].location.center = destination;
             // config.chapters[7].location.center = destination;
@@ -293,48 +347,48 @@ const init = async (config) => {
             // config.chapters[3].location.center = middleOfRoute;
             // console.log("middle of route: ", config.chapters[5]);
 
-            config.chapters.forEach(chapter => {
-              console.log('chapter id: ', chapter.id, 'location: ', chapter.location.center)
+            config.chapters.forEach((chapter) => {
+              console.log(
+                "chapter id: ",
+                chapter.id,
+                "location: ",
+                chapter.location.center
+              );
 
-              if(chapter.id === 'theRoute') {
-                chapter.location.center = middleOfRoute
-              }
- 
-              if(chapter.id === 'randomEvent') {
-                chapter.location.center = middleOfRoute
-                chapter.time = (completeDuration / 2) * 3
-              }
-
-              if(chapter.id === 'arrival') {
-                chapter.location.center = destination
-                chapter.time = (completeDuration / 2) * 4
-              }
-              
-              if(chapter.id === 'randomSourceEvent') {
-                chapter.location.center = destination
-                chapter.time = 30
-              }
-              
-              if(chapter.id === 'filling_time') {
-                chapter.location.center = destination
-                chapter.time = 30
+              if (chapter.id === "theRoute") {
+                chapter.location.center = middleOfRoute;
               }
 
-              if(chapter.id === 'physical_stress') {
-                chapter.location.center = middleOfRoute
-                chapter.time = (completeDuration / 2)
+              if (chapter.id === "randomEvent") {
+                chapter.location.center = middleOfRoute;
+                chapter.time = (completeDuration / 2) * 3;
               }
 
-              if(chapter.id === 'back_home') {
-                chapter.location.center = coordinates
-                chapter.time = (completeDuration / 2)
+              if (chapter.id === "arrival") {
+                chapter.location.center = destination;
+                chapter.time = (completeDuration / 2) * 4;
               }
 
+              if (chapter.id === "randomSourceEvent") {
+                chapter.location.center = destination;
+                chapter.time = 30;
+              }
 
+              if (chapter.id === "filling_time") {
+                chapter.location.center = destination;
+                chapter.time = 30;
+              }
 
-            })
+              if (chapter.id === "physical_stress") {
+                chapter.location.center = middleOfRoute;
+                chapter.time = completeDuration / 2;
+              }
 
-
+              if (chapter.id === "back_home") {
+                chapter.location.center = coordinates;
+                chapter.time = completeDuration / 2;
+              }
+            });
 
             map
               .getSource("half-way")
@@ -349,28 +403,24 @@ const init = async (config) => {
       });
 
     // set center option for all chapters, as it will be the same for each
-    
-    config.chapters.forEach(chapter => {
-      
-      if(chapter.id === 'your-home') {
-        chapter.location.center = coordinates
+
+    config.chapters.forEach((chapter) => {
+      if (chapter.id === "your-home") {
+        chapter.location.center = coordinates;
       }
 
-      if(chapter.id === 'theRadius') {
-        chapter.location.center = coordinates
+      if (chapter.id === "theRadius") {
+        chapter.location.center = coordinates;
       }
 
-      if(chapter.id === 'theWaterSource') {
-        chapter.location.center = coordinates
+      if (chapter.id === "theWaterSource") {
+        chapter.location.center = coordinates;
       }
 
-      if(chapter.id === 'startPoint') {
-        chapter.location.center = coordinates
+      if (chapter.id === "startPoint") {
+        chapter.location.center = coordinates;
       }
-
-    })
-
-
+    });
 
     // console.log(map.getSource("arrived")._data.coordinates)
     // config.chapters[5].location.center = coordinates;
@@ -478,19 +528,19 @@ function scrollHandler() {
   fadeOutOnScroll(backgroundImage);
 }
 
-const mediaQuery = '(min-width: 750px)';
+const mediaQuery = "(min-width: 750px)";
 const mediaQueryList = window.matchMedia(mediaQuery);
 
-if(window.innerWidth < 750) {
-  window.addEventListener('scroll', scrollHandler);
+if (window.innerWidth < 750) {
+  window.addEventListener("scroll", scrollHandler);
 }
 
-mediaQueryList.addEventListener('change', event => {
-    console.log(window.innerWidth);
+mediaQueryList.addEventListener("change", (event) => {
+  console.log(window.innerWidth);
   if (event.matches) {
-    window.removeEventListener('scroll', scrollHandler);
+    window.removeEventListener("scroll", scrollHandler);
   } else {
-    window.addEventListener('scroll', scrollHandler);
-    backgroundImage.style.opacity = 1
+    window.addEventListener("scroll", scrollHandler);
+    backgroundImage.style.opacity = 1;
   }
-})
+});
