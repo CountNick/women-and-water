@@ -3,6 +3,7 @@ export const Data = {
     map.on("load", (e) => {
 
       document.querySelector('body').classList.remove('prevent__click')
+      document.querySelector('body').classList.remove('no-scroll')
       document.querySelector('.loader__container').remove()
       
       map.resize()
