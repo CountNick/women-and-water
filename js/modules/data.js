@@ -6,7 +6,13 @@ export const Data = {
       document.querySelector('body').classList.remove('no-scroll')
       document.querySelector('.loader__container').remove()
       
-      map.resize()
+      
+      // map.style.stylesheet.layers.forEach(layer => {
+      //   if(layer.type === 'symbol') {
+      //     map.removeLayer(layer.id);
+      //   }
+      
+      // })
 
       map.addSource("mark", {
         // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource

@@ -212,6 +212,7 @@ const init = async (config) => {
             console.log("route data: ", data.routes[0]);
 
             const completeDuration = Math.floor(data.routes[0].duration / 60);
+            const completeDistance = data.routes[0].distance * 3
 
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
@@ -258,10 +259,7 @@ const init = async (config) => {
                 Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)
               ];
 
-            console.log('fetch string: ', map.getSource("line"))
             const encodedLine = polyline.fromGeoJSON(map.getSource("line")._data)
-            console.log('polyline: ', encodeURIComponent(encodedLine))
-            console.log('encodedroute: ', polyline)
 
             fetch(
               `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${map.getSource("mark")._data.coordinates[0]},${map.getSource("mark")._data.coordinates[1]}),pin-s-b+000(${map.getSource("tilequery")._data.geometry.coordinates[0]},${map.getSource("tilequery")._data.geometry.coordinates[1]}),path-5+f44-1(${encodeURIComponent(encodedLine)})/${middleOfRoute[0]},${middleOfRoute[1]},11,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
@@ -269,7 +267,6 @@ const init = async (config) => {
               .then((res) => res.blob())
               .then((blob) => {
                 const img = URL.createObjectURL(blob);
-                console.log(img);
 
                 const shareRoutePage = document.createElement("div");
 
@@ -285,7 +282,7 @@ const init = async (config) => {
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
                     <ul class="sharePage__list">
-                        <li class="sharePage__list-item">Today I walked _____ kilometers to get water.</li>
+                        <li class="sharePage__list-item">Today I walked ${(completeDistance / 1000).toFixed(1)} kilometers in total to get water.</li>
                         <li class="sharePage__list-item">On the road I got attacked by__.</li>
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
@@ -396,19 +393,9 @@ const init = async (config) => {
 
             // initialize()
 
-            // config.chapters[5].location.center = middleOfRoute;
-            // config.chapters[9].location.center = middleOfRoute;
-            // config.chapters[10].location.center = middleOfRoute;
-            console.log("index 5: ", config.chapters[5]);
-            console.log("index 6: ", config.chapters[6]);
-            // config.chapters[5].time = (completeDuration / 2) * 3;
 
-            // config.chapters[6].time = (completeDuration / 2) * 4;
-            // config.chapters[6].location.center = destination;
-            // config.chapters[7].location.center = destination;
-            // config.chapters[8].location.center = destination;
-            // config.chapters[3].location.center = middleOfRoute;
-            // console.log("middle of route: ", config.chapters[5]);
+
+
 
             config.chapters.forEach((chapter) => {
               console.log(
@@ -563,8 +550,12 @@ function generateCustomMarker(map, coordinates, imageSource) {
 
   el.className = "marker";
 
+  console.log('hahaha', coordinates)
+
   // make a marker for each feature and add to the map
-  new mapboxgl.Marker(el).setLngLat(coordinates).addTo(map);
+  const marker = new mapboxgl.Marker(el).setLngLat(coordinates).addTo(map);
+
+  console.log('marker: ', el.style)
 }
 
 var backgroundImage = document.querySelector(

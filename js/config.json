@@ -18,7 +18,7 @@
         {
             "id": "your-home",
             "title": "No water at home",
-            "description": "In 2015 only 56% of the population had acces to clean drinking water in or around home.",
+            "description": "In developing countries women and girls are usually responsible for getting clean water. On this map, we will simulate what it would be like if you were in the shoes of a woman or girl that lives in the same conditions as in Niger.",
             "time": 0,
             "location": {
                 "center": [],
@@ -45,7 +45,7 @@
         {
             "id": "explanation",
             "title": "Simulation",
-            "description": "On this map, we will simulate what it would be like if you were in the shoes of a woman or girl in the same conditions as in Niger.",
+            "description": "In 2015 only 56% of the population in Niger had acces to clean drinking water in or around home. Which means they had to walk somewhere to get clean water.",
             "time": 0,
             "location": {
                 "center": [],
@@ -96,7 +96,7 @@
         {
             "id": "theWaterSource",
             "title": "The watersource",
-            "description": "Today you'll have to fetch water from this source: show source name here. This water source is __show distance you have to walk here__",
+            "description": "Today you'll have to fetch clean water from this source: show source name here. This water source is __show distance you have to walk here__",
             "time": 0,
             "location": {
                 "center": [],
@@ -149,7 +149,7 @@
             "id": "startPoint",
             "title": "Journey starts",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today. In the top right corner the time your walk for water takes is displayed",
+            "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -215,7 +215,7 @@
             "id": "arrival",
             "title": "Arrival",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586. Girls are 3x more likely to be malnutritioned by unsafe water which is usually caused by diahrrea.",
+            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586.",
             "image": "kk",
             "location": {
                 "center": [],
@@ -274,7 +274,7 @@
             "id": "filling_time",
             "title": "Filling up",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
-            "description": "Now that you funally filled up your jerrycan with water it's time to return home. The jerrycan is filled with 20 liters of water which roughly equals 20 bottles of milk weighing 20 kilometers.",
+            "description": "Now that you finally filled up your jerrycan with water it's time to return home. The jerrycan is filled with 20 liters of water which roughly equals 20 bottles of milk.",
             "time": 30,
             "location": {
                 "center": [],
