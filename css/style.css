@@ -69,35 +69,35 @@ body {
 }
 
 .sharePage__open-btn {
-    position: sticky;
-    padding: 1em 2em;
-    border-radius: 5em;
-    border-style: none;
-    top: 4em;
-    transform: translateX(-50%);
-    left: 50%;
+  position: sticky;
+  padding: 1em 2em;
+  border-radius: 5em;
+  border-style: none;
+  top: 4em;
+  transform: translateX(-50%);
+  left: 50%;
 }
 
 .sharePage__container {
-    background: #f7f7f7;
-    font-family: 'Roboto';
-    padding: 1em 2em;
-    height: 100vh;
+  background: #f7f7f7;
+  font-family: "Roboto";
+  padding: 1em 2em;
+  height: 100vh;
 }
 
 .sharePage__container .sharePage__title {
-    font-family: 'Roboto Condensed';
+  font-family: "Roboto Condensed";
 }
 
 .sharePage-header__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .sharePage__image {
-    border-radius: 50%;
-    width: 100%;
+  border-radius: 50%;
+  width: 100%;
 }
 
 .article__title {
@@ -287,10 +287,11 @@ progress {
   border-bottom: solid;
   border-color: #009edb;
   width: fit-content;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .marker {
+  top: -80px !important;
   display: none;
   border: solid #f7f7f7;
   background: #f7f7f7;
@@ -325,11 +326,11 @@ progress {
 }
 
 .hide {
-    z-index: -1;
+  z-index: -1;
 }
 
 .unclickable {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .eraseFromDom {
@@ -389,7 +390,7 @@ progress {
 }
 
 .no-scroll {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .loader {
