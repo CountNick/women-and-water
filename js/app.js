@@ -280,7 +280,7 @@ const init = async (config) => {
                   `
                     <div class="sharePage-header__container">
                       <h1 class="sharePage__title">My journey for water</h1>
-                      <button class="sharePage__close-btn">close</button>
+                      <button class="sharePage__close-btn" data-html2canvas-ignore >close</button>
                     </div>
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
@@ -290,12 +290,18 @@ const init = async (config) => {
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
                     <h2>Because of this I couldn't go to school</h2>
+
+
+
+                    <a class="download__image unclickable" download="my-journey-for-water.png" href="" data-html2canvas-ignore>Download</a>
+
                   `
                 );
 
                 document.querySelector("body").appendChild(shareRoutePage);
 
                 const closeButton = document.querySelector('.sharePage__close-btn')
+                const downloadButton = document.querySelector('.download__image')
 
                 closeButton.addEventListener('click', (e) => {
                   document.querySelector('#map').classList.remove('hide')
@@ -303,13 +309,36 @@ const init = async (config) => {
                   document.querySelector('.hud__container').classList.remove('hide')
                   shareButton.classList.remove('eraseFromDom')
                 })
-                console.log('lslslsls', html2canvas)
-                html2canvas(document.querySelector(".sharePage__container")).then(canvas => {
-                  const exportImg = canvas.toDataURL("image/png")
-                  // document.write('<img src="'+exportImg+'"/>')
-                  // document.body.appendChild(canvas)
-                });
-                
+
+                // downloadButton.addEventListener('click', (e) => {
+                //   e.preventDefault()
+                  
+
+                  html2canvas(document.querySelector(".sharePage__container"), {allowTaint: true, scale: 1, windowWidth: 400, width: 400, windowHeight: 700}).then(canvas => {
+                    // document.body.appendChild(canvas)
+                    console.log(canvas)
+                    
+                    const downloadButton = document.querySelector('.download__image')
+                    
+                    const exportImg = canvas.toDataURL("image/png");
+                    downloadButton.href = exportImg
+
+                    downloadButton.classList.remove('unclickable')
+
+                  function debugBase64(base64URL){
+                    var win = window.open();
+                    win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                  }
+
+                  // downloadButton.addEventListener('click', (e) => {
+                  //   e.preventDefault()
+                  //   debugBase64(exportImg)
+
+                  // });
+                  })
+
+
+                // })
 
               });
 
@@ -391,11 +420,13 @@ const init = async (config) => {
 
               if (chapter.id === "theRoute") {
                 chapter.location.center = middleOfRoute;
+                console.log('chapter theRoute: ', chapter)
               }
 
               if (chapter.id === "randomEvent") {
                 chapter.location.center = middleOfRoute;
                 chapter.time = (completeDuration / 2) * 3;
+                console.log('chapter randomEvent: ', chapter)
               }
 
               if (chapter.id === "arrival") {
@@ -430,9 +461,7 @@ const init = async (config) => {
             map
               .getSource("arrived")
               .setData({ type: "Point", coordinates: destination });
-            config.chapters[6].location.center = map.getSource(
-              "arrived"
-            )._data.coordinates;
+
           });
       });
 
@@ -440,6 +469,10 @@ const init = async (config) => {
 
     config.chapters.forEach((chapter) => {
       if (chapter.id === "your-home") {
+        chapter.location.center = coordinates;
+      }
+
+      if (chapter.id === "explanation") {
         chapter.location.center = coordinates;
       }
 
