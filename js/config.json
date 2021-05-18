@@ -18,7 +18,7 @@
         {
             "id": "your-home",
             "title": "No water at home",
-            "description": "Imagine you would live in the same conditions as some people in rural Niger. In 2015 only 56% of the population had acces to clean drinking water in or around home. This means you would have to walk somewhere to get water for you and your family.",
+            "description": "In 2015 only 56% of the population had acces to clean drinking water in or around home.",
             "time": 0,
             "location": {
                 "center": [],
@@ -43,9 +43,36 @@
             ]
         },
         {
+            "id": "explanation",
+            "title": "Simulation",
+            "description": "On this map, we will simulate what it would be like if you were in the shoes of a woman or girl in the same conditions as in Niger.",
+            "time": 0,
+            "location": {
+                "center": [],
+                "zoom": 15,
+                "pitch": 30,
+                "bearing": 0,
+                "speed" : 1,
+                "curve": 1
+            },
+            "mapAnimation": "flyTo",
+            "onChapterEnter": [
+                {
+                    "layer": "home-marker",
+                    "opacity": 1
+                }
+            ],
+            "onChapterExit": [
+                {
+                    "layer": "home-marker",
+                    "opacity": 1
+                }
+            ]
+        },
+        {
             "id": "theRadius",
             "title": "6 kilometers",
-            "description": "Getting water is usually a women's job. The average distance they walk for water on a daily basis is 6 kilometers. The circle shows you how far a radius of 6 kilometers can actually reach.",
+            "description": "The average distance women and girls walk for water on a daily basis is 6 kilometers, the radius is now visible on the map.",
             "time": 0,
             "location": {
                 "center": [],
@@ -221,7 +248,7 @@
             "description": "to be filled with random item",
             "location": {
                 "center": [],
-                "zoom": 15,
+                "zoom": 17,
                 "pitch": 60,
                 "bearing": 0
             },
