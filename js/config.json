@@ -96,7 +96,7 @@
         {
             "id": "theWaterSource",
             "title": "The watersource",
-            "description": "Today you'll have to fetch clean water from this source: show source name here. This water source is __show distance you have to walk here__",
+            "description": "Today you'll have to fetch clean water from <span class=\"watersource__name\">show source name here</span>, which is <span class=\"watersource__distance\">__show distance you have to walk here__</span> kilometers away",
             "time": 0,
             "location": {
                 "center": [],
