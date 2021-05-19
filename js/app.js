@@ -123,7 +123,7 @@ const init = async (config) => {
   };
 
   const plotHomeLocation = (coordinates) => {
-    console.log(coordinates);
+    console.log("Home coordinates: ", coordinates);
 
     config.chapters[0].location.center = coordinates;
     console.log(config);
@@ -151,27 +151,25 @@ const init = async (config) => {
 
     storyElement.appendChild(features);
 
-    
-
     storyElement.insertAdjacentHTML(
       "beforeend",
       '<progress class="story__progression animated" value="0" max="100"></progress>'
     );
 
     document.querySelector("body").appendChild(storyElement);
-    storyElement.insertAdjacentHTML('afterend', '<button class="sharePage__open-btn">Share</button>')
+    storyElement.insertAdjacentHTML(
+      "afterend",
+      '<button class="sharePage__open-btn">Share</button>'
+    );
 
-    const shareButton = document.querySelector('.sharePage__open-btn')
-    
+    const shareButton = document.querySelector(".sharePage__open-btn");
 
-    shareButton.addEventListener('click', (e) => {
-      document.querySelector('#map').classList.add('hide')
-      document.querySelector('.story__container').classList.add('hide')
-      document.querySelector('.hud__container').classList.add('hide')
-      shareButton.classList.add('eraseFromDom')
-    })
-
-
+    shareButton.addEventListener("click", (e) => {
+      document.querySelector("#map").classList.add("hide");
+      document.querySelector(".story__container").classList.add("hide");
+      document.querySelector(".hud__container").classList.add("hide");
+      shareButton.classList.add("eraseFromDom");
+    });
 
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
 
@@ -187,10 +185,19 @@ const init = async (config) => {
         const longer = data.features.filter(
           (item) => item.properties.tilequery.distance > 4500
         );
+
+        const max = Math.max.apply(
+          Math,
+          data.features.map((item) => item.properties.tilequery.distance)
+        );
+        const noFurtherOption = data.features.find(
+          (item) => item.properties.tilequery.distance === max
+        );
+
         // select a random number from the array with longer distanced water spots
         const random = Math.floor(Math.random() * longer.length);
 
-        const randomWaterSource = longer[random];
+        const randomWaterSource = longer[random] || noFurtherOption;
         // console.log(randomWaterSource);
         // fill the tilequery data layer with a random object from the array
         const waterSource = map.getSource("tilequery");
@@ -212,19 +219,21 @@ const init = async (config) => {
             console.log("route data: ", data.routes[0]);
 
             const completeDuration = Math.floor(data.routes[0].duration / 60);
-            const completeDistance = data.routes[0].distance * 3
+            const completeDistance = data.routes[0].distance * 3;
 
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
-            console.log('random water source: ', randomWaterSource.properties.OWM_NAAM)
+            console.log(
+              "random water source: ",
+              randomWaterSource.properties.OWM_NAAM
+            );
 
-            document.querySelector(
-              ".watersource__name"
-            ).textContent = (randomWaterSource.properties.OWM_NAAM);
+            document.querySelector(".watersource__name").textContent =
+              randomWaterSource.properties.OWM_NAAM;
 
-            document.querySelector(
-              ".watersource__distance"
-            ).textContent = (data.routes[0].distance / 1000).toFixed(1);
+            document.querySelector(".watersource__distance").textContent = (
+              data.routes[0].distance / 1000
+            ).toFixed(1);
 
             document.querySelector(
               ".route__time"
@@ -262,10 +271,22 @@ const init = async (config) => {
                 Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)
               ];
 
-            const encodedLine = polyline.fromGeoJSON(map.getSource("line")._data)
+            const encodedLine = polyline.fromGeoJSON(
+              map.getSource("line")._data
+            );
 
             fetch(
-              `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${map.getSource("mark")._data.coordinates[0]},${map.getSource("mark")._data.coordinates[1]}),pin-s-b+000(${map.getSource("tilequery")._data.geometry.coordinates[0]},${map.getSource("tilequery")._data.geometry.coordinates[1]}),path-5+f44-1(${encodeURIComponent(encodedLine)})/${middleOfRoute[0]},${middleOfRoute[1]},11,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
+              `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${
+                map.getSource("mark")._data.coordinates[0]
+              },${map.getSource("mark")._data.coordinates[1]}),pin-s-b+000(${
+                map.getSource("tilequery")._data.geometry.coordinates[0]
+              },${
+                map.getSource("tilequery")._data.geometry.coordinates[1]
+              }),path-5+f44-1(${encodeURIComponent(encodedLine)})/${
+                middleOfRoute[0]
+              },${
+                middleOfRoute[1]
+              },11,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
             )
               .then((res) => res.blob())
               .then((blob) => {
@@ -285,7 +306,9 @@ const init = async (config) => {
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
                     <ul class="sharePage__list">
-                        <li class="sharePage__list-item">Today I walked ${(completeDistance / 1000).toFixed(1)} kilometers in total to get water.</li>
+                        <li class="sharePage__list-item">Today I walked ${(
+                          completeDistance / 1000
+                        ).toFixed(1)} kilometers in total to get water.</li>
                         <li class="sharePage__list-item">On the road I got attacked by__.</li>
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
@@ -300,34 +323,53 @@ const init = async (config) => {
 
                 document.querySelector("body").appendChild(shareRoutePage);
 
-                const closeButton = document.querySelector('.sharePage__close-btn')
-                const downloadButton = document.querySelector('.download__image')
+                const closeButton = document.querySelector(
+                  ".sharePage__close-btn"
+                );
+                const downloadButton = document.querySelector(
+                  ".download__image"
+                );
 
-                closeButton.addEventListener('click', (e) => {
-                  document.querySelector('#map').classList.remove('hide')
-                  document.querySelector('.story__container').classList.remove('hide')
-                  document.querySelector('.hud__container').classList.remove('hide')
-                  shareButton.classList.remove('eraseFromDom')
-                })
+                closeButton.addEventListener("click", (e) => {
+                  document.querySelector("#map").classList.remove("hide");
+                  document
+                    .querySelector(".story__container")
+                    .classList.remove("hide");
+                  document
+                    .querySelector(".hud__container")
+                    .classList.remove("hide");
+                  shareButton.classList.remove("eraseFromDom");
+                });
 
                 // downloadButton.addEventListener('click', (e) => {
                 //   e.preventDefault()
-                  
 
-                  html2canvas(document.querySelector(".sharePage__container"), {allowTaint: true, scale: 1, windowWidth: 400, width: 400, windowHeight: 700}).then(canvas => {
-                    // document.body.appendChild(canvas)
-                    console.log(canvas)
-                    
-                    const downloadButton = document.querySelector('.download__image')
-                    
-                    const exportImg = canvas.toDataURL("image/png");
-                    downloadButton.href = exportImg
+                html2canvas(document.querySelector(".sharePage__container"), {
+                  allowTaint: true,
+                  scale: 1,
+                  windowWidth: 400,
+                  width: 400,
+                  windowHeight: 700,
+                }).then((canvas) => {
+                  // document.body.appendChild(canvas)
+                  console.log(canvas);
 
-                    downloadButton.classList.remove('unclickable')
+                  const downloadButton = document.querySelector(
+                    ".download__image"
+                  );
 
-                  function debugBase64(base64URL){
+                  const exportImg = canvas.toDataURL("image/png");
+                  downloadButton.href = exportImg;
+
+                  downloadButton.classList.remove("unclickable");
+
+                  function debugBase64(base64URL) {
                     var win = window.open();
-                    win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+                    win.document.write(
+                      '<iframe src="' +
+                        base64URL +
+                        '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+                    );
                   }
 
                   // downloadButton.addEventListener('click', (e) => {
@@ -335,11 +377,9 @@ const init = async (config) => {
                   //   debugBase64(exportImg)
 
                   // });
-                  })
-
+                });
 
                 // })
-
               });
 
             const destination =
@@ -396,10 +436,6 @@ const init = async (config) => {
 
             // initialize()
 
-
-
-
-
             config.chapters.forEach((chapter) => {
               console.log(
                 "chapter id: ",
@@ -410,13 +446,13 @@ const init = async (config) => {
 
               if (chapter.id === "theRoute") {
                 chapter.location.center = middleOfRoute;
-                console.log('chapter theRoute: ', chapter)
+                console.log("chapter theRoute: ", chapter);
               }
 
               if (chapter.id === "randomEvent") {
                 chapter.location.center = middleOfRoute;
                 chapter.time = (completeDuration / 2) * 3;
-                console.log('chapter randomEvent: ', chapter)
+                console.log("chapter randomEvent: ", chapter);
               }
 
               if (chapter.id === "arrival") {
@@ -451,7 +487,6 @@ const init = async (config) => {
             map
               .getSource("arrived")
               .setData({ type: "Point", coordinates: destination });
-
           });
       });
 
@@ -553,12 +588,28 @@ function generateCustomMarker(map, coordinates, imageSource) {
 
   el.className = "marker";
 
-  console.log('hahaha', coordinates)
+  console.log("hahaha", coordinates);
 
+  map.on("click", (e) => {
+    console.log("just clicked long and lat: ", e.lngLat);
+
+    const diff = (a, b) => {
+      return Math.abs(a - b);
+    };
+
+    console.log("difference long: ", diff(coordinates[0], e.lngLat.lng));
+    console.log("difference lat: ", diff(coordinates[1], e.lngLat.lat));
+  });
+
+  const diffLong = coordinates[0] + 0.00014974447299209714;
+  const diffLat = coordinates[1] + 0.0028258217985239753;
+  console.log("hahaha 22222", [diffLong, diffLat]);
   // make a marker for each feature and add to the map
-  const marker = new mapboxgl.Marker(el).setLngLat(coordinates).addTo(map);
+  const marker = new mapboxgl.Marker(el)
+    .setLngLat([coordinates[0], diffLat])
+    .addTo(map);
 
-  console.log('marker: ', el.style)
+  console.log("marker: ", el.style);
 }
 
 var backgroundImage = document.querySelector(
