@@ -216,12 +216,15 @@ const init = async (config) => {
 
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
+            console.log('random water source: ', randomWaterSource.properties.OWM_NAAM)
 
             document.querySelector(
-              "#theWaterSource"
-            ).firstElementChild.lastElementChild.textContent = `Today you'll have to fetch water from this source: show source name here. This water source is ${(
-              data.routes[0].distance / 1000
-            ).toFixed(1)} kilometers away`;
+              ".watersource__name"
+            ).textContent = (randomWaterSource.properties.OWM_NAAM);
+
+            document.querySelector(
+              ".watersource__distance"
+            ).textContent = (data.routes[0].distance / 1000).toFixed(1);
 
             document.querySelector(
               ".route__time"
