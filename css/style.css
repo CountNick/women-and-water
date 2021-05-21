@@ -68,12 +68,21 @@ body {
   margin-bottom: 1em;
 }
 
+.introduction__text-article a {
+  text-decoration: none;
+  color: #009edb;
+}
+
+.introduction__text-article a:visited {
+  color: #009edb;
+}
+
 .sharePage__open-btn {
   position: sticky;
   padding: 1em 2em;
   border-radius: 5em;
   border-style: none;
-  top: 4em;
+  margin-top: 4em;
   transform: translateX(-50%);
   left: 50%;
 }
@@ -93,6 +102,13 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+}
+
+.sharePage-header__container .sharePage__close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .sharePage__image {
@@ -109,6 +125,7 @@ body {
 }
 
 .search__container {
+  font-family: "Roboto";
   display: flex;
   flex-direction: column;
   position: sticky;
@@ -121,10 +138,20 @@ body {
 .search__container .search__input {
   border-top-right-radius: 1em;
   border-top-left-radius: 1em;
+
+  font-weight: 400;
+}
+
+.search__container .search__icon {
+  font-size: 2em;
+  right: 0;
+  position: absolute;
+  padding: 0.3em;
 }
 
 .hud__container {
   z-index: 98;
+  height: 3em;
   opacity: 0;
   position: absolute;
   display: flex;
@@ -154,6 +181,9 @@ body {
   font-size: 1.5em;
   padding: 0.5em;
   border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .options__container {
@@ -299,7 +329,7 @@ progress {
   text-align: center;
   width: 80%;
   height: 20%;
-  border-radius: .3em;
+  border-radius: 0.3em;
 }
 
 .marker::after {
@@ -486,5 +516,9 @@ progress {
 
   .marker {
     width: 50%;
+  }
+
+  .sharePage__container {
+    height: unset;
   }
 }
