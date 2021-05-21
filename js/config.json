@@ -136,11 +136,19 @@
                 {
                     "layer": "route",
                     "opacity": 1
+                },
+                {
+                    "layer": "route-outline",
+                    "opacity": 1
                 }
             ],
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 1
+                },
+                {
+                    "layer": "route-outline",
                     "opacity": 1
                 }
             ]
@@ -163,6 +171,10 @@
                     "opacity": 1
                 },
                 {
+                    "layer": "route-outline",
+                    "opacity": 1
+                },
+                {
                     "layer": "home-marker",
                     "opacity": 1
                 },
@@ -174,6 +186,10 @@
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "route-outline",
                     "opacity": 0
                 },
                 {
@@ -200,6 +216,14 @@
                     "opacity": 1
                 },
                 {
+                    "layer": "first-half",
+                    "opacity": 1
+                },
+                {
+                    "layer": "route-outline",
+                    "opacity": 1
+                },
+                {
                     "layer": "half-way",
                     "opacity": 1
                 }
@@ -207,6 +231,14 @@
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "route-outline",
+                    "opacity": 0
+                },
+                {
+                    "layer": "first-half",
                     "opacity": 0
                 }
             ]
@@ -227,16 +259,24 @@
             "onChapterEnter": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "route-outline",
                     "opacity": 1
                 },
                 {
                     "layer": "half-way",
-                    "opacity": 1
+                    "opacity": 0
                 }
             ],
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "route-outline",
                     "opacity": 0
                 }
             ]
@@ -256,11 +296,15 @@
             "onChapterEnter": [
                 {
                     "layer": "route",
-                    "opacity": 1
+                    "opacity": 0
+                },
+                {
+                    "layer": "route-outline",
+                    "opacity": 0
                 },
                 {
                     "layer": "half-way",
-                    "opacity": 1
+                    "opacity": 0
                 }
             ],
             "onChapterExit": [
@@ -289,8 +333,12 @@
                     "opacity": 1
                 },
                 {
-                    "layer": "half-way",
+                    "layer": "route-outline",
                     "opacity": 1
+                },
+                {
+                    "layer": "half-way",
+                    "opacity": 0
                 }
             ],
             "onChapterExit": [
@@ -319,6 +367,10 @@
                     "opacity": 1
                 },
                 {
+                    "layer": "second-half",
+                    "opacity": 1
+                },
+                {
                     "layer": "half-way",
                     "opacity": 1
                 }
@@ -326,6 +378,14 @@
             "onChapterExit": [
                 {
                     "layer": "route",
+                    "opacity": 0
+                },
+                {
+                    "layer": "second-half",
+                    "opacity": 0
+                },
+                {
+                    "layer": "half-way",
                     "opacity": 0
                 }
             ]
@@ -345,11 +405,11 @@
             "onChapterEnter": [
                 {
                     "layer": "route",
-                    "opacity": 1
+                    "opacity": 0
                 },
                 {
                     "layer": "half-way",
-                    "opacity": 1
+                    "opacity": 0
                 },
                 {
                     "layer": "home-marker",

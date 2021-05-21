@@ -1,18 +1,112 @@
 export const Data = {
   addLayers: (map) => {
     map.on("load", (e) => {
+      document.querySelector("body").classList.remove("prevent__click");
+      document.querySelector("body").classList.remove("no-scroll");
+      document.querySelector(".loader__container").remove();
 
-      document.querySelector('body').classList.remove('prevent__click')
-      document.querySelector('body').classList.remove('no-scroll')
-      document.querySelector('.loader__container').remove()
-      
-      
       // map.style.stylesheet.layers.forEach(layer => {
       //   if(layer.type === 'symbol') {
       //     map.removeLayer(layer.id);
       //   }
-      
+
       // })
+
+      map.addSource("route-outline", {
+        // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
+      });
+
+      map.addLayer({
+        id: "route-outline",
+        type: "line",
+        source: "route-outline",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#ffffff",
+          "line-width": 5,
+          "line-opacity": 0,
+        },
+      });
+
+      map.addSource("line", {
+        // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
+      });
+
+      map.addLayer({
+        id: "route",
+        type: "line",
+        source: "line",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#ff1e00",
+          "line-width": 4,
+          "line-opacity": 0,
+        },
+      });
+
+      map.addSource("first-half", {
+        // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
+      });
+
+      map.addLayer({
+        id: "first-half",
+        type: "line",
+        source: "first-half",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#ffffff",
+          "line-width": 4,
+          "line-opacity": 0,
+        },
+      });
+
+      map.addSource("second-half", {
+        // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [],
+        },
+      });
+
+      map.addLayer({
+        id: "second-half",
+        type: "line",
+        source: "second-half",
+        layout: {
+          "line-join": "round",
+          "line-cap": "round",
+        },
+        paint: {
+          "line-color": "#ffffff",
+          "line-width": 4,
+          "line-opacity": 0,
+        },
+      });
 
       map.addSource("mark", {
         // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
@@ -204,30 +298,6 @@ export const Data = {
           ],
         },
       });
-
-      map.addSource("line", {
-        // Add a new source to the map style: https://docs.mapbox.com/mapbox-gl-js/api/#map#addsource
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: [],
-        },
-      });
-
-      map.addLayer({
-        id: "route",
-        type: "line",
-        source: "line",
-        layout: {
-          "line-join": "round",
-          "line-cap": "round",
-        },
-        paint: {
-          "line-color": "#ff1e00",
-          "line-width": 5,
-          "line-opacity": 0,
-        },
-      });
     });
   },
   getGeoLocation: () => {
@@ -238,12 +308,12 @@ export const Data = {
     }
   },
   minutesToHours: (number) => {
-    const hours = (number / 60)
-    const rhours = Math.floor(hours)
-    const minutes = (hours - rhours) * 60
-    var rminutes = Math.round(minutes)
+    const hours = number / 60;
+    const rhours = Math.floor(hours);
+    const minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
     // console.log(num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).")
     // console.log(`${number} minutes = ${rhours} hour(s) and ${rminutes} minute(s)`)
-    return `${rhours} hour(s) and ${rminutes} minute(s)`
-  }
+    return `${rhours} hour(s) and ${rminutes} minute(s)`;
+  },
 };

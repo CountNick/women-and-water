@@ -220,6 +220,7 @@ const init = async (config) => {
 
             const completeDuration = Math.floor(data.routes[0].duration / 60);
             const completeDistance = data.routes[0].distance * 3;
+            
 
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
@@ -253,18 +254,12 @@ const init = async (config) => {
               ".randomEvent__time"
             ).textContent = Data.minutesToHours(completeDuration);
 
-            // document.querySelector(
-            //   "#back_home"
-            // ).firstElementChild.lastElementChild.innerHTML = `After coming home you look at the clock and realize you've just spend ${
-            //   (completeDuration / 2) * 5 + completeDuration}. It's now <span class="ending__time">__current time__</p> this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.`;
 
-            // console.log('timeee: ', Math.floor(data.routes[0].duration / 60), ' min')
 
-            // fil the line data layer with the route to the waterspot
-            const smoothenAnimation = turf.bezierSpline(
-              data.routes[0].geometry
-            );
+            console.log('Line getting filled with: ', data.routes[0].geometry)
             map.getSource("line").setData(data.routes[0].geometry);
+            map.getSource("route-outline").setData(data.routes[0].geometry);
+
 
             const middleOfRoute =
               data.routes[0].geometry.coordinates[
@@ -274,6 +269,8 @@ const init = async (config) => {
             const encodedLine = polyline.fromGeoJSON(
               map.getSource("line")._data
             );
+
+
 
             fetch(
               `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${
@@ -387,8 +384,25 @@ const init = async (config) => {
                 data.routes[0].geometry.coordinates.length - 1
               ];
 
+            const half = Math.ceil(data.routes[0].geometry.coordinates.length / 2)
+
+            const firstHalfCoordinates = data.routes[0].geometry.coordinates.splice(0, half)
+
+            const secondHalfCoordinates = data.routes[0].geometry.coordinates.splice(-half)
+
+            secondHalfCoordinates.unshift(middleOfRoute)
+
+            // console.log('firstHalfCoordinates', firstHalfCoordinates)
+            // console.log('secondHalfCoordinates', secondHalfCoordinates)
+            // secondHalfCoordinates.map(cord => console.log(cord))
+            // console.log('middleOfRoute', middleOfRoute)
+
+            map.getSource("first-half").setData({coordinates: firstHalfCoordinates, type: "LineString"});
+            map.getSource("second-half").setData({coordinates: secondHalfCoordinates, type: "LineString"});
+            // map.getSource("first-half-back").setData({coordinates: secondHalfCoordinates.splice(1), type: "LineString"});
+
             // turned of for now as don't want to pass api limts
-            function initialize() {
+            function initializeGoogleMapsAPI() {
               // Search for Google's office in Australia.
               const request = {
                 location: { lat: destination[1], lng: destination[0] },
@@ -411,10 +425,11 @@ const init = async (config) => {
                   place.photos[0] = place.photos[0].getUrl();
                 }
               });
-              document.querySelector(".destination__img").src =
-                results[0].photos[0] || results[1].photos[0];
+              
+              // document.querySelector(".destination__img").src =
+              //   results[0].photos[0] || results[1].photos[0];
 
-              if (results[0].photos[0]) {
+              if (results[0].hasOwnProperty('photos')) {
                 generateCustomMarker(
                   map,
                   waterSource._data.geometry.coordinates,
@@ -434,7 +449,7 @@ const init = async (config) => {
               "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
             );
 
-            // initialize()
+            // initializeGoogleMapsAPI()
 
             config.chapters.forEach((chapter) => {
               console.log(
@@ -544,7 +559,7 @@ const init = async (config) => {
   };
 
   const getLayerPaintType = (layer) => {
-    // console.log("layer: ", layer);
+    console.log("layer: ", layer);
     const layerType = map.getLayer(layer).type;
     return layerTypes[layerType];
   };
@@ -606,7 +621,7 @@ function generateCustomMarker(map, coordinates, imageSource) {
   console.log("hahaha 22222", [diffLong, diffLat]);
   // make a marker for each feature and add to the map
   const marker = new mapboxgl.Marker(el)
-    .setLngLat([coordinates[0], diffLat])
+    .setLngLat([diffLong, diffLat])
     .addTo(map);
 
   console.log("marker: ", el.style);
