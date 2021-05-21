@@ -168,6 +168,7 @@ const init = async (config) => {
       document.querySelector("#map").classList.add("hide");
       document.querySelector(".story__container").classList.add("hide");
       document.querySelector(".hud__container").classList.add("hide");
+      document.querySelector(".sharePage__container").classList.remove("eraseFromDom");
       shareButton.classList.add("eraseFromDom");
     });
 
@@ -220,7 +221,6 @@ const init = async (config) => {
 
             const completeDuration = Math.floor(data.routes[0].duration / 60);
             const completeDistance = data.routes[0].distance * 3;
-            
 
             console.log("complete duration: ", completeDuration);
             console.log("half duration: ", completeDuration / 2);
@@ -254,12 +254,9 @@ const init = async (config) => {
               ".randomEvent__time"
             ).textContent = Data.minutesToHours(completeDuration);
 
-
-
-            console.log('Line getting filled with: ', data.routes[0].geometry)
+            console.log("Line getting filled with: ", data.routes[0].geometry);
             map.getSource("line").setData(data.routes[0].geometry);
             map.getSource("route-outline").setData(data.routes[0].geometry);
-
 
             const middleOfRoute =
               data.routes[0].geometry.coordinates[
@@ -269,8 +266,6 @@ const init = async (config) => {
             const encodedLine = polyline.fromGeoJSON(
               map.getSource("line")._data
             );
-
-
 
             fetch(
               `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${
@@ -292,13 +287,18 @@ const init = async (config) => {
                 const shareRoutePage = document.createElement("div");
 
                 shareRoutePage.classList.add("sharePage__container");
+                shareRoutePage.classList.add("eraseFromDom");
 
                 shareRoutePage.insertAdjacentHTML(
                   "beforeend",
                   `
                     <div class="sharePage-header__container">
                       <h1 class="sharePage__title">My journey for water</h1>
-                      <button class="sharePage__close-btn" data-html2canvas-ignore >close</button>
+                      <button class="sharePage__close-btn" data-html2canvas-ignore >
+                        <span class="material-icons">
+                          close
+                        </span>
+                      </button>
                     </div>
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
@@ -335,6 +335,7 @@ const init = async (config) => {
                   document
                     .querySelector(".hud__container")
                     .classList.remove("hide");
+                  document.querySelector(".sharePage__container").classList.add("eraseFromDom");
                   shareButton.classList.remove("eraseFromDom");
                 });
 
@@ -384,21 +385,38 @@ const init = async (config) => {
                 data.routes[0].geometry.coordinates.length - 1
               ];
 
-            const half = Math.ceil(data.routes[0].geometry.coordinates.length / 2)
+            const half = Math.ceil(
+              data.routes[0].geometry.coordinates.length / 2
+            );
 
-            const firstHalfCoordinates = data.routes[0].geometry.coordinates.splice(0, half)
+            const firstHalfCoordinates = data.routes[0].geometry.coordinates.splice(
+              0,
+              half
+            );
 
-            const secondHalfCoordinates = data.routes[0].geometry.coordinates.splice(-half)
+            const secondHalfCoordinates = data.routes[0].geometry.coordinates.splice(
+              -half
+            );
 
-            secondHalfCoordinates.unshift(middleOfRoute)
+            secondHalfCoordinates.unshift(middleOfRoute);
 
             // console.log('firstHalfCoordinates', firstHalfCoordinates)
             // console.log('secondHalfCoordinates', secondHalfCoordinates)
             // secondHalfCoordinates.map(cord => console.log(cord))
             // console.log('middleOfRoute', middleOfRoute)
 
-            map.getSource("first-half").setData({coordinates: firstHalfCoordinates, type: "LineString"});
-            map.getSource("second-half").setData({coordinates: secondHalfCoordinates, type: "LineString"});
+            map
+              .getSource("first-half")
+              .setData({
+                coordinates: firstHalfCoordinates,
+                type: "LineString",
+              });
+            map
+              .getSource("second-half")
+              .setData({
+                coordinates: secondHalfCoordinates,
+                type: "LineString",
+              });
             // map.getSource("first-half-back").setData({coordinates: secondHalfCoordinates.splice(1), type: "LineString"});
 
             // turned of for now as don't want to pass api limts
@@ -425,11 +443,11 @@ const init = async (config) => {
                   place.photos[0] = place.photos[0].getUrl();
                 }
               });
-              
+
               // document.querySelector(".destination__img").src =
               //   results[0].photos[0] || results[1].photos[0];
 
-              if (results[0].hasOwnProperty('photos')) {
+              if (results[0].hasOwnProperty("photos")) {
                 generateCustomMarker(
                   map,
                   waterSource._data.geometry.coordinates,
