@@ -140,10 +140,14 @@ const init = async (config) => {
       `
       <div class="story__button-container">
       <button data-attribute="story__prev-btn" class="story__prev-btn">
-          <
+        <span class="material-icons story__prev-icon">
+        navigate_before
+        </span>
       </button>
       <button class="story__next-btn">
-          >
+        <span class="material-icons story__next-icon">
+        navigate_next
+        </span>
       </button> 
       </div>
       `
@@ -565,13 +569,17 @@ const init = async (config) => {
 
     // add click event to the next button
     storyElement.children[0].addEventListener("click", (e) => {
-      const children = [...e.target.parentElement.nextElementSibling.children];
+      // console.log('QuerySelector: ', [...document.querySelector('#features').children])
+      // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
+      const children = [...document.querySelector('#features').children];
       Story.update(children, e, config, map, setLayerOpacity, date);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
+      // console.log('QuerySelector: ', document.querySelector('#features').children)
+      // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
       // function could look like this: updateStory(event, operator, method)
-      const children = [...e.target.parentElement.nextElementSibling.children];
+      const children = [...document.querySelector('#features').children];
       Story.update(children, e, config, map, setLayerOpacity, date);
     });
   };

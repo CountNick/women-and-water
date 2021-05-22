@@ -9,6 +9,8 @@ export const Story = {
   ) => {
     // console.log("update story event: ", event.target.className);
 
+
+
     const clockElement = document.querySelector(".hud__clock");
 
     // console.log(clockElement)
@@ -26,9 +28,9 @@ export const Story = {
 
     let nextChapter;
 
-    if (event.target.className === "story__next-btn") {
+    if (event.target.className === "story__next-btn" || event.target.classList.contains("story__next-icon")) {
 
-
+        
       nextChapter = config.chapters[++currInd];
 
       Story.updateProgression(
@@ -95,7 +97,7 @@ export const Story = {
       ) {
         document.querySelector(".hud__container").classList.remove("active");
       }
-    } else if (event.target.className === "story__prev-btn") {
+    } else if (event.target.className === "story__prev-btn" || event.target.classList.contains("story__prev-icon")) {
 
 
       nextChapter = config.chapters[--currInd];

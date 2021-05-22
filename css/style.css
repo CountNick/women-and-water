@@ -276,6 +276,7 @@ progress {
   display: flex;
   flex-direction: row;
   height: auto;
+  top: -25px;
 }
 
 .story__next-btn,
