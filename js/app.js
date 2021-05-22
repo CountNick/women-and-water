@@ -465,13 +465,13 @@ const init = async (config) => {
                 );
               }
             }
-            generateCustomMarker(
-              map,
-              waterSource._data.geometry.coordinates,
-              "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
-            );
+            // generateCustomMarker(
+            //   map,
+            //   waterSource._data.geometry.coordinates,
+            //   "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
+            // );
 
-            // initializeGoogleMapsAPI()
+            initializeGoogleMapsAPI()
 
             config.chapters.forEach((chapter) => {
               console.log(
