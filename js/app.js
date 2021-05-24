@@ -174,6 +174,43 @@ const init = async (config) => {
       document.querySelector(".hud__container").classList.add("hide");
       document.querySelector(".sharePage__container").classList.remove("eraseFromDom");
       shareButton.classList.add("eraseFromDom");
+
+      html2canvas(document.querySelector(".sharePage__container"), {
+        allowTaint: true,
+        scale: 1,
+        windowWidth: 400,
+        width: 400,
+        windowHeight: 600,
+      }).then((canvas) => {
+        // document.body.appendChild(canvas)
+        console.log(canvas);
+
+        const downloadButton = document.querySelector(
+          ".download__image"
+        );
+
+        const exportImg = canvas.toDataURL("image/png");
+        downloadButton.href = exportImg;
+
+        downloadButton.classList.remove("unclickable");
+
+        function debugBase64(base64URL) {
+          var win = window.open();
+          win.document.write(
+            '<iframe src="' +
+              base64URL +
+              '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+          );
+        }
+
+        downloadButton.addEventListener('click', (e) => {
+          e.preventDefault()
+          debugBase64(exportImg)
+
+        });
+      });
+
+
     });
 
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
@@ -345,41 +382,6 @@ const init = async (config) => {
 
                 // downloadButton.addEventListener('click', (e) => {
                 //   e.preventDefault()
-
-                html2canvas(document.querySelector(".sharePage__container"), {
-                  allowTaint: true,
-                  scale: 1,
-                  windowWidth: 400,
-                  width: 400,
-                  windowHeight: 700,
-                }).then((canvas) => {
-                  // document.body.appendChild(canvas)
-                  console.log(canvas);
-
-                  const downloadButton = document.querySelector(
-                    ".download__image"
-                  );
-
-                  const exportImg = canvas.toDataURL("image/png");
-                  downloadButton.href = exportImg;
-
-                  downloadButton.classList.remove("unclickable");
-
-                  function debugBase64(base64URL) {
-                    var win = window.open();
-                    win.document.write(
-                      '<iframe src="' +
-                        base64URL +
-                        '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
-                    );
-                  }
-
-                  // downloadButton.addEventListener('click', (e) => {
-                  //   e.preventDefault()
-                  //   debugBase64(exportImg)
-
-                  // });
-                });
 
                 // })
               });
