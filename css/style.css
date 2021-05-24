@@ -87,25 +87,33 @@ body {
   left: 50%;
 }
 
-.sharePage__container {
+.sharePage__container, .shareImage__container {
   background: #f7f7f7;
   font-family: "Roboto";
   padding: 1em 2em;
   height: 100vh;
+  z-index: -1;
+  position: fixed;
 }
 
-.sharePage__container .sharePage__title {
+.shareImage__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sharePage__container .sharePage__title, .shareImage__container .shareImage__title {
   font-family: "Roboto Condensed";
 }
 
-.sharePage-header__container {
+.sharePage-header__container, .shareImage-header__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.sharePage-header__container .sharePage__close-btn {
+.sharePage-header__container .sharePage__close-btn, .shareImage-header__container .shareImage__close-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -116,12 +124,22 @@ body {
   width: 100%;
 }
 
+.shareImage__image {
+    box-shadow: 0 2.4rem 4.8rem #000000;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .download__image {
     text-decoration: none;
     color: #f2f2f2;
     background: #009edb;
     padding: 1em;
     border-radius: 1em;
+    display: flex;
+    justify-content: center;
+    justify-items: center;
 }
 
 .download__image:visited {
@@ -457,6 +475,17 @@ progress {
   z-index: 102;
   opacity: 0.5;
   pointer-events: none;
+}
+
+.loader__container-image {
+  background: black;
+  z-index: 102;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.loader__container-image .loader{
+position: unset;
 }
 
 .no-scroll {

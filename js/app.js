@@ -172,7 +172,12 @@ const init = async (config) => {
       document.querySelector("#map").classList.add("hide");
       document.querySelector(".story__container").classList.add("hide");
       document.querySelector(".hud__container").classList.add("hide");
-      document.querySelector(".sharePage__container").classList.remove("eraseFromDom");
+      document
+        .querySelector(".sharePage__container")
+        .classList.remove("eraseFromDom");
+      document
+        .querySelector(".shareImage__container")
+        .classList.remove("eraseFromDom");
       shareButton.classList.add("eraseFromDom");
 
       html2canvas(document.querySelector(".sharePage__container"), {
@@ -181,16 +186,23 @@ const init = async (config) => {
         windowWidth: 400,
         width: 400,
         windowHeight: 600,
+        height: 600
       }).then((canvas) => {
         // document.body.appendChild(canvas)
         console.log(canvas);
 
-        const downloadButton = document.querySelector(
-          ".download__image"
+        const downloadButton = document.querySelector(".download__image");
+        const loaderContainer = document.querySelector(
+          ".loader__container-image"
         );
-
         const exportImg = canvas.toDataURL("image/png");
+        const showImage = new Image();
+        showImage.classList.add("shareImage__image");
+        showImage.src = exportImg;
+
         downloadButton.href = exportImg;
+
+        loaderContainer.parentNode.replaceChild(showImage, loaderContainer);
 
         downloadButton.classList.remove("unclickable");
 
@@ -203,14 +215,11 @@ const init = async (config) => {
           );
         }
 
-        downloadButton.addEventListener('click', (e) => {
-          e.preventDefault()
-          debugBase64(exportImg)
-
+        downloadButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          debugBase64(exportImg);
         });
       });
-
-
     });
 
     map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
@@ -326,20 +335,18 @@ const init = async (config) => {
                 const img = URL.createObjectURL(blob);
 
                 const shareRoutePage = document.createElement("div");
+                const shareImage = document.createElement("div");
 
                 shareRoutePage.classList.add("sharePage__container");
                 shareRoutePage.classList.add("eraseFromDom");
+                shareImage.classList.add("shareImage__container");
+                shareImage.classList.add("eraseFromDom");
 
                 shareRoutePage.insertAdjacentHTML(
                   "beforeend",
                   `
                     <div class="sharePage-header__container">
                       <h1 class="sharePage__title">My journey for water</h1>
-                      <button class="sharePage__close-btn" data-html2canvas-ignore >
-                        <span class="material-icons">
-                          close
-                        </span>
-                      </button>
                     </div>
                     <img class="sharePage__image" src=${img} alt="myroute">
                   
@@ -351,18 +358,43 @@ const init = async (config) => {
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
                     <h2>Because of this I couldn't go to school</h2>
+                  `
+                );
+
+                shareImage.insertAdjacentHTML(
+                  "beforeend",
+                  `
+                    <div class="shareImage-header__container">
+                      <h1 class="shareImage__title">Share my route</h1>
+                      <button class="shareImage__close-btn" data-html2canvas-ignore >
+                        <span class="material-icons">
+                          close
+                        </span>
+                      </button>
+                    </div>
+                    
+                    <div class="loader__container-image">
+                      <div class="loader"></div>
+                    </div>
 
 
-
-                    <a class="download__image unclickable" download="my-journey-for-water.png" href="" data-html2canvas-ignore>Download</a>
+                    <a class="download__image unclickable" download="my-journey-for-water.png" href="" data-html2canvas-ignore><span class="material-icons">
+                    file_download
+                    </span>Save image</a>
 
                   `
                 );
 
-                document.querySelector("body").appendChild(shareRoutePage);
+                document.querySelector("body").appendChild(shareImage);
+                document
+                  .querySelector("body")
+                  .insertBefore(
+                    shareRoutePage,
+                    document.querySelector(".introduction__container")
+                  );
 
                 const closeButton = document.querySelector(
-                  ".sharePage__close-btn"
+                  ".shareImage__close-btn"
                 );
                 const downloadButton = document.querySelector(
                   ".download__image"
@@ -376,7 +408,12 @@ const init = async (config) => {
                   document
                     .querySelector(".hud__container")
                     .classList.remove("hide");
-                  document.querySelector(".sharePage__container").classList.add("eraseFromDom");
+                  document
+                    .querySelector(".sharePage__container")
+                    .classList.add("eraseFromDom");
+                  document
+                    .querySelector(".shareImage__container")
+                    .classList.add("eraseFromDom");
                   shareButton.classList.remove("eraseFromDom");
                 });
 
@@ -411,18 +448,14 @@ const init = async (config) => {
             // secondHalfCoordinates.map(cord => console.log(cord))
             // console.log('middleOfRoute', middleOfRoute)
 
-            map
-              .getSource("first-half")
-              .setData({
-                coordinates: firstHalfCoordinates,
-                type: "LineString",
-              });
-            map
-              .getSource("second-half")
-              .setData({
-                coordinates: secondHalfCoordinates,
-                type: "LineString",
-              });
+            map.getSource("first-half").setData({
+              coordinates: firstHalfCoordinates,
+              type: "LineString",
+            });
+            map.getSource("second-half").setData({
+              coordinates: secondHalfCoordinates,
+              type: "LineString",
+            });
             // map.getSource("first-half-back").setData({coordinates: secondHalfCoordinates.splice(1), type: "LineString"});
 
             // turned of for now as don't want to pass api limts
@@ -573,7 +606,7 @@ const init = async (config) => {
     storyElement.children[0].addEventListener("click", (e) => {
       // console.log('QuerySelector: ', [...document.querySelector('#features').children])
       // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
-      const children = [...document.querySelector('#features').children];
+      const children = [...document.querySelector("#features").children];
       Story.update(children, e, config, map, setLayerOpacity, date);
     });
 
@@ -581,7 +614,7 @@ const init = async (config) => {
       // console.log('QuerySelector: ', document.querySelector('#features').children)
       // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
       // function could look like this: updateStory(event, operator, method)
-      const children = [...document.querySelector('#features').children];
+      const children = [...document.querySelector("#features").children];
       Story.update(children, e, config, map, setLayerOpacity, date);
     });
   };
