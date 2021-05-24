@@ -87,7 +87,8 @@ body {
   left: 50%;
 }
 
-.sharePage__container, .shareImage__container {
+.sharePage__container,
+.shareImage__container {
   background: #f7f7f7;
   font-family: "Roboto";
   padding: 1em 2em;
@@ -97,23 +98,26 @@ body {
 }
 
 .shareImage__container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
-.sharePage__container .sharePage__title, .shareImage__container .shareImage__title {
+.sharePage__container .sharePage__title,
+.shareImage__container .shareImage__title {
   font-family: "Roboto Condensed";
 }
 
-.sharePage-header__container, .shareImage-header__container {
+.sharePage-header__container,
+.shareImage-header__container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.sharePage-header__container .sharePage__close-btn, .shareImage-header__container .shareImage__close-btn {
+.sharePage-header__container .sharePage__close-btn,
+.shareImage-header__container .shareImage__close-btn {
   background: none;
   border: none;
   cursor: pointer;
@@ -125,26 +129,26 @@ body {
 }
 
 .shareImage__image {
-    box-shadow: 0 2.4rem 4.8rem #000000;
-    width: 75%;
-    margin-right: auto;
-    margin-left: auto;
+  box-shadow: 0 2.4rem 4.8rem #000000;
+  width: 75%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .download__image {
-    text-decoration: none;
-    color: #f2f2f2;
-    background: #009edb;
-    padding: 1em;
-    border-radius: 1em;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+  text-decoration: none;
+  color: #f2f2f2;
+  background: #009edb;
+  padding: 1em;
+  border-radius: 1em;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 
 .download__image:visited {
-    text-decoration: none;
-    color: #f2f2f2;
+  text-decoration: none;
+  color: #f2f2f2;
 }
 
 .article__title {
@@ -220,9 +224,15 @@ body {
 }
 
 @-webkit-keyframes run {
-    0% { left: 15%;}
-    50%{ left : 20%;}
-    100%{ left: 15%;}
+  0% {
+    left: 15%;
+  }
+  50% {
+    left: 20%;
+  }
+  100% {
+    left: 15%;
+  }
 }
 
 .search__input {
@@ -484,8 +494,8 @@ progress {
   pointer-events: none;
 }
 
-.loader__container-image .loader{
-position: unset;
+.loader__container-image .loader {
+  position: unset;
 }
 
 .no-scroll {
@@ -587,5 +597,13 @@ position: unset;
 
   .sharePage__container {
     height: unset;
+  }
+
+  .shareImage__container {
+    width: calc(100% - 4em);
+  }
+
+  .shareImage__image {
+    width: 25%;
   }
 }

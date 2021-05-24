@@ -357,7 +357,7 @@ const init = async (config) => {
                         <li class="sharePage__list-item">On the road I got attacked by__.</li>
                         <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
                     </ul>
-                    <h2>Because of this I couldn't go to school</h2>
+                    
                   `
                 );
 
