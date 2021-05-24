@@ -233,9 +233,24 @@ export const Data = {
         source: "radius",
         opacity: 0,
         paint: {
-          "fill-color": "pink",
+          "fill-color": "transparent",
           "fill-opacity": 0,
+          "fill-outline-color": "#d7a565",
         },
+      });
+
+      map.addLayer({
+        id: "circle-outline",
+        type: "line",
+        source: "radius",
+        opacity: 0,
+        paint: {
+          "line-color": "#d7a565",
+          "line-opacity": 1,
+          "line-width": 5,
+          "line-offset": 5,
+        },
+        layout: {},
       });
 
       map.addSource("tilequery", {
@@ -302,10 +317,13 @@ export const Data = {
   },
   getGeoLocation: () => {
     if (navigator.geolocation) {
-      console.log(navigator.geolocation.getCurrentPosition(showPosition));
+      console.log(navigator.geolocation.getCurrentPosition(Data.showPosition));
     } else {
       console.log("not working pall");
     }
+  },
+  showPosition: (position) => {
+    plotHomeLocation([position.coords.longitude, position.coords.latitude]);
   },
   minutesToHours: (number) => {
     const hours = number / 60;
