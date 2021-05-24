@@ -116,6 +116,19 @@ body {
   width: 100%;
 }
 
+.download__image {
+    text-decoration: none;
+    color: #f2f2f2;
+    background: #009edb;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.download__image:visited {
+    text-decoration: none;
+    color: #f2f2f2;
+}
+
 .article__title {
   font-family: "Roboto Condensed", sans-serif;
   border-bottom: solid;
@@ -169,6 +182,29 @@ body {
 
 .hud__container .hud__img-jerrycan {
   padding: 1em 2em;
+}
+
+.explanation__container {
+  background: rgba(242, 242, 242, 0.8);
+  border-radius: 1em;
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  justify-items: center;
+  font-family: "Roboto";
+  width: 50%;
+  position: absolute;
+  z-index: 98;
+  justify-content: space-around;
+  -webkit-animation: ease-in-out infinite alternate;
+  -webkit-animation-name: run;
+  -webkit-animation-duration: 5s;
+}
+
+@-webkit-keyframes run {
+    0% { left: 15%;}
+    50%{ left : 20%;}
+    100%{ left: 15%;}
 }
 
 .search__input {
@@ -364,6 +400,7 @@ progress {
 
 .unclickable {
   pointer-events: none;
+  background: grey;
 }
 
 .eraseFromDom {

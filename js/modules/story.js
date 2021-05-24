@@ -97,6 +97,13 @@ export const Story = {
       ) {
         document.querySelector(".hud__container").classList.remove("active");
       }
+
+      if(nextChapter.explain) {
+          document.querySelector(".explanation__container").classList.remove('eraseFromDom')
+      } else {
+        document.querySelector(".explanation__container").classList.add('eraseFromDom')
+      }
+
     } else if (event.target.className === "story__prev-btn" || event.target.classList.contains("story__prev-icon")) {
 
 
@@ -166,6 +173,13 @@ export const Story = {
       ) {
         document.querySelector(".hud__container").classList.remove("active");
       }
+
+      if(nextChapter.explain) {
+        document.querySelector(".explanation__container").classList.remove('eraseFromDom')
+    } else {
+      document.querySelector(".explanation__container").classList.add('eraseFromDom')
+    }
+
     }
   },
   createDomElements: (config, features) => {
