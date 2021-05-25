@@ -734,16 +734,16 @@ function scrollHandler() {
 const mediaQuery = "(min-width: 750px)";
 const mediaQueryList = window.matchMedia(mediaQuery);
 
-if (window.innerWidth < 750) {
-  window.addEventListener("scroll", scrollHandler);
-}
+// if (window.innerWidth < 750) {
+//   window.addEventListener("scroll", scrollHandler);
+// }
 
-mediaQueryList.addEventListener("change", (event) => {
-  console.log(window.innerWidth);
-  if (event.matches) {
-    window.removeEventListener("scroll", scrollHandler);
-  } else {
+// mediaQueryList.addEventListener("change", (event) => {
+//   console.log(window.innerWidth);
+//   if (event.matches) {
+//     window.removeEventListener("scroll", scrollHandler);
+//   } else {
     window.addEventListener("scroll", scrollHandler);
     backgroundImage.style.opacity = 1;
-  }
-});
+//   }
+// });
