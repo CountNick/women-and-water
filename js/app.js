@@ -183,10 +183,10 @@ const init = async (config) => {
       html2canvas(document.querySelector(".sharePage__container"), {
         allowTaint: true,
         scale: 1,
-        windowWidth: 400,
-        width: 400,
-        windowHeight: 600,
-        height: 600
+        windowWidth: 450,
+        width: 450,
+        windowHeight: 650,
+        height: 650,
       }).then((canvas) => {
         // document.body.appendChild(canvas)
         console.log(canvas);
@@ -334,6 +334,15 @@ const init = async (config) => {
               .then((blob) => {
                 const img = URL.createObjectURL(blob);
 
+                let today = new Date();
+                const dd = String(today.getDate()).padStart(2, "0");
+                const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+                const yyyy = today.getFullYear();
+
+                today = `${mm}/${dd}/${yyyy}`;
+
+                config.chapters.map(chapter => console.log('time: ', chapter.time))
+
                 const shareRoutePage = document.createElement("div");
                 const shareImage = document.createElement("div");
 
@@ -347,16 +356,22 @@ const init = async (config) => {
                   `
                     <div class="sharePage-header__container">
                       <h1 class="sharePage__title">My journey for water</h1>
+                      <h2 class="sharePage__subtitle">countnick.github.io/women-and-water/</h1>
                     </div>
+
+                    <div class="sharePage__metadata">
+                      <ul class="metadata__list">
+                        <li class="metadata__list-item">${today}</li>
+                      </ul>
+                    </div>
+
                     <img class="sharePage__image" src=${img} alt="myroute">
-                  
-                    <ul class="sharePage__list">
-                        <li class="sharePage__list-item">Today I walked ${(
-                          completeDistance / 1000
-                        ).toFixed(1)} kilometers in total to get water.</li>
-                        <li class="sharePage__list-item">On the road I got attacked by__.</li>
-                        <li class="sharePage__list-item">The route cost me ___ hours to get back home.</li>
-                    </ul>
+                
+
+                    <p>
+                        If I would be in the shoes of a women or girl from Niger, this is the route I'd have to walk to fetch water.
+                        The route is ${(data.routes[0].distance / 1000).toFixed(1)} km and takes about ${Data.minutesToHours(completeDuration * 2)} back and forth. Because women spend most of their day collecting water they can't go to school, which has a direct impact on their social position.
+                    </p>
                     
                   `
                 );
