@@ -50,6 +50,10 @@ const init = async (config) => {
   locationButton.addEventListener("click", Data.getGeoLocation);
 
   searchInput.addEventListener("input", (e) => {
+    // removes the options container from DOM if it's already there
+    if (document.querySelector(".options__container") !== null) {
+      document.querySelector(".options__container").remove();
+    }
     // if querystring contains spaces replace this with %20
     let queryString = e.target.value.replace(/\s/g, "%20");
     // geocoding api source: https://docs.mapbox.com/api/search/geocoding/#mapboxplaces
@@ -63,14 +67,10 @@ const init = async (config) => {
   });
 
   const chooseAddress = async (data) => {
-    // removes the options container from DOM if it's already there
-    if (document.querySelector(".options__container") !== null) {
-      document.querySelector(".options__container").remove();
-    }
     // wait for the data
     const rawData = await data;
     // select only the features array
-    const addressOptions = rawData.features;
+    const addressOptions = rawData.features.slice(0,5);
     // create a element to store the address options in
     const optionsContainer = document.createElement("ul");
     optionsContainer.classList.add("options__container");
@@ -216,8 +216,8 @@ const init = async (config) => {
         }
 
         downloadButton.addEventListener("click", (e) => {
-          e.preventDefault();
-          debugBase64(exportImg);
+          // e.preventDefault();
+          // debugBase64(exportImg);
         });
       });
     });
@@ -324,11 +324,11 @@ const init = async (config) => {
                 map.getSource("tilequery")._data.geometry.coordinates[0]
               },${
                 map.getSource("tilequery")._data.geometry.coordinates[1]
-              }),path-5+f44-1(${encodeURIComponent(encodedLine)})/${
+              }),path-5+d7a565(${encodeURIComponent(encodedLine)})/${
                 middleOfRoute[0]
               },${
                 middleOfRoute[1]
-              },11,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
+              },11.5,0,0/600x600?access_token=pk.eyJ1IjoiY291bnRuaWNrIiwiYSI6ImNrbHV6dTVpZDJibXgyd3FtenRtcThwYjYifQ.W_GWvRe3kX14Ef4oT50bSw`
             )
               .then((res) => res.blob())
               .then((blob) => {
@@ -360,17 +360,26 @@ const init = async (config) => {
                     </div>
 
                     <div class="sharePage__metadata">
+                      <ul class="route-data__list">
+                        <li class="metadata__list-item meta__time-legend"><span class="material-icons">
+                        timer
+                        </span>
+                        ${Data.minutesToHours(completeDuration * 2)}</li>
+                        <li class="metadata__list-item meta__route-legend"><span class="material-icons">
+                        directions
+                        </span>
+                        ${(data.routes[0].distance / 1000).toFixed(1)}km</li>
+                      </ul>
                       <ul class="metadata__list">
                         <li class="metadata__list-item">${today}</li>
                       </ul>
                     </div>
 
                     <img class="sharePage__image" src=${img} alt="myroute">
-                
 
-                    <p>
-                        If I would be in the shoes of a women or girl from Niger, this is the route I'd have to walk to fetch water.
-                        The route is ${(data.routes[0].distance / 1000).toFixed(1)} km and takes about ${Data.minutesToHours(completeDuration * 2)} back and forth. Because women spend most of their day collecting water they can't go to school, which has a direct impact on their social position.
+                    <p class="sharePage__text">
+                        If I would be in the shoes of a women or girl from Niger this is <span class="route__text"><b>the route I'd have to walk to fetch water.</span></b>
+                        Because women spend most of their day collecting water they can't go to school, <span class="time__text"><b>which has a direct impact on their social position</b></span>.
                     </p>
                     
                   `
@@ -724,7 +733,7 @@ function generateCustomMarker(map, coordinates, imageSource) {
   console.log("marker: ", el.style);
 }
 
-var backgroundImage = document.querySelector(
+const backgroundImage = document.querySelector(
   ".introduction__mobile-background"
 );
 
@@ -768,3 +777,4 @@ const mediaQueryList = window.matchMedia(mediaQuery);
     backgroundImage.style.opacity = 1;
 //   }
 // });
+
