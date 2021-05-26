@@ -82,14 +82,14 @@
             },
             "onChapterEnter": [
                 {
-                    "layer": "circle-fill",
-                    "opacity": 0.5
+                    "layer": "circle-outline",
+                    "opacity": 1
                 }
             ],
             "onChapterExit": [
                 {
-                    "layer": "circle-fill",
-                    "opacity": 0.5
+                    "layer": "circle-outline",
+                    "opacity": 1
                 }
             ]
         },
@@ -116,7 +116,7 @@
                     "opacity": 1
                 },
                 {
-                    "layer": "circle-fill",
+                    "layer": "circle-outline",
                     "opacity": 0
                 }
             ]
