@@ -70,7 +70,7 @@ const init = async (config) => {
     // wait for the data
     const rawData = await data;
     // select only the features array
-    const addressOptions = rawData.features.slice(0,5);
+    const addressOptions = rawData.features.slice(0, 5);
     // create a element to store the address options in
     const optionsContainer = document.createElement("ul");
     optionsContainer.classList.add("options__container");
@@ -222,7 +222,40 @@ const init = async (config) => {
       });
     });
 
-    map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
+    // map.getSource("mark").setData({ type: "Point", coordinates: coordinates });
+
+    map.getSource("mark").setData({
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: { image: "../static/img/jerrycan.jpeg" },
+          geometry: {
+            type: "Point",
+            coordinates: coordinates,
+          },
+        },
+      ],
+    });
+
+    console.log("lalaladkdkfkeigfjrg", map.getSource("mark"));
+
+    map.on("click", "home-marker", (e) => {
+      const coordinates = e.features[0].geometry.coordinates.slice();
+      const imageLink = e.features[0].properties.image;
+      console.log("marker: ", imageLink);
+      // Ensure that if the map is zoomed out such that multiple
+      // copies of the feature are visible, the popup appears
+      // over the copy being pointed to.
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      }
+
+      new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(`<img class="popup__jerrycan-img" src=${imageLink}>`)
+        .addTo(map);
+    });
 
     // make query to get Dutch water data from tileset
     const query = `https://api.mapbox.com/v4/${config.tilesetConfig.tileset}/tilequery/${coordinates[0]},${coordinates[1]}.json?radius=${config.tilesetConfig.radius}&limit=${config.tilesetConfig.limit}&access_token=${mapboxgl.accessToken}`;
@@ -319,8 +352,10 @@ const init = async (config) => {
 
             fetch(
               `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${
-                map.getSource("mark")._data.coordinates[0]
-              },${map.getSource("mark")._data.coordinates[1]}),pin-s-b+000(${
+                map.getSource("mark")._data.features[0].geometry.coordinates[0]
+              },${
+                map.getSource("mark")._data.features[0].geometry.coordinates[1]
+              }),pin-s-b+000(${
                 map.getSource("tilequery")._data.geometry.coordinates[0]
               },${
                 map.getSource("tilequery")._data.geometry.coordinates[1]
@@ -341,7 +376,9 @@ const init = async (config) => {
 
                 today = `${mm}/${dd}/${yyyy}`;
 
-                config.chapters.map(chapter => console.log('time: ', chapter.time))
+                config.chapters.map((chapter) =>
+                  console.log("time: ", chapter.time)
+                );
 
                 const shareRoutePage = document.createElement("div");
                 const shareImage = document.createElement("div");
@@ -711,16 +748,16 @@ function generateCustomMarker(map, coordinates, imageSource) {
 
   console.log("hahaha", coordinates);
 
-  map.on("click", (e) => {
-    console.log("just clicked long and lat: ", e.lngLat);
+  // map.on("click", (e) => {
+  //   console.log("just clicked long and lat: ", e.lngLat);
 
-    const diff = (a, b) => {
-      return Math.abs(a - b);
-    };
+  //   const diff = (a, b) => {
+  //     return Math.abs(a - b);
+  //   };
 
-    console.log("difference long: ", diff(coordinates[0], e.lngLat.lng));
-    console.log("difference lat: ", diff(coordinates[1], e.lngLat.lat));
-  });
+  //   console.log("difference long: ", diff(coordinates[0], e.lngLat.lng));
+  //   console.log("difference lat: ", diff(coordinates[1], e.lngLat.lat));
+  // });
 
   const diffLong = coordinates[0] + 0.00014974447299209714;
   const diffLat = coordinates[1] + 0.0028258217985239753;
@@ -773,8 +810,7 @@ const mediaQueryList = window.matchMedia(mediaQuery);
 //   if (event.matches) {
 //     window.removeEventListener("scroll", scrollHandler);
 //   } else {
-    window.addEventListener("scroll", scrollHandler);
-    backgroundImage.style.opacity = 1;
+window.addEventListener("scroll", scrollHandler);
+backgroundImage.style.opacity = 1;
 //   }
 // });
-
