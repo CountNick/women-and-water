@@ -493,6 +493,11 @@ progress {
   margin-bottom: 0.5em;
 }
 
+.dark .randomEvent, .dark .randomSourceEvent {
+    color: #d76565;
+    border-color: #d76565;
+}
+
 .marker {
   display: none;
   border: solid #f7f7f7;
@@ -579,6 +584,10 @@ progress {
 .randomEvent__button {
   border: none;
   padding: 1em;
+}
+
+.popup__jerrycan-img {
+    width: 100%;
 }
 
 .prevent__click {
