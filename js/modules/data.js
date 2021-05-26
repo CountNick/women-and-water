@@ -54,7 +54,7 @@ export const Data = {
           "line-cap": "round",
         },
         paint: {
-          "line-color": "#ff1e00",
+          "line-color": "#d7a565",
           "line-width": 4,
           "line-opacity": 0,
         },
@@ -246,7 +246,7 @@ export const Data = {
         opacity: 0,
         paint: {
           "line-color": "#d7a565",
-          "line-opacity": 1,
+          "line-opacity": 0,
           "line-width": 5,
           "line-offset": 5,
         },
@@ -330,6 +330,7 @@ export const Data = {
     const rhours = Math.floor(hours);
     const minutes = (hours - rhours) * 60;
     var rminutes = Math.round(minutes);
+    
     // console.log(num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).")
     // console.log(`${number} minutes = ${rhours} hour(s) and ${rminutes} minute(s)`)
     return `${rhours} hour(s) and ${rminutes} minute(s)`;
