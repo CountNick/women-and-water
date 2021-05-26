@@ -151,9 +151,18 @@ body {
 
 .shareImage__container {
   width: calc(100% - 4em);
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-around; */
+}
+
+.shareImage__content {
+  /* height: 52em; */
+  height: 100%;
+  /* height: 75%; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .sharePage__container .sharePage__title,
@@ -200,6 +209,7 @@ body {
   margin-left: auto;
   object-fit: contain;
   height: 65%;
+  margin-bottom: 1em;
 }
 
 .download__image {
@@ -565,6 +575,7 @@ progress {
   margin-right: auto;
   margin-left: auto;
   box-shadow: 0 2.4rem 4.8rem #333333;
+  margin-bottom: 1em;
 }
 
 .no-scroll {
@@ -581,7 +592,7 @@ progress {
   z-index: 101;
   position: absolute;
   left: calc(50% - 25px);
-  top: calc(50% - 25px);
+  top: calc(50% - 75px);
 }
 
 @keyframes spin {
@@ -670,6 +681,36 @@ progress {
 
   .shareImage__image,
   .loader__container-image {
-    width: 25%;
+    width: 35%;
+    height: 65vh;
   }
+
+  .loader__container-image .loader {
+      position: unset;
+      margin: auto;
+
+  }
+
+  .shareImage__content {
+      flex-direction: row;
+  }
+
+  .shareImage__download-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-self: center;
+    height: 65vh;
+    justify-content: space-evenly;
+  }
+
+  .shareImage__content {
+      height: unset;
+  }
+  .shareImage__content .shareImage__download-section .main__text{
+      height: unset;
+      font-size: 1.5em;
+      font-weight: 500;
+  }
+
 }

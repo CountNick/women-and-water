@@ -387,15 +387,36 @@ const init = async (config) => {
                         </span>
                       </button>
                     </div>
-                    
-                    <div class="loader__container-image">
-                      <div class="loader"></div>
+
+                    <div class="shareImage__content">
+                      
+                      <div class="loader__container-image">
+                        <div class="loader"></div>
+                      </div>
+
+                      
+                        <div class="shareImage__download-section">
+
+                        <a class="download__image unclickable" download="my-journey-for-water.png" href="" data-html2canvas-ignore><span class="material-icons">
+                        file_download
+                        </span>Save image</a>
+
+                        <div class="download__text">
+                        
+                          <p class="main__text">
+                            This image shows how far you would have to walk for water if you would be in the shoes of a woman or girl in Niger.
+                          </p>
+
+                          <p class="sub__text">
+                            The route displayed is an approximation.
+                          </p>
+
+                        </div>
+                      
+
                     </div>
 
-
-                    <a class="download__image unclickable" download="my-journey-for-water.png" href="" data-html2canvas-ignore><span class="material-icons">
-                    file_download
-                    </span>Save image</a>
+                    </div>
 
                   `
                 );
