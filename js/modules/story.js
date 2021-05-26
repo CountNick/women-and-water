@@ -212,9 +212,21 @@ export const Story = {
       // Creates the title for the vignettes
       if (record.title) {
         const title = document.createElement("h2");
+        title.classList.add(record.id)
         title.innerText = record.title;
+
+
+        if(record.icon) {
+            title.insertAdjacentHTML('afterbegin', record.icon)  
+        }
+
+          
+    
         chapter.appendChild(title);
       }
+
+
+
       // Creates the image for the vignette
       if (record.image) {
         const image = new Image();
