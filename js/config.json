@@ -203,6 +203,7 @@
             "id": "half",
             "title": "half of route",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "icon": "<span class=\"material-icons\">warning_amber</span>",
             "description": "yeye",
             "location": {
                 "center": [],
@@ -286,6 +287,7 @@
             "id": "random",
             "title": "randomevent",
             "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "icon": "<span class=\"material-icons\">warning_amber</span>",
             "description": "to be filled with random item",
             "location": {
                 "center": [],
