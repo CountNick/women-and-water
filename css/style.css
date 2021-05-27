@@ -114,6 +114,8 @@ body {
 }
 
 .sharePage__open-btn {
+  opacity: 0;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
   position: sticky;
   padding: 1em 2em;
   border-radius: 5em;
@@ -503,7 +505,9 @@ progress {
 }
 
 .marker {
-  display: none;
+  opacity: 0 !important;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  width: 50%;
   border: solid #f7f7f7;
   box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%),
     0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%),
@@ -530,7 +534,7 @@ progress {
 }
 
 .mapboxgl-marker {
-    opacity: unset !important;
+  opacity: unset !important;
 }
 
 .position__marker {
@@ -564,6 +568,17 @@ progress {
   object-fit: cover;
   width: 100%;
   height: 100%;
+}
+
+.jerrycan__marker {
+  opacity: 0 !important;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  width: 40%;
+}
+
+.jerrycan__image {
+  width: 100%;
+  border-radius: 1em;
 }
 
 .active {
@@ -621,10 +636,6 @@ progress {
 .randomEvent__button {
   border: none;
   padding: 1em;
-}
-
-.popup__jerrycan-img {
-  width: 100%;
 }
 
 .prevent__click {
@@ -745,10 +756,6 @@ progress {
   .search__location-button {
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
-  }
-
-  .marker {
-    width: 50%;
   }
 
   .sharePage__container {
