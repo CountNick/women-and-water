@@ -123,16 +123,9 @@ export const Data = {
         source: "mark",
         paint: {
           "circle-opacity": 0,
-          "circle-stroke-color": "yellow",
+          "circle-stroke-color": "#d7a565",
           "circle-color": "black",
-          "circle-stroke-width": {
-            // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
-            stops: [
-              [0, 1],
-              [18, 3],
-            ],
-            base: 5,
-          },
+          "circle-stroke-width": 3,
           "circle-radius": {
             // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
             stops: [
@@ -270,15 +263,8 @@ export const Data = {
         paint: {
           "circle-opacity": 0,
           "circle-stroke-opacity": 0,
-          "circle-stroke-color": "white",
-          "circle-stroke-width": {
-            // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
-            stops: [
-              [0, 0.1],
-              [18, 3],
-            ],
-            base: 5,
-          },
+          "circle-stroke-color": "#d76565",
+          "circle-stroke-width": 3,
           "circle-radius": {
             // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
             stops: [
@@ -287,30 +273,7 @@ export const Data = {
             ],
             base: 5,
           },
-          "circle-color": [
-            // Specify the color each circle should be
-            "match", // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-            ["get", "STORE_TYPE"], // Use the result 'STORE_TYPE' property
-            "Convenience Store",
-            "#FF8C00",
-            "Convenience Store With Gas",
-            "#FF8C00",
-            "Pharmacy",
-            "#FF8C00",
-            "Specialty Food Store",
-            "#9ACD32",
-            "Small Grocery Store",
-            "#008000",
-            "Supercenter",
-            "#008000",
-            "Superette",
-            "#008000",
-            "Supermarket",
-            "#008000",
-            "Warehouse Club Store",
-            "#008000",
-            "#FF0000", // any other store type
-          ],
+          "circle-color": "#000000",
         },
       });
     });
