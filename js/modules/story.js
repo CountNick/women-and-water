@@ -181,6 +181,21 @@ export const Story = {
     }
 
     }
+
+    const youAreHereMarker = document.querySelector(".position__marker")
+
+    setTimeout(() => {
+        if(document.querySelector("#your-home").classList.contains("active")) {
+            console.log('position marker should fade in')
+            youAreHereMarker.style.setProperty("opacity", 1, "important")
+        } else {
+            console.log('position marker should fade out: ', youAreHereMarker)
+            youAreHereMarker.style.setProperty("opacity", 0, "important")
+        }
+    },1)
+
+
+
   },
   createDomElements: (config, features) => {
     config.chapters.forEach((record, idx) => {

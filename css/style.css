@@ -131,7 +131,7 @@ body {
 }
 
 .sharePage__text {
-    text-align: center;
+  text-align: center;
 }
 
 .sharePage__metadata {
@@ -142,31 +142,34 @@ body {
   justify-content: space-between;
 }
 
-.metadata__list, .route-data__list {
+.metadata__list,
+.route-data__list {
   list-style: none;
 }
 
-.route__text, .meta__route-legend {
-    color: #d7a565;
+.route__text,
+.meta__route-legend {
+  color: #d7a565;
 }
 
-.time__text, .meta__time-legend {
-    color: #d76565;
+.time__text,
+.meta__time-legend {
+  color: #d76565;
 }
 
 .route-data__list {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  font-weight: 300;
 }
 
 .metadata__list-item {
-    display: flex;
+  display: flex;
 }
 
 .metadata__list .metadata__list-item {
-    font-weight: 100;
+  font-weight: 100;
 }
 
 .sharePage__container,
@@ -493,9 +496,10 @@ progress {
   margin-bottom: 0.5em;
 }
 
-.dark .randomEvent, .dark .randomSourceEvent {
-    color: #d76565;
-    border-color: #d76565;
+.dark .randomEvent,
+.dark .randomSourceEvent {
+  color: #d76565;
+  border-color: #d76565;
 }
 
 .marker {
@@ -514,7 +518,7 @@ progress {
   content: "";
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-70%);
+  -webkit-transform: translateX(-75%);
   transform: translateX(-75%);
   top: 100%;
   width: 0;
@@ -523,6 +527,37 @@ progress {
   border-right: 20px solid transparent;
   border-top: 20px solid #f7f7f7;
   clear: both;
+}
+
+.mapboxgl-marker {
+    opacity: unset !important;
+}
+
+.position__marker {
+  opacity: 0;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  background: #d7a565;
+  font-size: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  color: #f2f2f2;
+  font-size: 1.2em;
+}
+
+.position__marker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  top: 100%;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 20px solid #d7a565;
+  clear: both;
+  font-weight: 500;
 }
 
 .water-source__img {
@@ -589,7 +624,7 @@ progress {
 }
 
 .popup__jerrycan-img {
-    width: 100%;
+  width: 100%;
 }
 
 .prevent__click {
@@ -727,13 +762,12 @@ progress {
   }
 
   .loader__container-image .loader {
-      position: unset;
-      margin: auto;
-
+    position: unset;
+    margin: auto;
   }
 
   .shareImage__content {
-      flex-direction: row;
+    flex-direction: row;
   }
 
   .shareImage__download-section {
@@ -746,12 +780,11 @@ progress {
   }
 
   .shareImage__content {
-      height: unset;
+    height: unset;
   }
-  .shareImage__content .shareImage__download-section .main__text{
-      height: unset;
-      font-size: 1.5em;
-      font-weight: 500;
+  .shareImage__content .shareImage__download-section .main__text {
+    height: unset;
+    font-size: 1.5em;
+    font-weight: 500;
   }
-
 }

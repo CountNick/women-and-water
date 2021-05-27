@@ -238,7 +238,20 @@ const init = async (config) => {
       ],
     });
 
-    console.log("lalaladkdkfkeigfjrg", map.getSource("mark"));
+    const positionElement = document.createElement("div");
+
+    positionElement.innerText = "you are here"
+
+    // positionElement.classList.add("active");
+  
+    positionElement.className = "position__marker";
+  
+    // make a marker for each feature and add to the map
+    const marker = new mapboxgl.Marker(positionElement, {
+      offset: [0, -50]
+    })
+      .setLngLat(coordinates)
+      .addTo(map);
 
     map.on("click", "home-marker", (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
@@ -734,34 +747,16 @@ function calculateRadius(coordinates, map) {
 function generateCustomMarker(map, coordinates, imageSource) {
   // create a HTML element for each feature
   const el = document.createElement("div");
-  const arrowDown = document.createElement("div");
   const waterSourceImg = new Image();
 
   waterSourceImg.src = imageSource;
   waterSourceImg.classList.add("water-source__img");
-  arrowDown.classList.add("arrow-down");
   el.classList.add("water-source__container");
 
   el.appendChild(waterSourceImg);
 
   el.className = "marker";
 
-  console.log("hahaha", coordinates);
-
-  // map.on("click", (e) => {
-  //   console.log("just clicked long and lat: ", e.lngLat);
-
-  //   const diff = (a, b) => {
-  //     return Math.abs(a - b);
-  //   };
-
-  //   console.log("difference long: ", diff(coordinates[0], e.lngLat.lng));
-  //   console.log("difference lat: ", diff(coordinates[1], e.lngLat.lat));
-  // });
-
-  const diffLong = coordinates[0] + 0.00014974447299209714;
-  const diffLat = coordinates[1] + 0.0028258217985239753;
-  console.log("hahaha 22222", [diffLong, diffLat]);
   // make a marker for each feature and add to the map
   const marker = new mapboxgl.Marker(el, {
     offset: [10, -100]
@@ -769,7 +764,6 @@ function generateCustomMarker(map, coordinates, imageSource) {
     .setLngLat(coordinates)
     .addTo(map);
 
-  console.log("marker: ", el.style);
 }
 
 const backgroundImage = document.querySelector(
