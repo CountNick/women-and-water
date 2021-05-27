@@ -49,12 +49,6 @@ export const Story = {
         
       }
 
-      if (nextChapter.id === "arrival") {
-        document.querySelector(".marker").style.display = "block";
-      } else {
-        document.querySelector(".marker").style.display = "none";
-      }
-
       if (nextChapter.time) {
         console.log("add time: ", nextChapter.time);
         date.setMinutes(date.getMinutes() + nextChapter.time);
@@ -113,12 +107,6 @@ export const Story = {
         config.chapters,
         nextChapter
       );
-
-      if (nextChapter.id === "arrival") {
-        document.querySelector(".marker").style.display = "block";
-      } else {
-        document.querySelector(".marker").style.display = "none";
-      }
 
       if (currentChapterObject.time) {
         console.log("minus time: ", currentChapterObject.time);
@@ -183,8 +171,11 @@ export const Story = {
     }
 
     const youAreHereMarker = document.querySelector(".position__marker")
+    const jerrycanMarker = document.querySelector(".jerrycan__marker")
     const prevButton = document.querySelector(".story__prev-btn")
     const nextButton = document.querySelector(".story__next-btn")
+    const shareButton = document.querySelector(".sharePage__open-btn")
+    const arrivalMarker = document.querySelector(".marker")
 
     setTimeout(() => {
         if(document.querySelector("#your-home").classList.contains("active")) {
@@ -200,9 +191,24 @@ export const Story = {
         if(document.querySelector("#back_home").classList.contains("active")) {
             console.log("next button should be turned off now!")
             nextButton.classList.add("unclickable")
+            shareButton.classList.add("active")
         } else {
             nextButton.classList.remove("unclickable")
+            shareButton.classList.remove("active")
         }
+
+        if(document.querySelector("#startPoint").classList.contains("active")) {
+            jerrycanMarker.style.setProperty("opacity", 1, "important")
+        } else {
+            jerrycanMarker.style.setProperty("opacity", 0, "important")
+        }
+
+        if(document.querySelector("#arrival").classList.contains("active")) {
+            arrivalMarker.style.setProperty("opacity", 1, "important")
+        } else {
+            arrivalMarker.style.setProperty("opacity", 0, "important")
+        }
+
     },1)
 
 
@@ -241,13 +247,10 @@ export const Story = {
         title.classList.add(record.id)
         title.innerText = record.title;
 
-
         if(record.icon) {
             title.insertAdjacentHTML('afterbegin', record.icon)  
         }
 
-          
-    
         chapter.appendChild(title);
       }
 
@@ -261,11 +264,11 @@ export const Story = {
         chapter.appendChild(image);
       }
       // Creates the image credit for the vignette
-      if (record.imageCredit) {
-        const imageCredit = document.createElement("p");
-        imageCredit.classList.add("imageCredit");
-        imageCredit.innerHTML = `Image credit: ${record.imageCredit}`;
-        chapter.appendChild(imageCredit);
+      if (record.dataSource) {
+        const dataSource = document.createElement("p");
+        dataSource.classList.add("dataSource");
+        dataSource.innerHTML = `Data source: ${record.dataSource}`;
+        chapter.appendChild(dataSource);
       }
       // Creates the description for the vignette
       if (record.description) {
