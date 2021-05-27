@@ -349,6 +349,10 @@
                 {
                     "layer": "half-way",
                     "opacity": 0
+                },
+                {
+                    "layer": "second-half",
+                    "opacity": 0
                 }
             ],
             "onChapterExit": [
