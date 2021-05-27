@@ -153,16 +153,9 @@ export const Data = {
         paint: {
           "circle-opacity": 0,
           "circle-stroke-opacity": 0,
-          "circle-stroke-color": "yellow",
+          "circle-stroke-color": "#d7a565",
           "circle-color": "black",
-          "circle-stroke-width": {
-            // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
-            stops: [
-              [0, 1],
-              [18, 3],
-            ],
-            base: 5,
-          },
+          "circle-stroke-width": 3,
           "circle-radius": {
             // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
             stops: [
@@ -190,16 +183,9 @@ export const Data = {
         paint: {
           "circle-opacity": 0,
           "circle-stroke-opacity": 0,
-          "circle-stroke-color": "yellow",
+          "circle-stroke-color": "#d7a565",
           "circle-color": "black",
-          "circle-stroke-width": {
-            // Set the stroke width of each circle: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-stroke-width
-            stops: [
-              [0, 1],
-              [18, 3],
-            ],
-            base: 5,
-          },
+          "circle-stroke-width": 3,
           "circle-radius": {
             // Set the radius of each circle, as well as its size at each zoom level: https://docs.mapbox.com/mapbox-gl-js/style-spec/#paint-circle-circle-radius
             stops: [
