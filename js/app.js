@@ -246,7 +246,7 @@ const init = async (config) => {
       map.getSource("mark")._data.features[0].properties.image
     );
 
-    positionElement.innerText = "you are here";
+    positionElement.innerText = "This circle displays your position";
     positionElement.className = "position__marker";
     jerrycanElement.className = "jerrycan__marker";
 
@@ -753,7 +753,7 @@ function generateCustomMarker(map, coordinates, imageSource) {
 
   el.appendChild(waterSourceImg);
 
-  el.className = "marker";
+  el.className = "water-source__marker";
 
   // make a marker for each feature and add to the map
   const marker = new mapboxgl.Marker(el, {

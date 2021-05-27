@@ -175,7 +175,7 @@ export const Story = {
     const prevButton = document.querySelector(".story__prev-btn")
     const nextButton = document.querySelector(".story__next-btn")
     const shareButton = document.querySelector(".sharePage__open-btn")
-    const arrivalMarker = document.querySelector(".marker")
+    const arrivalMarker = document.querySelector(".water-source__marker")
 
     setTimeout(() => {
         if(document.querySelector("#your-home").classList.contains("active")) {

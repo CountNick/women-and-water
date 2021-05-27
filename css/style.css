@@ -504,7 +504,7 @@ progress {
   border-color: #d76565;
 }
 
-.marker {
+.water-source__marker {
   opacity: 0 !important;
   transition: visibility 0.5s linear, opacity 0.5s linear;
   width: 50%;
@@ -518,7 +518,7 @@ progress {
   border-radius: 0.3em;
 }
 
-.marker::after {
+.water-source__marker::after {
   content: "";
   position: absolute;
   left: 50%;
@@ -533,9 +533,6 @@ progress {
   clear: both;
 }
 
-.mapboxgl-marker {
-  opacity: unset !important;
-}
 
 .position__marker {
   opacity: 0;
@@ -789,9 +786,14 @@ progress {
   .shareImage__content {
     height: unset;
   }
+  
   .shareImage__content .shareImage__download-section .main__text {
     height: unset;
     font-size: 1.5em;
     font-weight: 500;
+  }
+
+  .jerrycan__marker {
+      width: 25%;
   }
 }
