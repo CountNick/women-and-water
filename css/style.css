@@ -513,7 +513,9 @@ progress {
 .marker::after {
   content: "";
   position: absolute;
-  left: 42%;
+  left: 50%;
+  -webkit-transform: translateX(-70%);
+  transform: translateX(-75%);
   top: 100%;
   width: 0;
   height: 0;

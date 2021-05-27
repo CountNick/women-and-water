@@ -764,8 +764,7 @@ function generateCustomMarker(map, coordinates, imageSource) {
   console.log("hahaha 22222", [diffLong, diffLat]);
   // make a marker for each feature and add to the map
   const marker = new mapboxgl.Marker(el, {
-    anchor: 'bottom',
-    offset: [5, -20]
+    offset: [10, -100]
   })
     .setLngLat(coordinates)
     .addTo(map);
