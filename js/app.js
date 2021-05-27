@@ -239,36 +239,34 @@ const init = async (config) => {
     });
 
     const positionElement = document.createElement("div");
+    const jerrycanElement = document.createElement("div");
 
-    positionElement.innerText = "you are here"
+    console.log(
+      "jerrycan image link: ",
+      map.getSource("mark")._data.features[0].properties.image
+    );
 
-    // positionElement.classList.add("active");
-  
+    positionElement.innerText = "you are here";
     positionElement.className = "position__marker";
-  
+    jerrycanElement.className = "jerrycan__marker";
+
+    jerrycanElement.insertAdjacentHTML(
+      "afterbegin",
+      `<img class="jerrycan__image" src="${map.getSource("mark")._data.features[0].properties.image}">`
+    );
+
     // make a marker for each feature and add to the map
-    const marker = new mapboxgl.Marker(positionElement, {
-      offset: [0, -50]
+    const positionMarker = new mapboxgl.Marker(positionElement, {
+      offset: [0, -50],
     })
       .setLngLat(coordinates)
       .addTo(map);
 
-    map.on("click", "home-marker", (e) => {
-      const coordinates = e.features[0].geometry.coordinates.slice();
-      const imageLink = e.features[0].properties.image;
-      console.log("marker: ", imageLink);
-      // Ensure that if the map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-
-      new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`<img class="popup__jerrycan-img" src=${imageLink}>`)
-        .addTo(map);
-    });
+    const jerrycanMarker = new mapboxgl.Marker(jerrycanElement, {
+      offset: [0, -100],
+    })
+      .setLngLat(coordinates)
+      .addTo(map);
 
     // make query to get Dutch water data from tileset
     const query = `https://api.mapbox.com/v4/${config.tilesetConfig.tileset}/tilequery/${coordinates[0]},${coordinates[1]}.json?radius=${config.tilesetConfig.radius}&limit=${config.tilesetConfig.limit}&access_token=${mapboxgl.accessToken}`;
@@ -595,13 +593,13 @@ const init = async (config) => {
                 );
               }
             }
-            generateCustomMarker(
-              map,
-              waterSource._data.geometry.coordinates,
-              "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
-            );
+            // generateCustomMarker(
+            //   map,
+            //   waterSource._data.geometry.coordinates,
+            //   "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
+            // );
 
-            // initializeGoogleMapsAPI()
+            initializeGoogleMapsAPI()
 
             config.chapters.forEach((chapter) => {
               console.log(
@@ -759,11 +757,10 @@ function generateCustomMarker(map, coordinates, imageSource) {
 
   // make a marker for each feature and add to the map
   const marker = new mapboxgl.Marker(el, {
-    offset: [10, -100]
+    offset: [10, -100],
   })
     .setLngLat(coordinates)
     .addTo(map);
-
 }
 
 const backgroundImage = document.querySelector(
