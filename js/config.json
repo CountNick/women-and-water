@@ -44,7 +44,7 @@
         },
         {
             "id": "explanation",
-            "title": "Simulation",
+            "title": "Walk for water",
             "description": "In 2015 only 56% of the population in Niger had acces to clean drinking water in or around home. Which means they had to walk somewhere to get clean water.",
             "time": 0,
             "location": {
@@ -155,8 +155,8 @@
         },
         {
             "id": "startPoint",
-            "title": "Journey starts",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "title": "Jerrycan",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today.",
             "location": {
                 "center": [],
@@ -202,7 +202,7 @@
         {
             "id": "half",
             "title": "half of route",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "icon": "<span class=\"material-icons\">warning_amber</span>",
             "description": "yeye",
             "location": {
@@ -248,7 +248,7 @@
         {
             "id": "arrival",
             "title": "Arrival",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586.",
             "image": "kk",
             "location": {
@@ -286,7 +286,7 @@
         {
             "id": "random",
             "title": "randomevent",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "icon": "<span class=\"material-icons\">warning_amber</span>",
             "description": "to be filled with random item",
             "location": {
@@ -320,7 +320,7 @@
         {
             "id": "filling_time",
             "title": "Filling up",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "Now that you finally filled up your jerrycan with water it's time to return home. The jerrycan is filled with 20 liters of water which roughly equals 20 bottles of milk.",
             "time": 30,
             "location": {
@@ -354,7 +354,7 @@
         {
             "id": "physical_stress",
             "title": "physical stress",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "Halfway back your body starts aching because you're carrying the jerrycan on your back. Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
             "time": 0,
             "location": {
@@ -396,7 +396,7 @@
         {
             "id": "back_home",
             "title": "The return",
-            "imageCredit": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">The New York Times</a>",
+            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
             "location": {
                 "center": [],
