@@ -108,6 +108,10 @@
                 {
                     "layer": "tilequery-points",
                     "opacity": 1
+                },
+                {
+                    "layer": "circle-outline",
+                    "opacity": 1
                 }
             ],
             "onChapterExit": [
@@ -180,6 +184,10 @@
                     "opacity": 1
                 },
                 {
+                    "layer": "first-half",
+                    "opacity": 0
+                },
+                {
                     "layer": "half-way",
                     "opacity": 0
                 }
@@ -191,7 +199,7 @@
                 },
                 {
                     "layer": "route-outline",
-                    "opacity": 0
+                    "opacity": 1
                 },
                 {
                     "layer": "home-marker",
