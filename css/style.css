@@ -368,13 +368,17 @@ body {
   background: white;
   color: black;
   list-style-type: none;
-  padding: 1.2em;
 }
 
 .options__container li {
   cursor: pointer;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
+  padding: 1.2em;
+}
+
+.options__container li:hover {
+  background: #f2f2f2;
 }
 
 #map {
@@ -532,7 +536,6 @@ progress {
   border-top: 20px solid #f7f7f7;
   clear: both;
 }
-
 
 .position__marker {
   opacity: 0;
@@ -786,7 +789,7 @@ progress {
   .shareImage__content {
     height: unset;
   }
-  
+
   .shareImage__content .shareImage__download-section .main__text {
     height: unset;
     font-size: 1.5em;
@@ -794,6 +797,25 @@ progress {
   }
 
   .jerrycan__marker {
-      width: 25%;
+    width: 20%;
+  }
+
+  @-webkit-keyframes runDesktop {
+    0% {
+      left: 60%;
+    }
+    50% {
+      left: 65%;
+    }
+    100% {
+      left: 60%;
+    }
+  }
+
+  .explanation__container {
+    width: 20%;
+    -webkit-animation: ease-in-out infinite alternate;
+    -webkit-animation-name: runDesktop;
+    -webkit-animation-duration: 5s;
   }
 }
