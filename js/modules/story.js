@@ -183,14 +183,25 @@ export const Story = {
     }
 
     const youAreHereMarker = document.querySelector(".position__marker")
+    const prevButton = document.querySelector(".story__prev-btn")
+    const nextButton = document.querySelector(".story__next-btn")
 
     setTimeout(() => {
         if(document.querySelector("#your-home").classList.contains("active")) {
             console.log('position marker should fade in')
             youAreHereMarker.style.setProperty("opacity", 1, "important")
+            prevButton.classList.add("unclickable")
         } else {
             console.log('position marker should fade out: ', youAreHereMarker)
             youAreHereMarker.style.setProperty("opacity", 0, "important")
+            prevButton.classList.remove("unclickable")
+        }
+
+        if(document.querySelector("#back_home").classList.contains("active")) {
+            console.log("next button should be turned off now!")
+            nextButton.classList.add("unclickable")
+        } else {
+            nextButton.classList.remove("unclickable")
         }
     },1)
 

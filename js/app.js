@@ -139,7 +139,7 @@ const init = async (config) => {
       "afterbegin",
       `
       <div class="story__button-container">
-      <button data-attribute="story__prev-btn" class="story__prev-btn">
+      <button data-attribute="story__prev-btn" class="story__prev-btn unclickable">
         <span class="material-icons story__prev-icon">
         navigate_before
         </span>
