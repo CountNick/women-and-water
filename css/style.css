@@ -711,6 +711,28 @@ progress {
     border-bottom-left-radius: 1em;
   }
 
+  .introduction__text {
+      flex-direction: row;
+      flex-wrap: wrap;
+  }
+
+  .introduction__text-article:first-of-type {
+    width: 75%;
+  }
+
+  .introduction__text-article:nth-of-type(4) {
+    width: 75%;
+  }
+
+  .article__title {
+      font-size: 2em;
+  }
+
+  .introduction__text-article {
+      width: 45%;
+      padding: 1em;
+  }
+
   .introduction__container {
     display: flex;
     flex-direction: row;
@@ -780,7 +802,7 @@ progress {
   }
 
   .shareImage__download-section {
-    width: 50%;
+    width: 20em;
     display: flex;
     flex-direction: column-reverse;
     align-self: center;
