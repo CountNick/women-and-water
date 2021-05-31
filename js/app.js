@@ -229,7 +229,7 @@ const init = async (config) => {
       features: [
         {
           type: "Feature",
-          properties: { image: "../static/img/jerrycan.jpeg" },
+          properties: { image: "./static/img/jerrycan.jpeg" },
           geometry: {
             type: "Point",
             coordinates: coordinates,
