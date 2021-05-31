@@ -76,7 +76,7 @@
             "time": 0,
             "location": {
                 "center": [],
-                "zoom": 10,
+                "zoom": 13,
                 "pitch": 60,
                 "bearing": 0
             },
@@ -257,7 +257,7 @@
             "id": "arrival",
             "title": "Arrival",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586.",
+            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586 which roughly equals 11% of the population.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -407,8 +407,8 @@
         {
             "id": "back_home",
             "title": "The return",
-            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
+            "dataSource": "<a href=\"https://ourworldindata.org/water-access#unsafe-water-sources-are-responsible-for-1-2-million-deaths-each-year\">Our world in data: Water acces</a>",
+            "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard for women and girls in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
             "location": {
                 "center": [],
                 "zoom": 12,
@@ -454,16 +454,19 @@
         {
             "id": "randomSourceEvent",
             "title": "Empty source",
+            "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
             "description": "The watersource is completely empty which means you have to walk to another one"
         },
         {
             "id": "randomSourceEvent",
             "title": "Line for the source",
+            "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
             "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about <span class=\"randomSourceEvent__time\">__amount of waiting time__</span>"
         },
         {
             "id": "randomSourceEvent",
             "title": "Conflict",
+            "dataSource": "<a href=\"https://pubmed.ncbi.nlm.nih.gov/25167777/\">National Library of Medicine</a>",
             "description": "In countries like Niger, water is unevenly distributed in both time and space, which often leads to water shortages and can evolve into heated disputes, or even violence."
         }
     ]
