@@ -11,9 +11,6 @@
         "radius": 8000,
         "limit": 50 
     },
-    "description": "<p>This tutorial demonstrates how to use <a href=\"https://github.com/mapbox/storytelling\">Mapbox Storytelling</a> with our previous web mapping example. Here we will use Mapbox storytelling template to first, give an overview of the decrease in subway usage around the city, and second, zoom into three different locations that exemplify the diversity of conditions around New York.</p><p>We will use the <a href=\"https://pointsunknown.nyc/web%20mapping/mapbox/2020/03/25/10_WebmappingTurnstileData.html\">previous web map displaying MTA turnstile data</a> as the basis for our story. In this process we will use Mapbox GL JS, as well as Intersection Observer and Scrollama as our main JavaScript libraries.</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In harum natus eos cum rem iure aperiam omnis distinctio illo quis, sunt nesciunt sint impedit deleniti dolor saepe necessitatibus eligendi aut?</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. In harum natus eos cum rem iure aperiam omnis distinctio illo quis, sunt nesciunt sint impedit deleniti dolor saepe necessitatibus eligendi aut?</p>",
-    "footer": "This story is based on data by the <a href=\"http://web.mta.info/developers/turnstile.html\">Metropolitan Transit Authority</a> and reporting by the New York Times (<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">here</a> and <a href=\"https://www.nytimes.com/aponline/2020/04/02/us/ap-us-virus-outbreak-hardest-hit.html\">here</a>), <a href=\"https://ny.curbed.com/2020/3/24/21192454/coronavirus-nyc-transportation-subway-citi-bike-covid-19\">Curbed</a>, and <a href=\"https://thecity.nyc/2020/03/subway-ridership-plunge-deepest-at-big-manhattan-stations.html\">The City</a>.",
-    "footerAttribution": "<a href=\"https://www.mapbox.com/about/maps/\" target=\"_blank\">© Mapbox</a> | <a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\">© OpenStreetMap</a> | <a href=\"https://brown.columbia.edu\">The Brown Institute for Media Innovation</a>",
     "chapters": [
         {
             "id": "your-home",
@@ -45,7 +42,8 @@
         {
             "id": "explanation",
             "title": "Walk for water",
-            "description": "In 2015 only 56% of the population in Niger had acces to clean drinking water in or around home. Which means they had to walk somewhere to get clean water.",
+            "dataSource": "<a href=\"https://ourworldindata.org/water-access#what-share-of-people-have-access-to-an-improved-water-source\">Our world in data: Water access</a>",
+            "description": "In 2015 only 58% of the population in Niger had access to clean drinking water in or around home, opposed to 100% in the Netherlands. This means that 42% of the population in Niger had to travel somewhere to get clean water.",
             "time": 0,
             "location": {
                 "center": [],
@@ -71,12 +69,13 @@
         },
         {
             "id": "theRadius",
-            "title": "6 kilometers",
+            "title": "Six kilometers",
+            "dataSource": "<a href=\"https://www.oxfamamerica.org/explore/stories/world-water-day-how-far-would-you-walk-water/\">Oxfam America</a>",
             "description": "The average distance women and girls walk for water on a daily basis is 6 kilometers, the radius is now visible on the map.",
             "time": 0,
             "location": {
                 "center": [],
-                "zoom": 13,
+                "zoom": 11,
                 "pitch": 60,
                 "bearing": 0
             },
@@ -95,8 +94,9 @@
         },
         {
             "id": "theWaterSource",
-            "title": "The watersource",
-            "description": "Today you'll have to fetch clean water from <span class=\"watersource__name\">show source name here</span>, which is <span class=\"watersource__distance\">__show distance you have to walk here__</span> kilometers away",
+            "title": "The water source",
+            "dataSource": "<a href=\"https://dataportaal.pbl.nl/downloads/Watertypen/\">Watertypen Nederland Versie 2013</a>",
+            "description": "You would have to fetch clean water from <span class=\"watersource__name\">show source name here</span>, which is <span class=\"watersource__distance\">__show distance you have to walk here__</span> kilometers away",
             "time": 0,
             "location": {
                 "center": [],
@@ -128,7 +128,7 @@
         {
             "id": "theRoute",
             "title": "Your route",
-            "description": "The route you will be walking takes approximately <span class=\"route__time\">__time it takes to walk here__</span> back and forth",
+            "description": "The route to this source takes approximately <span class=\"route__time\">__time it takes to walk here__</span> back and forth by foot.",
             "time": 0,
             "location": {
                 "center": [],
@@ -159,9 +159,9 @@
         },
         {
             "id": "startPoint",
-            "title": "Jerrycan",
+            "title": "Jerry can",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "You will be needing something to bring the water back home in. As they mainly use jerrycans for this in Niger this is what you will be using today.",
+            "description": "You will need something to bring the water back home in. As they mainly use jerry cans for this in Niger this is what you would be using as well.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -257,7 +257,7 @@
             "id": "arrival",
             "title": "Arrival",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "After walking for <span class=\"arrival__hours\">__amount of hourse displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 the annual death rate in Niger because of unsafe water sources counted 18586 which roughly equals 11% of the population.",
+            "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? The 2017 death rate in Niger as a consequence of drinking unsafe water counted 18586 which roughly equals 11% of the population. The Netherlands counted 8 deaths in total which equals 0.01% population.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -328,7 +328,7 @@
             "id": "filling_time",
             "title": "Filling up",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "Now that you finally filled up your jerrycan with water it's time to return home. The jerrycan is filled with 20 liters of water which roughly equals 20 bottles of milk.",
+            "description": "Now that you finally filled up your jerry can with water it's time to return home. The jerry can is filled with 20 liters of water which roughly equals 20 bottles of milk.",
             "time": 30,
             "location": {
                 "center": [],
@@ -364,9 +364,9 @@
         },
         {
             "id": "physical_stress",
-            "title": "physical stress",
+            "title": "Physical stress",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "Halfway back your body starts aching because you're carrying the jerrycan on your back. Most women carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
+            "description": "Halfway back your body starts aching because you're carrying the jerry can on your back. Most women in Niger carry these jerrycans on their head, back or shoulders which results in a lot of physical stress.",
             "time": 0,
             "location": {
                 "center": [],
@@ -406,7 +406,7 @@
         },
         {
             "id": "back_home",
-            "title": "The return",
+            "title": "Back home",
             "dataSource": "<a href=\"https://ourworldindata.org/water-access#unsafe-water-sources-are-responsible-for-1-2-million-deaths-each-year\">Our world in data: Water acces</a>",
             "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard for women and girls in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
             "location": {
@@ -442,12 +442,12 @@
         {
             "id": "randomEvent",
             "title": "Attacked",
-            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
+            "description": "Women in Niger face a big risk of physical or sexual assault while collecting water. Halfway down the road you get attacked and your jerry can gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>."
         },
         {
             "id": "randomEvent",
             "title": "Wild animal attack",
-            "description": "Halfway down the road you get attacked and your jerrycan gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
+            "description": "Halfway down the road you get attacked by a lion. You just managed to escape but out of fear you dropped your jerry can. This means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
         }
     ],
     "randomSourceEvents": [
@@ -455,13 +455,13 @@
             "id": "randomSourceEvent",
             "title": "Empty source",
             "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
-            "description": "The watersource is completely empty which means you have to walk to another one"
+            "description": "The watersource is completely empty which means you have to walk back empty handed."
         },
         {
             "id": "randomSourceEvent",
             "title": "Line for the source",
             "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
-            "description": "As you are not the only on who needs to get water at this source you have to wait for your turn. This took about <span class=\"randomSourceEvent__time\">__amount of waiting time__</span>"
+            "description": "As you are not the only one who needs to get water at this source you have to wait for your turn. This took about <span class=\"randomSourceEvent__time\">__amount of waiting time__</span>"
         },
         {
             "id": "randomSourceEvent",
