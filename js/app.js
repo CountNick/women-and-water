@@ -229,7 +229,7 @@ const init = async (config) => {
       features: [
         {
           type: "Feature",
-          properties: { image: "../static/img/jerrycan.jpeg" },
+          properties: { image: "./static/img/jerrycan.jpeg" },
           geometry: {
             type: "Point",
             coordinates: coordinates,
@@ -252,7 +252,13 @@ const init = async (config) => {
 
     jerrycanElement.insertAdjacentHTML(
       "afterbegin",
-      `<img class="jerrycan__image" src="${map.getSource("mark")._data.features[0].properties.image}">`
+      `
+      <div class=jerrycan__container>
+      <img class="jerrycan__image" src="${map.getSource("mark")._data.features[0].properties.image}">
+      <p>Height: 46 cm</p>
+      <p>Width: 32 cm</p>
+      </div>
+      `
     );
 
     // make a marker for each feature and add to the map
@@ -362,11 +368,11 @@ const init = async (config) => {
             );
 
             fetch(
-              `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-s-a+9ed4bd(${
+              `https://api.mapbox.com/styles/v1/countnick/ckoa0w5zy1t3j18qkn25xwu6i/static/pin-l-home+d7a565(${
                 map.getSource("mark")._data.features[0].geometry.coordinates[0]
               },${
                 map.getSource("mark")._data.features[0].geometry.coordinates[1]
-              }),pin-s-b+000(${
+              }),pin-l-water+d76565(${
                 map.getSource("tilequery")._data.geometry.coordinates[0]
               },${
                 map.getSource("tilequery")._data.geometry.coordinates[1]
