@@ -84,12 +84,14 @@ export const Story = {
 
       if (nextChapter.hudVisibility) {
         // console.log("make hud vsible");
+        document.querySelector(".hud__container").classList.remove("eraseFromDom");
         document.querySelector(".hud__container").classList.add("active");
       } else if (
         !nextChapter.hudVisibility &&
         document.querySelector(".hud__container").classList.contains("active")
       ) {
         document.querySelector(".hud__container").classList.remove("active");
+        document.querySelector(".hud__container").classList.add("eraseFromDom");
       }
 
       if(nextChapter.explain) {
@@ -154,12 +156,14 @@ export const Story = {
 
       if (nextChapter.hudVisibility) {
         // console.log("make hud vsible");
+        document.querySelector(".hud__container").classList.remove("eraseFromDom");
         document.querySelector(".hud__container").classList.add("active");
       } else if (
         !nextChapter.hudVisibility &&
         document.querySelector(".hud__container").classList.contains("active")
       ) {
         document.querySelector(".hud__container").classList.remove("active");
+        document.querySelector(".hud__container").classList.add("removeFromDom");
       }
 
       if(nextChapter.explain) {
