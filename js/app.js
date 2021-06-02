@@ -16,7 +16,8 @@ const layerTypes = {
 
 const date = new Date();
 let timer = {
-  currentTime: 0
+  currentTime: 0,
+  totalTime: 0
 }; 
 
 date.setHours(9, 0, 0, 0);
@@ -372,14 +373,18 @@ const init = async (config) => {
             ).textContent = Data.minutesToHours((completeDuration / 2) * 5);
 
             document.querySelector(
-              ".total__hours"
-            ).textContent = Data.minutesToHours(
-              (completeDuration / 2) * 5 + completeDuration
-            );
-
-            document.querySelector(
               ".randomEvent__time"
             ).textContent = Data.minutesToHours(completeDuration);
+
+            console.log("randomSourceEvent: ", document.querySelector(".randomSourceEvent__time"))
+
+            if(document.querySelector(".randomSourceEvent__time") !== null) {
+              document.querySelector(
+              ".randomSourceEvent__time"
+              ).textContent = Data.minutesToHours(30);
+            }
+
+            
 
             console.log("Line getting filled with: ", data.routes[0].geometry);
             map.getSource("line").setData(data.routes[0].geometry);
@@ -650,34 +655,43 @@ const init = async (config) => {
               if (chapter.id === "randomEvent") {
                 chapter.location.center = middleOfRoute;
                 chapter.time = (completeDuration / 2) * 3;
-                console.log("chapter randomEvent: ", chapter);
+                timer.totalTime = timer.totalTime + chapter.time
               }
 
               if (chapter.id === "arrival") {
                 chapter.location.center = destination;
                 chapter.time = (completeDuration / 2) * 4;
+                timer.totalTime = timer.totalTime + chapter.time
               }
 
               if (chapter.id === "randomSourceEvent") {
                 chapter.location.center = destination;
                 chapter.time = 30;
+                timer.totalTime = timer.totalTime + chapter.time
               }
 
               if (chapter.id === "filling_time") {
                 chapter.location.center = destination;
                 chapter.time = 30;
+                timer.totalTime = timer.totalTime + chapter.time
               }
 
               if (chapter.id === "physical_stress") {
                 chapter.location.center = middleOfRoute;
                 chapter.time = completeDuration / 2;
+                timer.totalTime = timer.totalTime + chapter.time
               }
 
               if (chapter.id === "back_home") {
                 chapter.location.center = coordinates;
                 chapter.time = completeDuration / 2;
+                timer.totalTime = timer.totalTime + chapter.time
               }
             });
+
+            document.querySelector(
+              ".total__hours"
+            ).textContent = Data.minutesToHours(timer.totalTime);
 
             map
               .getSource("half-way")
