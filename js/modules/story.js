@@ -47,10 +47,6 @@ export const Story = {
 
         date.setMinutes(date.getMinutes() + nextChapter.time);
 
-        document.querySelector(
-          ".ending__time"
-        ).textContent = date.toLocaleTimeString();
-
         clockElement.textContent = Data.minutesToHours(timer.currentTime);
       }
 
