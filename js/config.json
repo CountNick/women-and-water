@@ -441,7 +441,7 @@
     "randomEvents": [
         {
             "id": "randomEvent",
-            "title": "Attacked",
+            "title": "You just got attacked",
             "description": "Women in Niger face a big risk of physical or sexual assault while collecting water. Halfway down the road you get attacked and your jerry can gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>."
         },
         {
@@ -465,9 +465,9 @@
         },
         {
             "id": "randomSourceEvent",
-            "title": "Conflict",
+            "title": "You just got in a conflict",
             "dataSource": "<a href=\"https://pubmed.ncbi.nlm.nih.gov/25167777/\">National Library of Medicine</a>",
-            "description": "In countries like Niger, water is unevenly distributed in both time and space, which often leads to water shortages and can evolve into heated disputes, or even violence."
+            "description": "You just got in a fight at the water source. In countries like Niger, water is unevenly distributed in both time and space, which often leads to water shortages and can evolve into heated disputes, or even violence."
         }
     ]
 }
