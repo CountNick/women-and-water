@@ -64,6 +64,7 @@ body {
 }
 
 .introduction__cta-btn {
+  width: fit-content;
   position: absolute;
   z-index: 1;
   top: 9%;
@@ -78,6 +79,9 @@ body {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   justify-items: center;
+  box-shadow: 0 2.8px 2.2px rgb(0 0 0 / 3%), 0 6.7px 5.3px rgb(0 0 0 / 5%),
+    0 12.5px 10px rgb(0 0 0 / 6%), 0 22.3px 17.9px rgb(0 0 0 / 7%),
+    0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
 }
 
 .end__cta-btn {
@@ -267,12 +271,15 @@ body {
 
 .shareImage__image {
   box-shadow: 0 2.4rem 4.8rem #333333;
-  width: 75%;
   margin-right: auto;
   margin-left: auto;
   object-fit: contain;
   height: 65%;
   margin-bottom: 1em;
+}
+
+.shareImage__content .shareImage__download-section .main__text {
+  font-weight: 300;
 }
 
 .download__image {
@@ -851,6 +858,18 @@ progress {
     margin-bottom: 5em;
   }
 
+  .introduction__text-article:last-of-type .article__title {
+    margin: auto;
+    font-size: 3em;
+  }
+
+  .introduction__text-article:last-of-type .article-content__wrapper {
+    flex-direction: column;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+  }
+
   .introduction__container {
     display: flex;
     flex-direction: row;
@@ -902,7 +921,6 @@ progress {
 
   .shareImage__image,
   .loader__container-image {
-    width: 35%;
     height: 65vh;
   }
 
@@ -922,6 +940,7 @@ progress {
     align-self: center;
     height: 65vh;
     justify-content: space-evenly;
+    width: 50%;
   }
 
   .shareImage__content {
@@ -932,6 +951,7 @@ progress {
     height: unset;
     font-size: 1.5em;
     font-weight: 500;
+    margin-bottom: 1em;
   }
 
   .jerrycan__marker {
