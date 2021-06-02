@@ -257,7 +257,7 @@
             "id": "arrival",
             "title": "Arrival",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? The 2017 death rate in Niger as a consequence of drinking unsafe water counted 18586 which roughly equals 11% of the population. The Netherlands counted 8 deaths in total which equals 0.01% population.",
+            "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 1.8586 people in Niger died as a consequence of drinking unsafe water which roughly equals 11% of the population.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -408,7 +408,7 @@
             "id": "back_home",
             "title": "Back home",
             "dataSource": "<a href=\"https://ourworldindata.org/water-access#unsafe-water-sources-are-responsible-for-1-2-million-deaths-each-year\">Our world in data: Water acces</a>",
-            "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span>. It's now <span class=\"ending__time\">__current time__</span> this means that you missed a whole day of school. This is pretty standard for women and girls in Niger as in 2018 the literacy rate for people between 15 and 24 years old was only 43%.",
+            "description": "After coming home you look at the clock and realize you've just spend <span class=\"total__hours\">__amount of time spend total__</span> getting water. Because of this women and girls in Niger can't go to school as a result the literacy rate for people between 15 and 24 years old was only 43% in 2018.",
             "location": {
                 "center": [],
                 "zoom": 12,
