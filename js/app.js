@@ -15,6 +15,9 @@ const layerTypes = {
 };
 
 const date = new Date();
+let timer = {
+  currentTime: 0
+}; 
 
 date.setHours(9, 0, 0, 0);
 
@@ -47,7 +50,31 @@ const init = async (config) => {
 
   Story.createDomElements(config, features);
 
-  locationButton.addEventListener("click", Data.getGeoLocation);
+  const getGeoLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+
+      map._container.classList.remove("eraseFromDom");
+
+      setTimeout(() => {
+        map._container.classList.add("active");
+      }, 1000);
+
+      searchInput.parentElement.previousElementSibling.classList.add(
+        "eraseFromDom"
+      );
+      searchInput.parentElement.classList.add("eraseFromDom");
+
+    } else {
+      alert("we weren't able to use your location, please fill in your address")
+    }
+  }
+  
+  const showPosition = (position) => {
+    plotHomeLocation([position.coords.longitude, position.coords.latitude]);
+  }
+
+  locationButton.addEventListener("click", getGeoLocation);
 
   searchInput.addEventListener("input", (e) => {
     // removes the options container from DOM if it's already there
@@ -599,13 +626,13 @@ const init = async (config) => {
                 );
               }
             }
-            // generateCustomMarker(
-            //   map,
-            //   waterSource._data.geometry.coordinates,
-            //   "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
-            // );
+            generateCustomMarker(
+              map,
+              waterSource._data.geometry.coordinates,
+              "https://www.loudounwater.org/sites/default/files/source%20water_19273373_LARGE.jpg"
+            );
 
-            initializeGoogleMapsAPI()
+            // initializeGoogleMapsAPI()
 
             config.chapters.forEach((chapter) => {
               console.log(
@@ -706,7 +733,7 @@ const init = async (config) => {
       // console.log('QuerySelector: ', [...document.querySelector('#features').children])
       // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
       const children = [...document.querySelector("#features").children];
-      Story.update(children, e, config, map, setLayerOpacity, date);
+      Story.update(children, e, config, map, setLayerOpacity, date, timer);
     });
 
     storyElement.children[1].addEventListener("click", (e) => {
@@ -714,7 +741,7 @@ const init = async (config) => {
       // console.log('e.target: ', e.target.parentElement.nextElementSibling.children)
       // function could look like this: updateStory(event, operator, method)
       const children = [...document.querySelector("#features").children];
-      Story.update(children, e, config, map, setLayerOpacity, date);
+      Story.update(children, e, config, map, setLayerOpacity, date, timer);
     });
   };
 
