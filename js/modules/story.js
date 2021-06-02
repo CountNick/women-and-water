@@ -1,15 +1,8 @@
+import { Data } from "./data.js";
+
 export const Story = {
-  update: (
-    elements,
-    event,
-    config,
-    map,
-    setLayerOpacity,
-    date
-  ) => {
+  update: (elements, event, config, map, setLayerOpacity, date, timer) => {
     // console.log("update story event: ", event.target.className);
-
-
 
     const clockElement = document.querySelector(".hud__clock");
 
@@ -28,34 +21,37 @@ export const Story = {
 
     let nextChapter;
 
-    if (event.target.className === "story__next-btn" || event.target.classList.contains("story__next-icon")) {
-
-        
+    if (
+      event.target.className === "story__next-btn" ||
+      event.target.classList.contains("story__next-icon")
+    ) {
       nextChapter = config.chapters[++currInd];
 
-      Story.updateProgression(
-        config.chapters,
-        nextChapter
-      );
+      Story.updateProgression(config.chapters, nextChapter);
 
       console.log(nextChapter);
-        
-      if(typeof nextChapter === "undefined") {
-        console.log('no next chapter available')
 
-        const middle = config.chapters[Math.round((config.chapters.length - 1) / 2)];
+      if (typeof nextChapter === "undefined") {
+        console.log("no next chapter available");
 
-        console.log(middle)
-        
+        const middle =
+          config.chapters[Math.round((config.chapters.length - 1) / 2)];
+
+        console.log(middle);
       }
 
       if (nextChapter.time) {
-        console.log("add time: ", nextChapter.time);
+        timer.currentTime = timer.currentTime + nextChapter.time;
+
+        console.log("timer obj after: ", timer);
+
         date.setMinutes(date.getMinutes() + nextChapter.time);
 
-        document.querySelector('.ending__time').textContent = date.toLocaleTimeString()
+        document.querySelector(
+          ".ending__time"
+        ).textContent = date.toLocaleTimeString();
 
-        clockElement.textContent = date.toLocaleTimeString();
+        clockElement.textContent = Data.minutesToHours(timer.currentTime);
       }
 
       const nextChapterElement = elements.find(
@@ -84,7 +80,9 @@ export const Story = {
 
       if (nextChapter.hudVisibility) {
         // console.log("make hud vsible");
-        document.querySelector(".hud__container").classList.remove("eraseFromDom");
+        document
+          .querySelector(".hud__container")
+          .classList.remove("eraseFromDom");
         document.querySelector(".hud__container").classList.add("active");
       } else if (
         !nextChapter.hudVisibility &&
@@ -94,27 +92,29 @@ export const Story = {
         document.querySelector(".hud__container").classList.add("eraseFromDom");
       }
 
-      if(nextChapter.explain) {
-          document.querySelector(".explanation__container").classList.remove('eraseFromDom')
+      if (nextChapter.explain) {
+        document
+          .querySelector(".explanation__container")
+          .classList.remove("eraseFromDom");
       } else {
-        document.querySelector(".explanation__container").classList.add('eraseFromDom')
+        document
+          .querySelector(".explanation__container")
+          .classList.add("eraseFromDom");
       }
-
-    } else if (event.target.className === "story__prev-btn" || event.target.classList.contains("story__prev-icon")) {
-
-
+    } else if (
+      event.target.className === "story__prev-btn" ||
+      event.target.classList.contains("story__prev-icon")
+    ) {
       nextChapter = config.chapters[--currInd];
 
-      Story.updateProgression(
-        config.chapters,
-        nextChapter
-      );
+      Story.updateProgression(config.chapters, nextChapter);
 
       if (currentChapterObject.time) {
         console.log("minus time: ", currentChapterObject.time);
+        timer.currentTime = timer.currentTime - currentChapterObject.time;
         date.setMinutes(date.getMinutes() - currentChapterObject.time);
 
-        clockElement.textContent = date.toLocaleTimeString();
+        clockElement.textContent = Data.minutesToHours(timer.currentTime);
       }
 
       const nextChapterElement = elements.find(
@@ -156,67 +156,70 @@ export const Story = {
 
       if (nextChapter.hudVisibility) {
         // console.log("make hud vsible");
-        document.querySelector(".hud__container").classList.remove("eraseFromDom");
+        document
+          .querySelector(".hud__container")
+          .classList.remove("eraseFromDom");
         document.querySelector(".hud__container").classList.add("active");
       } else if (
         !nextChapter.hudVisibility &&
         document.querySelector(".hud__container").classList.contains("active")
       ) {
         document.querySelector(".hud__container").classList.remove("active");
-        document.querySelector(".hud__container").classList.add("removeFromDom");
+        document
+          .querySelector(".hud__container")
+          .classList.add("removeFromDom");
       }
 
-      if(nextChapter.explain) {
-        document.querySelector(".explanation__container").classList.remove('eraseFromDom')
-    } else {
-      document.querySelector(".explanation__container").classList.add('eraseFromDom')
+      if (nextChapter.explain) {
+        document
+          .querySelector(".explanation__container")
+          .classList.remove("eraseFromDom");
+      } else {
+        document
+          .querySelector(".explanation__container")
+          .classList.add("eraseFromDom");
+      }
     }
 
-    }
-
-    const youAreHereMarker = document.querySelector(".position__marker")
-    const jerrycanMarker = document.querySelector(".jerrycan__marker")
-    const prevButton = document.querySelector(".story__prev-btn")
-    const nextButton = document.querySelector(".story__next-btn")
-    const shareButton = document.querySelector(".sharePage__open-btn")
-    const arrivalMarker = document.querySelector(".water-source__marker")
+    const youAreHereMarker = document.querySelector(".position__marker");
+    const jerrycanMarker = document.querySelector(".jerrycan__marker");
+    const prevButton = document.querySelector(".story__prev-btn");
+    const nextButton = document.querySelector(".story__next-btn");
+    const shareButton = document.querySelector(".sharePage__open-btn");
+    const arrivalMarker = document.querySelector(".water-source__marker");
 
     setTimeout(() => {
-        if(document.querySelector("#your-home").classList.contains("active")) {
-            console.log('position marker should fade in')
-            youAreHereMarker.style.setProperty("opacity", 1, "important")
-            prevButton.classList.add("unclickable")
-        } else {
-            console.log('position marker should fade out: ', youAreHereMarker)
-            youAreHereMarker.style.setProperty("opacity", 0, "important")
-            prevButton.classList.remove("unclickable")
-        }
+      if (document.querySelector("#your-home").classList.contains("active")) {
+        console.log("position marker should fade in");
+        youAreHereMarker.style.setProperty("opacity", 1, "important");
+        prevButton.classList.add("unclickable");
+      } else {
+        console.log("position marker should fade out: ", youAreHereMarker);
+        youAreHereMarker.style.setProperty("opacity", 0, "important");
+        prevButton.classList.remove("unclickable");
+      }
 
-        if(document.querySelector("#back_home").classList.contains("active")) {
-            console.log("next button should be turned off now!")
-            nextButton.classList.add("unclickable")
-            shareButton.classList.add("active")
-        } else {
-            nextButton.classList.remove("unclickable")
-            shareButton.classList.remove("active")
-        }
+      if (document.querySelector("#back_home").classList.contains("active")) {
+        console.log("next button should be turned off now!");
+        nextButton.classList.add("unclickable");
+        shareButton.classList.add("active");
+      } else {
+        nextButton.classList.remove("unclickable");
+        shareButton.classList.remove("active");
+      }
 
-        if(document.querySelector("#startPoint").classList.contains("active")) {
-            jerrycanMarker.style.setProperty("opacity", 1, "important")
-        } else {
-            jerrycanMarker.style.setProperty("opacity", 0, "important")
-        }
+      if (document.querySelector("#startPoint").classList.contains("active")) {
+        jerrycanMarker.style.setProperty("opacity", 1, "important");
+      } else {
+        jerrycanMarker.style.setProperty("opacity", 0, "important");
+      }
 
-        if(document.querySelector("#arrival").classList.contains("active")) {
-            arrivalMarker.style.setProperty("opacity", 1, "important")
-        } else {
-            arrivalMarker.style.setProperty("opacity", 0, "important")
-        }
-
-    },1)
-
-
-
+      if (document.querySelector("#arrival").classList.contains("active")) {
+        arrivalMarker.style.setProperty("opacity", 1, "important");
+      } else {
+        arrivalMarker.style.setProperty("opacity", 0, "important");
+      }
+    }, 1);
   },
   createDomElements: (config, features) => {
     config.chapters.forEach((record, idx) => {
@@ -234,7 +237,7 @@ export const Story = {
           Math.floor(Math.random() * config.randomSourceEvents.length)
         ];
       // console.log('random source event: ', config.chapters[config.chapters.length - 4])
-    //   console.log('idx: ', idx, 'id: ', record.id)
+      //   console.log('idx: ', idx, 'id: ', record.id)
       if (record.id === "half") {
         record.id = randomEventOne.id;
         record.title = randomEventOne.title;
@@ -248,17 +251,15 @@ export const Story = {
       // Creates the title for the vignettes
       if (record.title) {
         const title = document.createElement("h2");
-        title.classList.add(record.id)
+        title.classList.add(record.id);
         title.innerText = record.title;
 
-        if(record.icon) {
-            title.insertAdjacentHTML('afterbegin', record.icon)  
+        if (record.icon) {
+          title.insertAdjacentHTML("afterbegin", record.icon);
         }
 
         chapter.appendChild(title);
       }
-
-
 
       // Creates the image for the vignette
       if (record.image) {
@@ -267,18 +268,18 @@ export const Story = {
         image.classList.add("destination__img");
         chapter.appendChild(image);
       }
-      // Creates the image credit for the vignette
-      if (record.dataSource) {
-        const dataSource = document.createElement("p");
-        dataSource.classList.add("dataSource");
-        dataSource.innerHTML = `Data source: ${record.dataSource}`;
-        chapter.appendChild(dataSource);
-      }
       // Creates the description for the vignette
       if (record.description) {
         const story = document.createElement("p");
         story.innerHTML = record.description;
         chapter.appendChild(story);
+      }
+      // Creates the image credit for the vignette
+      if (record.dataSource) {
+        const dataSource = document.createElement("i");
+        dataSource.classList.add("dataSource");
+        dataSource.innerHTML = `Data source: ${record.dataSource}`;
+        chapter.appendChild(dataSource);
       }
       // Sets the id for the vignette and adds the step css attribute
       container.setAttribute("id", record.id);
@@ -301,16 +302,14 @@ export const Story = {
     console.log("chapters: ", chapters.length);
     console.log("current chapter: ", currentChapter);
 
-    if(typeof currentChapter !== 'undefined') {
-        chapters.find((chapter, ind) => {
-            if (chapter.id === currentChapter.id) {
-              const addedByOne = ind + 1;
-              progressElement.value = (100 / chapters.length) * addedByOne;
-            }
-          });
+    if (typeof currentChapter !== "undefined") {
+      chapters.find((chapter, ind) => {
+        if (chapter.id === currentChapter.id) {
+          const addedByOne = ind + 1;
+          progressElement.value = (100 / chapters.length) * addedByOne;
+        }
+      });
     }
-
-
 
     console.log("percentage: ", 100 / chapters.length);
   },
