@@ -264,16 +264,6 @@ export const Data = {
       });
     });
   },
-  getGeoLocation: () => {
-    if (navigator.geolocation) {
-      console.log(navigator.geolocation.getCurrentPosition(Data.showPosition));
-    } else {
-      console.log("not working pall");
-    }
-  },
-  showPosition: (position) => {
-    plotHomeLocation([position.coords.longitude, position.coords.latitude]);
-  },
   minutesToHours: (number) => {
     const hours = number / 60;
     const rhours = Math.floor(hours);
@@ -283,5 +273,6 @@ export const Data = {
     // console.log(num + " minutes = " + rhours + " hour(s) and " + rminutes + " minute(s).")
     // console.log(`${number} minutes = ${rhours} hour(s) and ${rminutes} minute(s)`)
     return `${rhours} hour(s) and ${rminutes} minute(s)`;
+    
   },
 };
