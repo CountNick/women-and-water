@@ -41,7 +41,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0.7;
 }
@@ -50,7 +50,6 @@ body {
   object-fit: cover;
   width: 100%;
   height: 100%;
-  position: fixed;
 }
 
 .introduction__cta-text {
@@ -67,7 +66,7 @@ body {
 .introduction__cta-btn {
   position: absolute;
   z-index: 1;
-  top: 15%;
+  top: 9%;
   background: #009edb;
   color: #f2f2f2;
   text-decoration: none;
@@ -79,6 +78,14 @@ body {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   justify-items: center;
+}
+
+.end__cta-btn {
+  background: #009edb;
+  color: #f2f2f2 !important;
+  padding: 1em 2em;
+  border-radius: 1em;
+  font-size: 1em;
 }
 
 .introduction__main-title {
@@ -115,14 +122,14 @@ body {
 
 .introduction__text {
   padding: 1em 2em;
-  font-size: 1.4em;
+  font-size: 1em;
   display: flex;
   flex-direction: column;
 }
 
 .introduction__text-article {
   padding-bottom: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 5em;
 }
 
 .introduction__text-article a {
@@ -290,6 +297,7 @@ body {
   border-color: #009edb;
   margin-bottom: 1em;
   width: fit-content;
+  font-size: 2em;
 }
 
 .article__text {
@@ -322,6 +330,10 @@ body {
   max-width: inherit;
   width: 100%;
   z-index: 101;
+  border-top-right-radius: 1em;
+  border-top-left-radius: 1em;
+  box-shadow: rgb(14 30 37 / 12%) 0px 2px 4px 0px,
+    rgb(14 30 37 / 32%) 0px 2px 16px 0px;
 }
 
 .search__container .search__input {
@@ -345,15 +357,25 @@ body {
   position: absolute;
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   width: 100%;
   background: rgba(51, 51, 51, 0.5);
 }
 
 .hud__container .hud__clock {
   padding: 1em 2em;
-  margin-left: auto;
   color: white;
   font-family: "Roboto";
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-self: center;
+}
+
+.hud__container .clock__icon {
+  color: white;
+  display: flex;
+  align-self: center;
 }
 
 .hud__container .hud__img-jerrycan {
@@ -403,6 +425,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #333333;
+  background: #f2f2f2;
 }
 
 .options__container {
@@ -544,12 +568,30 @@ progress {
   margin-bottom: 0.5em;
 }
 
+.dark p {
+  margin-bottom: 0.2em;
+}
+
 .dark .randomEvent,
 .dark .randomSourceEvent {
   color: #d76565;
   border-color: #d76565;
   display: flex;
   flex-direction: row;
+}
+
+.dataSource {
+  font-weight: 300;
+}
+
+.dataSource a {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.dataSource a:visited {
+  text-decoration: none;
+  color: #3498db;
 }
 
 .water-source__marker {
@@ -791,6 +833,7 @@ progress {
 
   .introduction__header {
     width: 75%;
+    padding: 1em 4em;
   }
 
   .introduction__sub-title {
@@ -805,7 +848,7 @@ progress {
   .introduction__text-article {
     width: 100%;
     padding: 1em;
-    margin-bottom: 3em;
+    margin-bottom: 5em;
   }
 
   .introduction__container {
@@ -819,7 +862,6 @@ progress {
 
   .introduction__mobile-background .introduction__image {
     top: 0;
-    position: unset;
   }
 
   .introduction__cta-text {
