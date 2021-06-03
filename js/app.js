@@ -390,10 +390,29 @@ const init = async (config) => {
             map.getSource("line").setData(data.routes[0].geometry);
             map.getSource("route-outline").setData(data.routes[0].geometry);
 
+            const xRayElement = document.createElement("div")
+            xRayElement.className = "x-ray__marker"
+            
+            xRayElement.insertAdjacentHTML(
+              "afterbegin",
+              `
+              <div class="x-ray__container">
+              <img class="x-ray__image" src="./static/img/neck-x-ray.jpeg">
+              </div>
+              `
+            );
+
+
             const middleOfRoute =
               data.routes[0].geometry.coordinates[
                 Math.floor((data.routes[0].geometry.coordinates.length - 1) / 2)
               ];
+            
+              const xrayMarker = new mapboxgl.Marker(xRayElement, {
+                offset: [0, -100],
+              })
+                .setLngLat(middleOfRoute)
+                .addTo(map);
 
             const encodedLine = polyline.fromGeoJSON(
               map.getSource("line")._data
