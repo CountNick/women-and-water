@@ -179,6 +179,7 @@ export const Story = {
 
     const youAreHereMarker = document.querySelector(".position__marker");
     const jerrycanMarker = document.querySelector(".jerrycan__marker");
+    const xrayMarker = document.querySelector(".x-ray__marker");
     const prevButton = document.querySelector(".story__prev-btn");
     const nextButton = document.querySelector(".story__next-btn");
     const shareButton = document.querySelector(".sharePage__open-btn");
@@ -210,11 +211,18 @@ export const Story = {
         jerrycanMarker.style.setProperty("opacity", 0, "important");
       }
 
+      if (document.querySelector("#physical_stress").classList.contains("active")) {
+        xrayMarker.style.setProperty("opacity", 1, "important");
+      } else {
+        xrayMarker.style.setProperty("opacity", 0, "important");
+      }
+
       if (document.querySelector("#arrival").classList.contains("active")) {
         arrivalMarker.style.setProperty("opacity", 1, "important");
       } else {
         arrivalMarker.style.setProperty("opacity", 0, "important");
       }
+      
     }, 1);
   },
   createDomElements: (config, features) => {
