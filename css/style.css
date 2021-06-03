@@ -678,7 +678,12 @@ progress {
     0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
 }
 
-.jerrycan__container {
+.x-ray__marker {
+    width: 25%;
+}
+
+.jerrycan__container, .x-ray__container {
+  padding: 1em;
   border-radius: 1em;
   background: #ffffff;
 }
@@ -686,7 +691,6 @@ progress {
 .jerrycan__image,
 .x-ray__image {
   width: 100%;
-  border-radius: 1em;
 }
 
 .active {

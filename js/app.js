@@ -257,7 +257,7 @@ const init = async (config) => {
       features: [
         {
           type: "Feature",
-          properties: { image: "./static/img/jerrycan.jpeg" },
+          properties: { image: "./static/img/jerrycan-outline.png" },
           geometry: {
             type: "Point",
             coordinates: coordinates,
@@ -283,8 +283,6 @@ const init = async (config) => {
       `
       <div class=jerrycan__container>
       <img class="jerrycan__image" src="${map.getSource("mark")._data.features[0].properties.image}">
-      <p>Height: 46 cm</p>
-      <p>Width: 32 cm</p>
       </div>
       `
     );
@@ -397,7 +395,7 @@ const init = async (config) => {
               "afterbegin",
               `
               <div class="x-ray__container">
-              <img class="x-ray__image" src="./static/img/neck-x-ray.jpeg">
+              <img class="x-ray__image" src="./static/img/x-ray.png">
               </div>
               `
             );
