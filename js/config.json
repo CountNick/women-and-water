@@ -15,7 +15,7 @@
         {
             "id": "your-home",
             "title": "No water at home",
-            "description": "Niger is a country where women and girls are often in charge for getting clean water. During this experience, we will simulate what it would be like if you were in the shoes of a woman or girl that lives in the same conditions as in Niger.",
+            "description": "Niger is a country where women and girls are often in charge of getting clean water. During this experience, we will simulate what it would be like if you were in the shoes of a woman or girl that lives in the same conditions as in Niger.",
             "time": 0,
             "location": {
                 "center": [],
@@ -75,7 +75,7 @@
             "time": 0,
             "location": {
                 "center": [],
-                "zoom": 11,
+                "zoom": 10,
                 "pitch": 60,
                 "bearing": 0
             },
@@ -96,7 +96,7 @@
             "id": "theWaterSource",
             "title": "The water source",
             "dataSource": "<a href=\"https://dataportaal.pbl.nl/downloads/Watertypen/\">Watertypen Nederland Versie 2013</a>",
-            "description": "You would have to fetch clean water from <span class=\"watersource__name\">show source name here</span>, which is <span class=\"watersource__distance\">__show distance you have to walk here__</span> kilometers away",
+            "description": "You would have to fetch clean water from <span class=\"watersource__name\">show source name here</span>, which is <span class=\"watersource__distance\">__show distance you have to walk here__</span> kilometers away.",
             "time": 0,
             "location": {
                 "center": [],
@@ -257,7 +257,7 @@
             "id": "arrival",
             "title": "Arrival",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 on a daily basis 52 people died because of unsafe water sources",
+            "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 on a daily basis 52 people died because of unsafe water sources.",
             "location": {
                 "center": [],
                 "zoom": 15,
@@ -366,7 +366,7 @@
             "id": "physical_stress",
             "title": "Physical stress",
             "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
-            "description": "Halfway back you start to feel pain in your neck and shoulders. Most women in Niger carry these jerrycans on their head, back or shoulders which results in a lot of physical pain in these areas of the body.",
+            "description": "Halfway back you start to feel pain in your neck and shoulders. Most women in Niger carry these jerry cans on their head, back or shoulders which results in a lot of physical pain in these areas of the body.",
             "time": 0,
             "location": {
                 "center": [],
@@ -408,7 +408,7 @@
             "id": "back_home",
             "title": "Back home",
             "dataSource": "<a href=\"https://data.unicef.org/resources/data_explorer/unicef_f/?ag=UNICEF&df=GLOBAL_DATAFLOW&ver=1.0&dq=NER.ED_15-24_LR.&startPeriod=1970&endPeriod=2021\">UNICEF</a>",
-            "description": "After coming home you look at the clock and realize you have just spend <span class=\"total__hours\">__amount of time spend total__</span> getting water. Because of this you missed a day of school. Data shows us that in 2018, 64% of the women and girls between 15 and 24 years old could not read.",
+            "description": "After coming home you look at the clock and realize you have just spent <span class=\"total__hours\">__amount of time spent total__</span> getting water. Because of this you missed a day of school. Data shows us that in 2018, 64% of the women and girls between 15 and 24 years old could not read.",
             "location": {
                 "center": [],
                 "zoom": 12,

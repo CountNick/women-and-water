@@ -279,8 +279,8 @@ body {
   margin-right: auto;
   margin-left: auto;
   object-fit: contain;
-  height: 65%;
   margin-bottom: 1em;
+  width: 100%;
 }
 
 .shareImage__content .shareImage__download-section .main__text {
