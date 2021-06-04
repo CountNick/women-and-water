@@ -578,6 +578,7 @@ progress {
   border-color: #009edb;
   width: fit-content;
   margin-bottom: 0.5em;
+  font-size: 1.2em;
 }
 
 .dark p {
@@ -1010,4 +1011,9 @@ progress {
   .water-source__marker {
     width: 35%;
   }
+
+  .dark h2 {
+    font-size: 1.4em;
+  }
+
 }
