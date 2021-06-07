@@ -453,12 +453,6 @@
     "randomSourceEvents": [
         {
             "id": "randomSourceEvent",
-            "title": "Empty source",
-            "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
-            "description": "The watersource is completely empty which means you have to walk back empty handed."
-        },
-        {
-            "id": "randomSourceEvent",
             "title": "Line for the source",
             "dataSource": "<a href=\"https://theconversation.com/women-still-carry-most-of-the-worlds-water-81054#:~:text=Lost%20Hours\">The Conversation</a>",
             "description": "As you are not the only one who needs to get water at this source you have to wait for your turn. This took about <span class=\"randomSourceEvent__time\">__amount of waiting time__</span>"

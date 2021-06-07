@@ -114,8 +114,12 @@ body {
   font-weight: 300;
 }
 
+.introduction__sub-title a {
+    width: 30%;
+}
+
 .introduction__sub-title .un-women__logo {
-  width: 30%;
+  width: 100%;
   display: flex;
 }
 
