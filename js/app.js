@@ -217,7 +217,7 @@ const init = async (config) => {
         height: 650,
       }).then((canvas) => {
         // document.body.appendChild(canvas)
-        console.log(canvas);
+  
 
         const downloadButton = document.querySelector(".download__image");
         const loaderContainer = document.querySelector(
@@ -608,7 +608,7 @@ const init = async (config) => {
 
             // turned of for now as don't want to pass api limts
             function initializeGoogleMapsAPI() {
-              // Search for Google's office in Australia.
+              // search the location of the destination
               const request = {
                 location: { lat: destination[1], lng: destination[0] },
                 radius: "1",

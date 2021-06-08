@@ -160,7 +160,7 @@
         {
             "id": "startPoint",
             "title": "Jerry can",
-            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
+            "dataSource": "<a href=\"https://www.youtube.com/watch?v=yPxMOzN0Uq4&feature=emb_logo\">Charity Water</a>",
             "description": "You will need something to carry the water home. In Niger, mainly jerry cans are used to carry water, therefore you will use a jerry can as well.",
             "location": {
                 "center": [],
@@ -256,7 +256,7 @@
         {
             "id": "arrival",
             "title": "Arrival",
-            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
+            "dataSource": "<a href=\"https://ourworldindata.org/water-access\">Our world in data: Clean Water</a>",
             "description": "After a walk of <span class=\"arrival__hours\">__amount of hours displayed here__</span> you finally arrive at the water source. Doesn't look save to drink right? In 2017 on a daily basis 52 people died because of unsafe water sources.",
             "location": {
                 "center": [],
@@ -327,7 +327,6 @@
         {
             "id": "filling_time",
             "title": "Filling up",
-            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
             "description": "Now that you finally filled up your jerry can with water it is time to return home. The jerry can is filled with 20 liters of water which roughly equals 20 bottles of milk.",
             "time": 30,
             "location": {
@@ -365,7 +364,7 @@
         {
             "id": "physical_stress",
             "title": "Physical stress",
-            "dataSource": "<a href=\"https://www.nytimes.com/2020/04/09/nyregion/coronavirus-queens-corona-jackson-heights-elmhurst.html\">Link to source of data</a>",
+            "dataSource": "<a href=\"https://www.globalwomenswater.org/why\">Global Women's Water Initiative</a>",
             "description": "Halfway back you start to feel pain in your neck and shoulders. Most women in Niger carry these jerry cans on their head, back or shoulders which results in a lot of physical pain in these areas of the body.",
             "time": 0,
             "location": {
@@ -442,11 +441,13 @@
         {
             "id": "randomEvent",
             "title": "You just got attacked",
+            "dataSource": "<a href=\"https://www.globalwomenswater.org/why\">Global Women's Water Initiative</a>",
             "description": "Women in Niger face a big risk of physical or sexual assault while collecting water. Halfway down the road you get attacked and your jerry can gets stolen, which means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>."
         },
         {
             "id": "randomEvent",
             "title": "Wild animal attack",
+            "dataSource": "<a href=\"https://www.concernusa.org/story/water-is-a-womens-issue/\">Concern Worldwide</a>",
             "description": "Halfway down the road you get attacked by a lion. You just managed to escape but out of fear you dropped your jerry can. This means you have to walk back home to get a new one. This journey back and forth took you about <span class=\"randomEvent__time\">___time here___</span>"
         }
     ],

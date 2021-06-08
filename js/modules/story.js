@@ -246,10 +246,12 @@ export const Story = {
         record.id = randomEventOne.id;
         record.title = randomEventOne.title;
         record.description = randomEventOne.description;
+        record.dataSource = randomEventOne.dataSource
       } else if (record.id === "random") {
         record.id = randomSourceEvent.id;
         record.title = randomSourceEvent.title;
         record.description = randomSourceEvent.description;
+        record.dataSource = randomSourceEvent.dataSource
       }
 
       // Creates the title for the vignettes
