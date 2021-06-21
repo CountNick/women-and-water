@@ -115,7 +115,7 @@ body {
 }
 
 .introduction__sub-title a {
-    width: 30%;
+  width: 30%;
 }
 
 .introduction__sub-title .un-women__logo {
@@ -683,11 +683,8 @@ progress {
     0 41.8px 33.4px rgb(0 0 0 / 9%), 0 100px 80px rgb(0 0 0 / 12%);
 }
 
-.x-ray__marker {
-    width: 10%;
-}
-
-.jerrycan__container, .x-ray__container {
+.jerrycan__container,
+.x-ray__container {
   padding: 1em;
   border-radius: 1em;
   background: #ffffff;
@@ -1021,4 +1018,7 @@ progress {
     font-size: 1.4em;
   }
 
+  .x-ray__marker {
+    width: 10%;
+  }
 }
