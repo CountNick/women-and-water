@@ -957,6 +957,7 @@ progress {
   .shareImage__image,
   .loader__container-image {
     height: 65vh;
+    width: 20em;
   }
 
   .loader__container-image .loader {
